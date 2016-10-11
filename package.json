@@ -1,0 +1,57 @@
+{
+  "name": "vue-amap",
+  "version": "1.0.0",
+  "description": "vue amap",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "cooking": "cooking",
+    "start": "npm run cooking watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElemeFE/vue-amap.git"
+  },
+  "author": "elemefe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ElemeFE/vue-amap/issues"
+  },
+  "homepage": "https://github.com/ElemeFE/vue-amap#readme",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-syntax-jsx": "^6.8.0",
+    "babel-plugin-transform-vue-jsx": "^3.1.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "cooking": "^1.1.3",
+    "cooking-vue2": "^0.2.3",
+    "core-js": "^2.4.1",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.7.1",
+    "eslint-config-elemefe": "^0.1.1",
+    "eslint-plugin-vue": "^0.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.22.0",
+    "json-loader": "^0.5.4",
+    "postcss": "^5.2.4",
+    "postcss-loader": "^0.13.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "vue-router": "^2.0.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2",
+    "uppercamelcase": "^1.1.0"
+  },
+  "dependencies": {
+    "vue": "^2.0.0",
+    "vue-router": "^2.0.0"
+  }
+}
