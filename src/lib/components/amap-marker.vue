@@ -3,11 +3,11 @@
   import MapEventEmitter from  '../mixins/eventEmitterMixin';
   import RegisterComponentMixin from '../mixins/registerComponentMixin';
 
-
   export default  {
     name: 'el-amap-marker',
-    mixins: [RegisterComponentMixin, MapEventEmitter],
+    mixins: [RegisterComponentMixin],
     props: ['lng', 'lat', 'draggable', 'options'],
+
     methods: {
       initComponent() {
         if(!this.$map)  throw new error('map instance not initaled');
@@ -21,6 +21,13 @@
         this.$marker = new AMap.Marker(markerOptions);
         this.$markerOptions = markerOptions;
       }
+    },
+    setCenter() {
+
+    },
+    getCenter() {
+      if(!this.$map) throw new Error('not ready for');
+      return this.$map
     }
   };
 </script>

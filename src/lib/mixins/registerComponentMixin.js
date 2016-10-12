@@ -1,14 +1,24 @@
+import MapEventEmitter from './eventEmitterMixin';
+
 export default {
-  mounted() {
-    console.log('mounted');
+  mixins: [MapEventEmitter],
+  created() {
     this.$map = null;
     this.$on('map-ready', map => {
-      console.log(this._events);
+      if (this.$map) return;
       this.$map = map;
       this.initComponent();
     });
   },
+  mounted() {
+    this.dispatchRigister();
+  },
   methods: {
+    dispatchRigister() {
+      this.$dispatch('register-component', {
+        args: [this]
+      });
+    },
     getOptions() {
       let tmpOptions = Object.assign({}, this.$options.propsData);
       if (this.$options.propsData.options) {

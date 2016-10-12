@@ -6,8 +6,7 @@
 </template>
 <script>
 export default {
-  name: 'app',
-  created(){}
+  name: 'app'
 };
 </script>
 <style>

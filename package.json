@@ -8,6 +8,7 @@
   },
   "scripts": {
     "cooking": "cooking",
+    "build": "cooking ./src/lib/cooking.build.js",
     "start": "npm run cooking watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -51,6 +52,7 @@
     "uppercamelcase": "^1.1.0"
   },
   "dependencies": {
+    "q": "^1.4.1",
     "vue": "^2.0.0",
     "vue-router": "^2.0.0"
   }

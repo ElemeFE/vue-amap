@@ -1,4 +1,10 @@
-
+const emitEvent = (eventName, params, context) => {
+  if (params && params.args) {
+    context.$emit(eventName, ...params.args);
+  } else {
+    context.$emit(eventName);
+  }
+};
 export default {
   methods: {
     /**
@@ -8,9 +14,9 @@ export default {
     $broadcast(eventName, params) {
       this.$children.forEach(child => {
         // 广播全部
-        if (!params.components || !params.components.length ||
+        if (!params || !params.components || !params.components.length ||
             params.components.indexOf(child.$options.componentName)) {
-          child.$emit(eventName, ...params.args);
+          emitEvent(eventName, params, child);
         }
         if (child.$broadcast) child.$broadcast(eventName, params);
       });
@@ -21,11 +27,11 @@ export default {
      */
     $dispatch(eventName, params) {
       if (this.$parent) {
-        if (!params.components || !params.components.length ||
+        if (!params || !params.components || !params.components.length ||
             params.components.indexOf(this.$parent.$options.componentName)) {
-          this.$parent.$emit(eventName, ...params.args);
+          emitEvent(eventName, params, this.$parent);
         }
-        if (this.$parent.$broadcast) this.$parent.$broadcast(eventName, params);
+        if (this.$parent.$dispatch) this.$parent.$dispatch(eventName, params);
       }
 
     }
