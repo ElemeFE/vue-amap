@@ -6,16 +6,17 @@
   export default  {
     name: 'el-amap-marker',
     mixins: [RegisterComponentMixin],
-    props: ['lng', 'lat', 'draggable', 'options'],
+    props: ['lng', 'lat', 'draggable', 'options', 'position'],
+    destoryed() {
+
+    },
     methods: {
       initComponent() {
         if(!this.$map)  throw new error('map instance not initaled');
         let markerOptions = this.getOptions();
-        if (markerOptions.lng && markerOptions.lat) {
-          markerOptions.position = new AMap.LngLat(markerOptions.lng, markerOptions.lat);
+        if (markerOptions.position && markerOptions.position.length) {
+          markerOptions.position = new AMap.LngLat(markerOptions.position[0], markerOptions.position[1]);
         }
-        delete markerOptions.lng;
-        delete markerOptions.lat;
         markerOptions.map = this.$map;
         this.$marker = new AMap.Marker(markerOptions);
         this.$markerOptions = markerOptions;

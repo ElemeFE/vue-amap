@@ -15,7 +15,7 @@ export default {
       this.$children.forEach(child => {
         // 广播全部
         if (!params || !params.components || !params.components.length ||
-            params.components.indexOf(child.$options.componentName)) {
+            params.components.indexOf(child.$options.componentName !== -1)) {
           emitEvent(eventName, params, child);
         }
         if (child.$broadcast) child.$broadcast(eventName, params);
@@ -28,7 +28,7 @@ export default {
     $dispatch(eventName, params) {
       if (this.$parent) {
         if (!params || !params.components || !params.components.length ||
-            params.components.indexOf(this.$parent.$options.componentName)) {
+            params.components.indexOf(this.$parent.$options.componentName) !== -1) {
           emitEvent(eventName, params, this.$parent);
         }
         if (this.$parent.$dispatch) this.$parent.$dispatch(eventName, params);

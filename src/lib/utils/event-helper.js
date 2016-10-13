@@ -1,4 +1,3 @@
-import Map from 'core-js/es6/map';
 class EventHelper {
   constructor() {
     /**

@@ -8,6 +8,8 @@
     }
   },
   "globals": {
-      "AMap": true
+      "AMap": true,
+      "Promise": true,
+      "Map": true
   }
 }

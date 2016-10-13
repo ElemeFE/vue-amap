@@ -5,7 +5,6 @@
     </div>
 </template>
 <script>
-  import Promsie from 'core-js/es6/promise'
   import guid  from '../utils/guid';
   import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
   import MapEventEmitter from  '../mixins/event-emitter-mixin';
@@ -19,6 +18,7 @@
       this._loadApiPromise = lazyAMapApiLoaderInstance.load();
     },
     created() {
+     this.componentName = 'vue-amap';
      const _events = {
       'register-component': (component) => {
         if (!this.$map) return;
@@ -50,7 +50,7 @@
               delete tmpOptions.options;
               Object.assign(tmpOptions, this.$options.propsData.options)
             }
-            if(tmpOptions.center.lng && tmpOptions.center.lat) tmpOptions.center = new AMap.LngLat(tmpOptions.center.lng, tmpOptions.center.lat);
+            if(tmpOptions.center.lng && tmpOptions.center.lat) tmpOptions.center = new AMap.LngLat(tmpOptions.center[0], tmpOptions.center[1]);
             delete tmpOptions.mapEvents;
             this.$mapOptions = tmpOptions;
             this.$map = new AMap.Map(elementID, tmpOptions);
@@ -81,6 +81,11 @@
           args: [this.$map]
         });
       },
+      emitAllQueueEvents() {
+        while(this._resolveEventsQueue.length) {
+          this.$emit(this._resolveEventsQueue);
+        }
+      },
       getMap() {
         if (this.$map) return new Promise(resolve => resolve(this.$map));
         return new Promise(resolve => {
@@ -91,11 +96,7 @@
           } );
         });
       },
-      emitAllQueueEvents() {
-        while(this._resolveEventsQueue.length) {
-          this.$emit(this._resolveEventsQueue);
-        }
-      }
+
     }
   }
 </script>

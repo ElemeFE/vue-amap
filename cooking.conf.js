@@ -1,7 +1,7 @@
 let cooking = require('cooking');
 
 cooking.set({
-  entry: './src/demo-app/index.js',
+  entry: ['./src/demo-app/index.js'],
   template: './src/demo-app/index.html',
   dist: './example',
   devServer: {

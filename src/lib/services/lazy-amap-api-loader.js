@@ -1,4 +1,3 @@
-const Promise = require('core-js/es6/promise');
 const DEFAULT_AMP_CONFIG = {
   key: null,
   v: 1.3,

@@ -1,21 +1,25 @@
 <template>
   <div class="amap-page-container">
     <el-amap
-        :center="{lat:31.197646,lng:121.59996}"
+        :center="[121.59996, 31.197646]"
         :zoom="12"
-        :options="{}"
         :map-manager="amapManager"
         :map-events="events"
         >
           <el-amap-marker
           v-for="marker in markers"
-          :lat="marker.lat"
-          :lng="marker.lng"
+          :position="marker"
           ></el-amap-marker>
         </el-amap>
         <button v-on:click="addMarker">add marker</button>
         <button v-on:click="getMap">get map</button>
         <button v-on:click="getMapInstaneByPromise">getMapInstaneByPromise</button>
+        <section class="container">
+          <div class="container-item">
+            <label for="content-id" class="item-lable">LBALE</label>
+            <textarea class="item-content" id="content-id" rows="" cols=""></textarea>
+          </div>
+        </section>
   </div>
 </template>
 <script>
@@ -33,18 +37,9 @@ export default {
         },
         amapManager: amapManager,
         markers: [
-              {
-                lat:31.197646,
-                lng:121.59996
-              },
-              {
-                lat:31.197648,
-                lng:121.40018
-              },
-              {
-                lat:31.197649,
-                lng:121.69991
-              }
+                  [121.59996, 31.197646],
+                  [121.40018, 31.197622],
+                  [121.69991, 31.207649]
         ]
     };
   },
@@ -54,15 +49,12 @@ export default {
     },
     getMapInstaneByPromise(){
       this.amapManager.getMapPromise().then(map => {
-          console.log(map);
-      });
+          return map;
+      }).then(map => {console.log(map);});
     },
     addMarker: function() {
       this.markers.push(
-        {
-           lat:31.107648,
-           lng:121.30018
-        })
+        [121.7, 31.197646])
     }
   }
 }
@@ -75,6 +67,20 @@ export default {
   .amap-page-container .el-vue-amap {
     height: 400px;
   }
+  .container-item{
+    width: 90%;
+    margin: auto;
+  }
+  .item-lable {
+    display: block;
+  }
+  .item-content{
+    display: block;
+    width: 100%;
+    min-height:100px;
+  }
+
+
 </style>
 
 
