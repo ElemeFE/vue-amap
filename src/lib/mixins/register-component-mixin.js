@@ -1,4 +1,4 @@
-import MapEventEmitter from './eventEmitterMixin';
+import MapEventEmitter from './event-emitter-mixin';
 
 export default {
   mixins: [MapEventEmitter],

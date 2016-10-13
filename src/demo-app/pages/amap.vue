@@ -14,12 +14,12 @@
           ></el-amap-marker>
         </el-amap>
         <button v-on:click="addMarker">add marker</button>
-        <button v-on:click="getManager">get manage</button>
+        <button v-on:click="getMap">get map</button>
+        <button v-on:click="getMapInstaneByPromise">getMapInstaneByPromise</button>
   </div>
 </template>
 <script>
 import VueAMap from '../../lib';
-console.log(VueAMap.AMapManager);
 let amapManager  = new VueAMap.AMapManager();
 export default {
   name:'amap-page',
@@ -49,8 +49,13 @@ export default {
     };
   },
   methods: {
-    getManager: function(){
+    getMap: function(){
       console.log(this.amapManager.getMap());
+    },
+    getMapInstaneByPromise(){
+      this.amapManager.getMapPromise().then(map => {
+          console.log(map);
+      });
     },
     addMarker: function() {
       this.markers.push(

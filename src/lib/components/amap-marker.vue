@@ -1,13 +1,12 @@
 <template></template>
 <script>
-  import MapEventEmitter from  '../mixins/eventEmitterMixin';
-  import RegisterComponentMixin from '../mixins/registerComponentMixin';
+  import MapEventEmitter from  '../mixins/event-emitter-mixin';
+  import RegisterComponentMixin from '../mixins/register-component-mixin';
 
   export default  {
     name: 'el-amap-marker',
     mixins: [RegisterComponentMixin],
     props: ['lng', 'lat', 'draggable', 'options'],
-
     methods: {
       initComponent() {
         if(!this.$map)  throw new error('map instance not initaled');

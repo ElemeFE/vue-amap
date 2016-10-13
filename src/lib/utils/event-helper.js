@@ -1,8 +1,17 @@
 import Map from 'core-js/es6/map';
 class EventHelper {
   constructor() {
+    /**
+     * listener has表
+     * {
+     *  instance: {
+     *              eventName: [...handlers]
+     *            }
+     * }
+     */
     this._listener = new Map();
   }
+
   addListener(instance, eventName, handler, context) {
     if (!AMap.event) throw new Error('please wait for Map API load');
 
@@ -13,6 +22,7 @@ class EventHelper {
     listenerMap[eventName].push(listener);
 
   }
+
   removeListener(instance, eventName, handler) {
     if (!AMap.event) throw new Error('please wait for Map API load');
     if (!this._listener.get(instance) || !this._listener.get(instance)[eventName]) return;
@@ -35,8 +45,12 @@ class EventHelper {
     return AMap.event.trigger(instance, eventName, args);
   }
 
-  clearListeners() {
-
+  clearListeners(instance) {
+    let listeners = this._listener.get(instance);
+    if (!listeners) return;
+    Object.keys(listeners).map(eventName => {
+      this.removeListener(instance, eventName);
+    });
   }
 };
 

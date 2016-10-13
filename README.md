@@ -1,5 +1,17 @@
 # vue-amap
 
+## 快速上手
+```
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
+  key: 'YOUR_KEY',
+  plugin: [...],
+  v: VERSION
+});
+
+```
+
 
 ## dev
 `npm start`
@@ -13,3 +25,4 @@
 + e2e 测试
 + 异步控件 mixin
 + demo-app 文档化
+

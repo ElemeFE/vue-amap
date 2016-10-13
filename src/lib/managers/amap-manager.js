@@ -20,4 +20,7 @@ export default class AMapManager {
   getMapVM() {
     if (!this._mapVM) throw new Error('no map vm instance');
   }
+  getMapPromise() {
+    return this._mapVM.getMap();
+  }
 };

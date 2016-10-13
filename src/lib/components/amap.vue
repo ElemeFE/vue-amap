@@ -8,16 +8,15 @@
   import Promsie from 'core-js/es6/promise'
   import guid  from '../utils/guid';
   import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
-  import MapEventEmitter from  '../mixins/eventEmitterMixin';
+  import MapEventEmitter from  '../mixins/event-emitter-mixin';
   import eventHelper from '../utils/event-helper';
 
   export default {
     name: 'el-amap',
-    props: ['center', 'zoom', 'draggEnable', 'options', 'mapEvents', 'mapManager'],
+    props: ['center', 'zoom', 'draggEnable', 'options', 'mapEvents', 'mapManager', 'onceEvents'],
     mixins: [MapEventEmitter],
     beforeCreate(){
       this._loadApiPromise = lazyAMapApiLoaderInstance.load();
-      console.log(this.mapManager);
     },
     created() {
      const _events = {
@@ -29,9 +28,11 @@
       Object.keys(_events).forEach(k => {
         this.$on(k, _events[k])
       });
+
+      this._resolveEventsQueue = []; // 并行等待事件
     },
     mounted() {
-      this.mapManager.setMapVM(this);
+      if (this.mapManager) this.mapManager.setMapVM(this);
       if (this.mapEvents) {
         this._mapEvents = Object.assign({}, this.mapEvents);
       }
@@ -55,6 +56,7 @@
             this.$map = new AMap.Map(elementID, tmpOptions);
             this.initEvents();
             this.broadcastReady();
+            this.emitAllQueueEvents(); // 触发所有队列事件，Promise 进行 resolve
             return;
           }, error => {
             throw new Error('加载地图出错');
@@ -78,6 +80,21 @@
         this.$broadcast('map-ready', {
           args: [this.$map]
         });
+      },
+      getMap() {
+        if (this.$map) return new Promise(resolve => resolve(this.$map));
+        return new Promise(resolve => {
+          let eventName = `map-ready-event-${Date.now()}`;
+          this._resolveEventsQueue.push(eventName);
+          this.$on(eventName, () => {
+            resolve(this.$map);
+          } );
+        });
+      },
+      emitAllQueueEvents() {
+        while(this._resolveEventsQueue.length) {
+          this.$emit(this._resolveEventsQueue);
+        }
       }
     }
   }
