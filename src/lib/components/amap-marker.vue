@@ -1,9 +1,8 @@
 <template></template>
 <script>
-  import MapEventEmitter from  '../mixins/event-emitter-mixin';
   import RegisterComponentMixin from '../mixins/register-component-mixin';
 
-  export default  {
+  export default {
     name: 'el-amap-marker',
     mixins: [RegisterComponentMixin],
     props: ['lng', 'lat', 'draggable', 'options', 'position'],
@@ -12,7 +11,7 @@
     },
     methods: {
       initComponent() {
-        if(!this.$map)  throw new error('map instance not initaled');
+        if (!this.$map) throw new Error('map instance not initaled');
         let markerOptions = this.getOptions();
         if (markerOptions.position && markerOptions.position.length) {
           markerOptions.position = new AMap.LngLat(markerOptions.position[0], markerOptions.position[1]);
@@ -26,8 +25,8 @@
 
     },
     getCenter() {
-      if(!this.$map) throw new Error('not ready for');
-      return this.$map
+      if (!this.$map) throw new Error('not ready for');
+      return this.$map.getCenter();
     }
   };
 </script>
