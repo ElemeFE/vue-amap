@@ -51,7 +51,6 @@
     "uppercamelcase": "^1.1.0"
   },
   "dependencies": {
-    "q": "^1.4.1",
     "vue": "^2.0.0",
     "vue-router": "^2.0.0",
     "core-js": "^2.4.1"

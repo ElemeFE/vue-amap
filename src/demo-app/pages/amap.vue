@@ -14,12 +14,6 @@
         <button v-on:click="addMarker">add marker</button>
         <button v-on:click="getMap">get map</button>
         <button v-on:click="getMapInstaneByPromise">getMapInstaneByPromise</button>
-        <section class="container">
-          <div class="container-item">
-            <label for="content-id" class="item-lable">LBALE</label>
-            <textarea class="item-content" id="content-id" rows="" cols=""></textarea>
-          </div>
-        </section>
   </div>
 </template>
 <script>
@@ -67,20 +61,6 @@ export default {
   .amap-page-container .el-vue-amap {
     height: 400px;
   }
-  .container-item{
-    width: 90%;
-    margin: auto;
-  }
-  .item-lable {
-    display: block;
-  }
-  .item-content{
-    display: block;
-    width: 100%;
-    min-height:100px;
-  }
-
-
 </style>
 
 

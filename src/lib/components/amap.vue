@@ -87,7 +87,7 @@
         }
       },
       getMap() {
-        if (this.$map) return new Promise(resolve => resolve(this.$map));
+        if (this.$map) return Promise.resolve(this.$map);
         return new Promise(resolve => {
           let eventName = `map-ready-event-${Date.now()}`;
           this._resolveEventsQueue.push(eventName);
