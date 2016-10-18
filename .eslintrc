@@ -1,0 +1,15 @@
+{
+  "plugins": ["vue"],
+  "extends": "elemefe",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  },
+  "globals": {
+      "AMap": true,
+      "Promise": true,
+      "Map": true
+  }
+}
