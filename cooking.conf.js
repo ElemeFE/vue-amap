@@ -8,7 +8,7 @@ cooking.set({
     port: 4200,
     publicPath: '/'
   },
-  extends: ['vue2'],
+  extends: ['vue2', 'lint'],
   clean: true,
   hash: true,
   sourceMap: true

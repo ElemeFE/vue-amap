@@ -3,7 +3,8 @@ const DEFAULT_AMP_CONFIG = {
   v: 1.3,
   protocol: 'https',
   hostAndPath: 'webapi.amap.com/maps',
-  plugin: []
+  plugin: [],
+  callback: 'amapInitComponent'
 };
 /**
  *
@@ -11,7 +12,7 @@ const DEFAULT_AMP_CONFIG = {
 
 export default class AMapAPILoader {
   /**
-   * @param required config  初始化参数
+   * @param config required 初始化参数
    */
   constructor(config) {
     this._config = Object.assign({}, DEFAULT_AMP_CONFIG, config);
@@ -21,8 +22,8 @@ export default class AMapAPILoader {
   }
 
   load() {
-    if (this._scriptLoaded || this._window.AMap) {
-      return new Promise(_ => _());
+    if (this._window.AMap) {
+      return Promise.resolve();
     }
 
     const script = this._document.createElement('script');
@@ -32,11 +33,7 @@ export default class AMapAPILoader {
     script.src = this._getScriptSrc();
 
     this._scriptLoadingPromise = new Promise((resolve, reject) => {
-      script.onload = () => {
-        this._scriptLoaded = true;
-        resolve();
-      };
-      // this._window[callbackName] = () => resolve();
+      this._window['amapInitComponent'] = () => resolve();
       script.onerror = error => reject(error);
     });
     this._document.head.appendChild(script);
@@ -45,7 +42,7 @@ export default class AMapAPILoader {
 
   _getScriptSrc() {
     const queryParams = this._config;
-    const paramKeys = ['v', 'key', 'plugin'];
+    const paramKeys = ['v', 'key', 'plugin', 'callback'];
     const params = Object.keys(queryParams)
                          .filter(k => paramKeys.indexOf(k) !== -1)
                          .filter(k => queryParams[k] != null)

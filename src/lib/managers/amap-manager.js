@@ -129,13 +129,13 @@ export default class AMapManager {
    */
   plugin(plugins) {
     if (!plugins || (Array.isArray(plugins) && plugins.length)) {
-      return new Promise(_ => _());
+      return Promise.resolve();
     }
     if (!Array.isArray(plugins)) plugins = [plugins];
     let _plugins = plugins.filter(plugin => {
       return !AMap[plugin];
     }).map(plugin => `AMap.${plugin}`);
-    if (!_plugins.length) return new Promise(_ => _());
+    if (!_plugins.length) return Promise.resolve();
     return new Promise(resolve => {
       this.getMapPromise().then(map => {
         map.plugin(_plugins, () => {
