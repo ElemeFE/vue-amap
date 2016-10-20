@@ -7,9 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "cooking": "cooking",
     "build": "cooking ./src/lib/cooking.build.js",
-    "start": "npm run cooking watch",
+    "start": "cooking watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,7 +30,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.11.6",
-    "cooking": "^1.1.3",
+    "cooking": "^1.1.4",
     "cooking-lint": "^0.1.3",
     "cooking-vue2": "^0.2.3",
     "css-loader": "^0.24.0",
