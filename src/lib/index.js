@@ -9,14 +9,15 @@ import {initAMapApiLoader} from './services/injected-amap-api-instance';
 // 组建导入
 import AMap from './components/amap.vue';
 import AMapMarker from './components/amap-marker.vue';
-
+import AMapSearchBox from './components/amap-search-box.vue';
 // managers
 import AMapManager from './managers/amap-manager';
 
 console.log(AMapManager);
 let components = [
   AMap,
-  AMapMarker
+  AMapMarker,
+  AMapSearchBox
 ];
 
 let VueAMap = {
@@ -30,9 +31,8 @@ VueAMap.install = (Vue) => {
   components.map(_component => {
     console.log('register:' + _component.name);
     Vue.component(_component.name, _component);
+    console.log(upperCamelCase(_component.name).replace(/^El/, ''));
     VueAMap[upperCamelCase(_component.name).replace(/^El/, '')] = _component;
   });
 };
-
 export default VueAMap;
-
