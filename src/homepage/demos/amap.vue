@@ -5,7 +5,7 @@
     </el-amap>
     <button v-on:click="addMarker">add marker</button>
     <button v-on:click="getMap">get map</button>
-    <button v-on:click="getMapInstaneByPromise">getMapInstaneByPromise</button>
+    <button v-on:click="getMapInstanceByPromise">getMapInstanceByPromise</button>
   </div>
 </template>
 <script>
@@ -33,7 +33,7 @@ export default {
     getMap: function() {
       console.log(this.amapManager.getMap());
     },
-    getMapInstaneByPromise() {
+    getMapInstanceByPromise() {
       this.amapManager.getMapPromise().then(map => {
         return map;
       }).then(map => {console.log(map);});
