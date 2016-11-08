@@ -6,3 +6,4 @@ node_modules
 .npmrc
 example
 .dist
+.vscode

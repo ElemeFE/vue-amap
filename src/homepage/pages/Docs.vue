@@ -10,7 +10,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="babel" type="text/ecmascript-6">
 import docs from '../docs';
 import enToSnake from '../utils/enToSnake';
 export default {
@@ -25,7 +25,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 .docs-page {
   height: 100%;
   > div {

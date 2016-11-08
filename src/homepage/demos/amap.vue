@@ -8,7 +8,7 @@
     <button v-on:click="getMapInstanceByPromise">getMapInstanceByPromise</button>
   </div>
 </template>
-<script>
+<script lang="babel" type="text/ecmascript-6">
 import VueAMap from '../../lib';
 let amapManager = new VueAMap.AMapManager();
 export default {
@@ -44,7 +44,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" rel="stylesheet/scss">
   .amap-page-container {
     with: 80%;
     margin: auto;

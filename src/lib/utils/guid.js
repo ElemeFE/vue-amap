@@ -1,4 +1,3 @@
-
 export default function guid() {
   let s = [];
   let hexDigits = '0123456789abcdef';

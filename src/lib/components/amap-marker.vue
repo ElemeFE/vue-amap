@@ -1,5 +1,5 @@
 <template></template>
-<script>
+<script lang="babel" type="text/ecmascript-6">
   import RegisterComponentMixin from '../mixins/register-component-mixin';
 
   export default {
