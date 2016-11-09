@@ -83,7 +83,7 @@
       },
       emitAllQueueEvents() {
         while (this._resolveEventsQueue.length) {
-          this.$emit(this._resolveEventsQueue);
+          this.$emit(this._resolveEventsQueue.pop());
         }
       },
       getMap() {
