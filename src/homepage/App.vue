@@ -11,7 +11,7 @@
   };
 </script>
 <style lang="scss" rel="stylesheet/scss">
-@import './assets/scss/common';
+  @import './assets/scss/common';
   .container {
     height: 100%;
   }

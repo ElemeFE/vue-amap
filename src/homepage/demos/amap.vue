@@ -9,44 +9,43 @@
   </div>
 </template>
 <script lang="babel" type="text/ecmascript-6">
-import VueAMap from '../../lib';
-let amapManager = new VueAMap.AMapManager();
-export default {
-  name: 'amap-page',
-  data: function() {
-    return {
-      vid: 'amap-vue-1',
-      events: {
-        'click': (e) => {
-          console.log(e.lnglat.getLng() + ':' + e.lnglat.getLat());
-          console.log(this);
-        }
+  import VueAMap from '../../lib';
+  let amapManager = new VueAMap.AMapManager();
+  export default {
+    name: 'amap-page',
+    data: function() {
+      return {
+        vid: 'amap-vue-1',
+        events: {
+          'click': (e) => {
+            console.log(e.lnglat.getLng() + ':' + e.lnglat.getLat());
+            console.log(this);
+          }
+        },
+        amapManager: amapManager,
+        markers: [
+                 [121.59996, 31.197646],
+                 [121.40018, 31.197622],
+                 [121.69991, 31.207649]]
+      };
+    },
+    methods: {
+      getMap: function() {
+        console.log(this.amapManager.getMap());
       },
-      amapManager: amapManager,
-      markers: [
-               [121.59996, 31.197646],
-               [121.40018, 31.197622],
-               [121.69991, 31.207649]]
-    };
-  },
-  methods: {
-    getMap: function() {
-      console.log(this.amapManager.getMap());
-    },
-    getMapInstanceByPromise() {
-      this.amapManager.getMapPromise().then(map => {
-        return map;
-      }).then(map => {console.log(map);});
-    },
-    addMarker: function() {
-      this.markers.push([121.7, 31.197646]);
+      getMapInstanceByPromise() {
+        this.amapManager.getMapPromise().then(map => {
+          return map;
+        }).then(map => {console.log(map);});
+      },
+      addMarker: function() {
+        this.markers.push([121.7, 31.197646]);
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="scss" rel="stylesheet/scss">
   .amap-page-container {
-    with: 80%;
     margin: auto;
   }
 
