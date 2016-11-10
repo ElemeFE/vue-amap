@@ -3,16 +3,16 @@
     <router-view></router-view>
   </div>
 </template>
-<script>
-import 'normalize.css/normalize.css';
-import 'highlight.js/styles/github-gist.css';
-export default {
-  name: 'app'
-};
+<script lang="babel" type="text/ecmascript-6">
+  import 'normalize.css/normalize.css';
+  import 'highlight.js/styles/github-gist.css';
+  export default {
+    name: 'app'
+  };
 </script>
-<style lang="scss">
-@import './assets/scss/common';
-.container {
-  height: 100%;
-}
+<style lang="scss" rel="stylesheet/scss">
+  @import './assets/scss/common';
+  .container {
+    height: 100%;
+  }
 </style>

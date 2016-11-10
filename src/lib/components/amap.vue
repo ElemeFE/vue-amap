@@ -4,7 +4,7 @@
     <slot></slot>
   </div>
 </template>
-<script>
+<script lang="babel" type="text/ecmascript-6">
   import guid from '../utils/guid';
   import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
   import MapEventEmitter from '../mixins/event-emitter-mixin';
@@ -83,7 +83,7 @@
       },
       emitAllQueueEvents() {
         while (this._resolveEventsQueue.length) {
-          this.$emit(this._resolveEventsQueue);
+          this.$emit(this._resolveEventsQueue.pop());
         }
       },
       getMap() {
@@ -100,7 +100,7 @@
     }
   };
 </script>
-<style>
+<style lang="scss" rel="stylesheet/scss">
   .el-vue-amap-container {
     width: 100%;
     height: 100%;
