@@ -39,7 +39,9 @@
         }).then(map => {console.log(map);});
       },
       addMarker: function() {
-        this.markers.push([121.7, 31.197646]);
+        let lng = 121.5 + Math.round(Math.random() * 1000) / 10000;
+        let lat = 31.197646 + Math.round(Math.random() * 500) / 10000;
+        this.markers.push([lng, lat]);
       }
     }
   };
