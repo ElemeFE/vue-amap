@@ -95,7 +95,7 @@ import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance'
 export default {
   name: 'el-amap-search-box',
   mixins: [RegisterComponentMixin],
-  props: ['mapConfig', 'onSearchResult'],
+  props: ['searchOption', 'onSearchResult'],
   data() {
     return {
       keyword: '',
@@ -124,6 +124,7 @@ export default {
       return tmpOptions;
     },
     autoComplete() {
+      if (!this.keyword) return ;
       this._autoComplete.search(this.keyword, (status, result) => {
         if (status === 'complete') {
           this.tips = result.tips;
@@ -132,8 +133,13 @@ export default {
     },
     search() {
       this.tips = [];
-      console.log('search', this.keyword);
-      this._placeSearch.search(this.keyword, this._onSearchResult);
+      this._placeSearch.search(this.keyword, (status, result) => {
+        console.log(result);
+        let {poiList: {pois}} = result;
+
+        let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
+        this._onSearchResult(LngLats);
+      });
     },
     changeTip(tip) {
       this.keyword = tip.name;

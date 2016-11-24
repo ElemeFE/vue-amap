@@ -8,5 +8,10 @@ export default [
     component: require('./docSample.md'),
     en: 'Doc Sample',
     zh: '文档示例'
+  },
+  {
+    component: require('./searchbox.md'),
+    en: 'Search Box',
+    zh: 'SearchBox'
   }
 ];
