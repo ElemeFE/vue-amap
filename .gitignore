@@ -7,3 +7,4 @@ node_modules
 example
 .dist
 .vscode
+.tags*

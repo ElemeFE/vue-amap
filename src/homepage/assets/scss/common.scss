@@ -4,3 +4,34 @@
 html, body {
   height: 100%;
 }
+
+table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: 400;
+  background-color: #f4f5f7;
+}
+
+tr {
+  display: table-row;
+}
+
+td {
+  color: #656b79;
+}
+
+td, th {
+  display: table-cell;
+  vertical-align: top;
+  border: 1px solid #eee;
+  text-align: left;
+  color: #656b79;
+  padding: 8px;
+}
