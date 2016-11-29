@@ -5,6 +5,7 @@
 </div>
 </template>
 <script>
+   import guid from '../utils/guid';
    import CONST from '../utils/constant';
    import { toLngLat } from '../utils/converts-helper';
    import registerMixin from '../mixins/register-component';
@@ -64,18 +65,25 @@
          }
        };
      },
+     mounted() {
+       this.createMap();
+     },
      methods: {
        setStatus(option) {
          this.$amap.setStatus(option);
        },
-       initComponent() {
+       createMap() {
          this._loadPromise.then(() => {
+           let mapElement = this.$el.querySelector('.el-vue-amap');
+           const elementID = this.vid || guid();
+           mapElement.id = elementID;
            let options = this.convertProps();
-           this.$amap = this.$amapComponent = new AMap(options);
+           this.$amap = this.$amapComponent = new AMap.Map(elementID, options);
            if (this.amapManager) this.amapManager.setMap(this.$map);
+
            this.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            this.$children.forEach(component => {
-             component.$emit(CONST.AMAP_READY_EVENT, this.$map);
+             component.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            });
          });
        }

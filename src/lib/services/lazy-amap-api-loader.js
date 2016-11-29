@@ -27,14 +27,14 @@ export default class AMapAPILoader {
       return Promise.resolve();
     }
 
-    if (this._loading) {
-      return new Promise(resolve => {
-        this._queueEvents.push(() => resolve());
-      });
-    }
+    // if (this._loading) {
+    //   return new Promise(resolve => {
+    //     this._queueEvents.push(() => resolve());
+    //   });
+    // }
 
-    this._loading = true;
-
+    // this._loading = true;
+    if (this._scriptLoadingPromise) return this._scriptLoadingPromise;
     const script = this._document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;

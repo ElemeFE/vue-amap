@@ -21,42 +21,44 @@ export default {
     'visible',
     'strokeDasharray'
   ],
-  data: {
-    converts: {
-      path(arrs) {
-        let _convertArr = (arr) => {
-          if (arr.length === 2 && !Array.isArray(arr)) {
-            return toLngLat(arr)
-          } else {
-            return arr.map(_a => _convertArr(_a));
+  data() {
+    return {
+      converts: {
+        path(arrs) {
+          let _convertArr = (arr) => {
+            if (arr.length === 2 && !Array.isArray(arr)) {
+              return toLngLat(arr)
+            } else {
+              return arr.map(_a => _convertArr(_a));
+            }
           }
+          return _convertArr(arrs);
         }
-        return _convertArr(arrs);
+      },
+      handlers: {
+        visible(flag) {
+          visible === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+        },
+        strokeColor(color) {
+          this.setOptions({strokeColor: color});
+        },
+        strokeOpacity(num) {
+          this.setOptions({strokeOpacity: num});
+        },
+        strokeWeight(num) {
+          this.setOptions({strokeWeight: num});
+        },
+        strokeDasharray(arr) {
+          this.setOptions({strokeDasharray: arr});
+        },
+        strokeStyle(style) {
+          this.setOptions({strokeStyle: style});
+        },
+        fillColor(color) {
+          this.setOptions({fillColor: color});
+        }
       }
-    },
-    handlers: {
-      visible(flag) {
-        visible === false ? this.$amapComponent.hide() : this.$amapComponent.show();
-      },
-      strokeColor(color) {
-        this.setOptions({strokeColor: color});
-      },
-      strokeOpacity(num) {
-        this.setOptions({strokeOpacity: num});
-      },
-      strokeWeight(num) {
-        this.setOptions({strokeWeight: num});
-      },
-      strokeDasharray(arr) {
-        this.setOptions({strokeDasharray: arr});
-      },
-      strokeStyle(style) {
-        this.setOptions({strokeStyle: style});
-      },
-      fillColor(color) {
-        this.setOptions({fillColor: color});
-      }
-    }
+    };
   },
   destroyed() {
     this.$amapComponent.setMap(null);

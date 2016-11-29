@@ -13,7 +13,6 @@ import AMapSearchBox from './components/amap-search-box.vue';
 // managers
 import AMapManager from './managers/amap-manager';
 
-console.log(AMapManager);
 let components = [
   AMap,
   AMapMarker,

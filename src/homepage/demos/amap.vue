@@ -1,14 +1,14 @@
 <template>
   <div class="amap-page-container">
     <el-amap :vid="'amap-vue'" :center="[121.59996, 31.197646]" :zoom="12" :map-manager="amapManager" :map-events="events">
-      <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
+       <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
     </el-amap>
     <button v-on:click="addMarker">add marker</button>
     <button v-on:click="getMap">get map</button>
     <button v-on:click="getMapInstanceByPromise">getMapInstanceByPromise</button>
   </div>
 </template>
-<script lang="babel" type="text/ecmascript-6">
+<script>
   import VueAMap from '../../lib';
   let amapManager = new VueAMap.AMapManager();
   export default {

@@ -12,9 +12,11 @@ export default {
 
     convertProps() {
       let props = {};
+      if (this.$amap) props.map = this.$amap;
       for (let key in this.$options.propsData) {
         if (this.converts && this.converts[key]) {
-          props[key] = this.converts[key].apply(this);
+
+          props[key] = this.converts[key](this.$options.propsData[key]);
         } else {
           props[key] = this.$options.propsData[key];
         }
@@ -24,13 +26,13 @@ export default {
 
     register() {
       let converts = this.converts;
-      this.initComponent();
+      if (this.initComponent) this.initComponent();
       for (let prop in this.$options.propsData) {
         let handleFun = this.getHandlerFun(prop);
         if (!handleFun) continue;
         this.$watch(prop, nv => {
           let propArg = nv;
-          if (converts && converts[prop]) propArg = this.converts[prop].apply();
+          if (converts && converts[prop]) propArg = this.converts[prop](propArg);
           handleFun.apply(this.$amapComponent, propArg);
         });
       }

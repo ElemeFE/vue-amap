@@ -32,23 +32,25 @@ export default {
   destroyed() {
     this.$amapComponent.setMap(null);
   },
-  data: {
-    converts: {
-      position(arr) {
-        return toLngLat(arr);
+  data() {
+    return {
+      converts: {
+        position(arr) {
+          return toLngLat(arr);
+        },
+        offset(arr) {
+          return toPixel(arr);
+        }
       },
-      offset(arr) {
-        return toPixel(arr);
+      handlers: {
+        zIndex(index) {
+          this.$amapComponent.setzIndex(index);
+        },
+        visible(flag) {
+          flag === false ? this.$amapComponent.show() : this.$amapComponent.hide();
+        }
       }
-    },
-    handlers: {
-      zIndex(index) {
-        this.$amapComponent.setzIndex(index);
-      },
-      visible(flag) {
-        flag ? this.$amapComponent.show() : this.$amapComponent.hide();
-      }
-    }
+    };
   },
   methods: {
     initComponent() {

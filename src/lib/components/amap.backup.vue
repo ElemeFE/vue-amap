@@ -4,7 +4,7 @@
     <slot></slot>
   </div>
 </template>
-<script lang="babel">
+<script>
   import guid from '../utils/guid';
   import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
   import MapEventEmitter from '../mixins/event-emitter-mixin';
