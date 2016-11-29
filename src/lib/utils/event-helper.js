@@ -1,3 +1,4 @@
+let eventHelper;
 class EventHelper {
   constructor() {
     /**
@@ -53,6 +54,6 @@ class EventHelper {
   }
 };
 
-let eventHelper = new EventHelper();
+eventHelper = eventHelper || new EventHelper();
 
 export default eventHelper;

@@ -44,6 +44,9 @@ export default class AMapAPILoader {
     this._scriptLoadingPromise = new Promise((resolve, reject) => {
       this._window['amapInitComponent'] = () => {
         this._queueEvents.forEach(event => event());
+        while (this._queueEvents.length) {
+          this._queueEvents.pop().apply();
+        }
         return resolve();
       };
       script.onerror = error => reject(error);

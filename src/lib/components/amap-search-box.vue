@@ -108,7 +108,6 @@ export default {
     this._loadApiPromise.then(() => {
       let options = this.getOptions();
       let {mapConfig, onSearchResult} = options;
-//      this._searchOptions = mapConfig;
       this._autoComplete = new AMap.Autocomplete(mapConfig);
       this._placeSearch = new AMap.PlaceSearch(mapConfig);
       this._onSearchResult = onSearchResult;

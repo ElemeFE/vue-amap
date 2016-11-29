@@ -1,15 +1,17 @@
 {
   "plugins": ["vue"],
   "extends": "elemefe",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
       "jsx": true
     }
   },
+  "env": {
+    "es6": true
+  },
   "globals": {
-      "AMap": true,
-      "Promise": true,
-      "Map": true
+      "AMap": true
   }
 }

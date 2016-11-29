@@ -10,7 +10,7 @@
     </div>
   </div>
 </template>
-<script lang="babel" type="text/ecmascript-6">
+<script lang="babel">
   import docs from '../docs';
   import enToSnake from '../utils/enToSnake';
   export default {

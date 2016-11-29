@@ -1,32 +1,60 @@
 <template></template>
-<script lang="babel" type="text/ecmascript-6">
-  import RegisterComponentMixin from '../mixins/register-component-mixin';
+<script>
+import { toLngLat, toPixel } from '../utils/converts-helper';
+import registerMixin from '../mixins/register-component';
 
-  export default {
-    name: 'el-amap-marker',
-    mixins: [RegisterComponentMixin],
-    props: ['lng', 'lat', 'draggable', 'options', 'position'],
-    destoryed() {
-
-    },
-    methods: {
-      initComponent() {
-        if (!this.$map) throw new Error('map instance not initaled');
-        let markerOptions = this.getOptions();
-        if (markerOptions.position && markerOptions.position.length) {
-          markerOptions.position = new AMap.LngLat(markerOptions.position[0], markerOptions.position[1]);
-        }
-        markerOptions.map = this.$map;
-        this.$marker = new AMap.Marker(markerOptions);
-        this.$markerOptions = markerOptions;
+export default {
+  name: 'el-amap-marker',
+  mixins: [registerMixin],
+  props: [
+    'id',
+    'position',
+    'offset',
+    'icon',
+    'content',
+    'topWhenClick',
+    'bubble',
+    'draggable',
+    'raiseOnDrag',
+    'cursor',
+    'visible',
+    'zIndex',
+    'angle',
+    'autoRotation',
+    'animation',
+    'shadow',
+    'title',
+    'clickable',
+    'shape',
+    'extData',
+    'label'
+  ],
+  destroyed() {
+    this.$amapComponent.setMap(null);
+  },
+  data: {
+    converts: {
+      position(arr) {
+        return toLngLat(arr);
+      },
+      offset(arr) {
+        return toPixel(arr);
       }
     },
-    setCenter() {
-
-    },
-    getCenter() {
-      if (!this.$map) throw new Error('not ready for');
-      return this.$map.getCenter();
+    handlers: {
+      zIndex(index) {
+        this.$amapComponent.setzIndex(index);
+      },
+      visible(flag) {
+        flag ? this.$amapComponent.show() : this.$amapComponent.hide();
+      }
     }
-  };
+  },
+  methods: {
+    initComponent() {
+      let options = this.convertProps();
+      this.$amapComponent = new AMap.Marker(options);
+    }
+  }
+};
 </script>
