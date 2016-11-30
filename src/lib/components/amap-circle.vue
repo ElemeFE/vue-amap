@@ -1,33 +1,27 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-
+import { toLngLat, toPixel } from '../utils/converts-helper';
 export default {
-  name: 'el-amap-marker',
+  name: 'el-amap-circle',
   mixins: [registerMixin],
   props: [
     'vid',
-    'position',
-    'offset',
-    'icon',
-    'content',
-    'topWhenClick',
-    'bubble',
-    'draggable',
-    'raiseOnDrag',
-    'cursor',
-    'visible',
     'zIndex',
-    'angle',
-    'autoRotation',
-    'animation',
-    'shadow',
-    'title',
-    'clickable',
-    'shape',
+    'center',
+    'bubble',
+    'radius',
+    'strokeColor',
+    'strokeOpacity',
+    'strokeWeight',
+    'fillColor',
+    'fillOpacity',
+    'strokeStyle',
     'extData',
-    'label'，
+    'strokeDasharray',
     'events',
+    'visible',
+    'extData',
     'onceEvents'
   ],
   destroyed() {
@@ -36,11 +30,8 @@ export default {
   data() {
     return {
       converts: {
-        shape(options) {
-          return new AMap.MarkerShape(options);
-        },
-        shadow(options) {
-          return new AMap.Icon(options);
+        center(arr) {
+          return toPixel(arr);
         }
       },
       handlers: {
@@ -54,9 +45,8 @@ export default {
     };
   },
   methods: {
-    initComponent() {
-      let options = this.convertProps();
-      this.$amapComponent = new AMap.Marker(options);
+    initComponent(options) {
+      this.$amapComponent = new AMap.Circle(options);
     }
   }
 };

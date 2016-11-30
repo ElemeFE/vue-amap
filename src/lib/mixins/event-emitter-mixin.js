@@ -33,7 +33,6 @@ export default {
         }
         if (this.$parent.$dispatch) this.$parent.$dispatch(eventName, params);
       }
-
     }
   }
 };

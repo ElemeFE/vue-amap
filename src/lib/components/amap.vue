@@ -15,6 +15,7 @@
      mixins: [registerMixin],
      props: [
        'vid',
+       'events',
        'center',
        'zoom',
        'draggEnable',
@@ -77,8 +78,7 @@
            let mapElement = this.$el.querySelector('.el-vue-amap');
            const elementID = this.vid || guid();
            mapElement.id = elementID;
-           let options = this.convertProps();
-           this.$amap = this.$amapComponent = new AMap.Map(elementID, options);
+           this.$amap = this.$amapComponent = new AMap.Map(elementID, this.convertProps());
            if (this.amapManager) this.amapManager.setMap(this.$map);
 
            this.$emit(CONST.AMAP_READY_EVENT, this.$amap);

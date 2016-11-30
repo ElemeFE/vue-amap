@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "6"
+branches:
+  only:
+    - master
+
+addons:
+  firefox: latest
+  chrome: latest
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm i
+
+
+

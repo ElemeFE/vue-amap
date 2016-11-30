@@ -3,26 +3,26 @@
 <script>
 import guid from '../utils/guid';
 import CONST from '../utils/constant';
-
+import { toLngLat, toPixel } from '../utils/converts-helper';
 import registerMixin from '../mixins/register-component';
 export default {
-  name: 'el-amap-polygon',
+  name: 'el-amap-polyline',
   mixins: [registerMixin],
   props: [
     'vid',
     'zIndex',
-    'path',
     'bubble',
+    'geodesic',
+    'isOutline',
+    'outlineColor',
+    'path',
     'strokeColor',
     'strokeOpacity',
     'strokeWeight',
-    'fillColor',
-    'fillOpacity',
-    'extData',
     'strokeStyle',
-    'visible',
     'strokeDasharray',
     'events',
+    'extData',
     'onceEvents'
   ],
   data() {
@@ -31,12 +31,12 @@ export default {
       handlers: {
         visible(flag) {
           visible === false ? this.$amapComponent.hide() : this.$amapComponent.show();
-        },
-        zIndex(num) {
-          this.setOptions({zIndex: num});
         }
       }
     };
+  },
+  destroyed() {
+    this.$amapComponent.setMap(null);
   },
   methods: {
     initComponent() {

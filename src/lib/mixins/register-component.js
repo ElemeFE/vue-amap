@@ -1,44 +1,8 @@
 import upperCamelCase from 'uppercamelcase';
 import CONST from '../utils/constant';
+import { toLngLat, toPixel, toBounds } from '../utils/converts-helper';
+import eventHelper from '../utils/event-helper';
 export default {
-  methods: {
-    getHandlerFun(prop) {
-      if (this.handlers && this.handlers[prop]) {
-        return this.handlers[prop];
-      }
-      let fun = this.$amapComponent[`set${upperCamelCase(prop)}`];
-      if (fun) return fun;
-    },
-
-    convertProps() {
-      let props = {};
-      if (this.$amap) props.map = this.$amap;
-      for (let key in this.$options.propsData) {
-        if (this.converts && this.converts[key]) {
-
-          props[key] = this.converts[key](this.$options.propsData[key]);
-        } else {
-          props[key] = this.$options.propsData[key];
-        }
-        return props;
-      }
-    },
-
-    register() {
-      let converts = this.converts;
-      if (this.initComponent) this.initComponent();
-      for (let prop in this.$options.propsData) {
-        let handleFun = this.getHandlerFun(prop);
-        if (!handleFun) continue;
-        this.$watch(prop, nv => {
-          let propArg = nv;
-          if (converts && converts[prop]) propArg = this.converts[prop](propArg);
-          handleFun.apply(this.$amapComponent, propArg);
-        });
-      }
-    }
-  },
-
   mounted() {
     this.$amap = this.$amap || this.$parent.$amap;
     if (this.$amap) {
@@ -48,6 +12,92 @@ export default {
         this.$amap = map;
         this.register();
       });
+    }
+  },
+
+  destroyed() {
+    this.unregisterEvents();
+    this.$amapComponent.setMap && this.$amapComponent.setMap(null);
+  },
+
+  methods: {
+    getHandlerFun(prop) {
+      if (this.handlers && this.handlers[prop]) {
+        return this.handlers[prop];
+      }
+      return this.$amapComponent[`set${upperCamelCase(prop)}`] || this.$amapComponent.setOptions;
+    },
+
+    convertProps() {
+      let props = {};
+      if (this.$amap) props.map = this.$amap;
+      for (let key in this.$options.propsData) {
+        props[key] = this.convertSignalProp(key, this.$options.propsData[key]);
+      }
+      return props;
+    },
+
+    convertSignalProp(key, sourceDate) {
+      if (this.converts && this.converts[key]) {
+        return this.converts[key](sourceDate);
+      } else if (key === 'position') {
+        return toLngLat(sourceDate);
+      } else if (key === 'offset') {
+        return toPixel(sourceDate);
+      } else if (key === 'bounds') {
+        return toBounds(sourceDate);
+      } else {
+        return sourceDate;
+      }
+    },
+
+    registerEvents() {
+      if (this.$options.propsData.events) {
+        for (let eventName in this.events) {
+          eventHelper.addListener(this.$amapComponent, eventName, this.events[eventName]);
+        }
+      }
+      if (this.$options.propsData.onceEvents) {
+        for (let eventName in this.onceEvents) {
+          eventHelper.addListenerOnce(this.$amapComponent, eventName, this.onceEvents[eventName]);
+        }
+      }
+    },
+
+    unregisterEvents() {
+      eventHelper.clearListeners(this.$amapComponent);
+    },
+
+    setPropWatchers() {
+      for (let prop in this.$options.propsData) {
+        if (prop === 'onceEvents') return;
+        let handleFun = this.getHandlerFun(prop);
+        if (!handleFun) continue;
+        this.$watch(prop, nv => {
+          if (prop === 'events') {
+            this.unregisterEvents();
+            this.registerEvents();
+            return;
+          }
+          if (handleFun === this.$amapComponent.setOptions) {
+            return handleFun.apply(this.$amapComponent, {[prop]: this.convertSignalProp(prop, nv)});
+          }
+          handleFun.apply(this.$amapComponent, this.convertSignalProp(prop, nv));
+        });
+      }
+    },
+
+    registerToManager() {
+      let manager = this.amapManager || this.$parent.amapManager;
+      if (manager && this.vid) {
+        manager.setComponent(this.vid, this.$amapComponent);
+      }
+    },
+
+    register() {
+      this.initComponent && this.initComponent(this.convertProps());
+      this.registerEvents();
+      this.setPropWatchers();
     }
   }
 };
