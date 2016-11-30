@@ -26,7 +26,7 @@ export default {
     'clickable',
     'shape',
     'extData',
-    'label'，
+    'label',
     'events',
     'onceEvents'
   ],

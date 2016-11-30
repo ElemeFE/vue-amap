@@ -30,7 +30,6 @@ VueAMap.install = (Vue) => {
   components.map(_component => {
     console.log('register:' + _component.name);
     Vue.component(_component.name, _component);
-    console.log(upperCamelCase(_component.name).replace(/^El/, ''));
     VueAMap[upperCamelCase(_component.name).replace(/^El/, '')] = _component;
   });
 };

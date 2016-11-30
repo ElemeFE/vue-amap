@@ -97,6 +97,7 @@ export default {
     register() {
       this.initComponent && this.initComponent(this.convertProps());
       this.registerEvents();
+      if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
       this.setPropWatchers();
     }
   }
