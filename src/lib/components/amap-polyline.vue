@@ -1,16 +1,15 @@
 <template>
 </template>
 <script>
-import guid from '../utils/guid';
-import CONST from '../utils/constant';
-import { toLngLat, toPixel } from '../utils/converts-helper';
 import registerMixin from '../mixins/register-component';
+import editorMixin from '../mixins/editor-component';
 export default {
   name: 'el-amap-polyline',
-  mixins: [registerMixin],
+  mixins: [registerMixin, editorMixin],
   props: [
     'vid',
     'zIndex',
+    'editable',
     'bubble',
     'geodesic',
     'isOutline',
@@ -30,18 +29,19 @@ export default {
       converts: {},
       handlers: {
         visible(flag) {
-          visible === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+          flag === false ? this.hide() : this.show();
+        },
+        editable(flag) {
+          flag === true ? this.editor.open() : this.editor.close();
         }
       }
     };
   },
-  destroyed() {
-    this.$amapComponent.setMap(null);
-  },
   methods: {
-    initComponent() {
-      let options = this.convertProps();
-      this.$amapComponent = new AMap.Polygon(options);
+    initComponent(options) {
+      this.$amapComponent = new AMap.Polyline(options);
+      this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
+      this.setEditorEvents();
     }
   }
 };

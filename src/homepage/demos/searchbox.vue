@@ -6,7 +6,7 @@
     </el-amap>
   </div>
 </template>
-<script lang="babel" type="text/ecmascript-6">
+<script>
   import VueAMap from '../../lib';
   let amapManager = new VueAMap.AMapManager();
   export default {

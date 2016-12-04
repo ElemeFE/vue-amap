@@ -45,17 +45,16 @@ export default {
       },
       handlers: {
         zIndex(index) {
-          this.$amapComponent.setzIndex(index);
+          this.setzIndex(index);
         },
         visible(flag) {
-          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+          flag === false ? this.hide() : this.show();
         }
       }
     };
   },
   methods: {
-    initComponent() {
-      let options = this.convertProps();
+    initComponent(options) {
       this.$amapComponent = new AMap.Marker(options);
     }
   }

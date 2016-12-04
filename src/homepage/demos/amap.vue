@@ -1,27 +1,38 @@
 <template>
   <div class="amap-page-container">
-    <el-amap :vid="'amap-vue'" :center="[121.59996, 31.197646]" :zoom="12" :map-manager="amapManager" :map-events="events">
+    <el-amap :vid="'amap-vue'" :center="center" :zoom="zoom" :map-manager="amapManager" :plugin="plugin" :events="events">
        <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
     </el-amap>
     <button v-on:click="addMarker">add marker</button>
     <button v-on:click="getMap">get map</button>
-    <button v-on:click="getMapInstanceByPromise">getMapInstanceByPromise</button>
+    <button type="button" name="button" v-on:click="addZoom">zoom++</button>
+    <button type="button" name="button" v-on:click="subZoom">zoom--</button>
+    <button type="button" name="button" v-on:click="changeCenter">change center</button>
   </div>
 </template>
 <script>
-  import VueAMap from '../../lib';
-  let amapManager = new VueAMap.AMapManager();
+  import { AMapManager } from '../../lib';
+  let amapManager = new AMapManager();
   export default {
     name: 'amap-page',
     data: function() {
       return {
         vid: 'amap-vue-1',
+        zoom: 12,
+        center: [121.59996, 31.197646],
         events: {
+          'moveend': () => {
+            let mapCenter = this.amapManager.getMap().getCenter();
+            this.center = [mapCenter.getLng(), mapCenter.getLat()];
+          },
+          'zoomchange': () => {
+            this.zoom = this.amapManager.getMap().getZoom();
+          },
           'click': (e) => {
-            console.log(e.lnglat.getLng() + ':' + e.lnglat.getLat());
-            console.log(this);
+            alert('map clicked');
           }
         },
+        plugin: ['ToolBar'],
         amapManager: amapManager,
         markers: [
                  [121.59996, 31.197646],
@@ -32,26 +43,25 @@
     methods: {
       getMap: function() {
         console.log(this.amapManager.getMap());
-      },
-      getMapInstanceByPromise() {
-        this.amapManager.getMapPromise().then(map => {
-          return map;
-        }).then(map => {console.log(map);});
+        console.log(this.center);
       },
       addMarker: function() {
         let lng = 121.5 + Math.round(Math.random() * 1000) / 10000;
         let lat = 31.197646 + Math.round(Math.random() * 500) / 10000;
         this.markers.push([lng, lat]);
+      },
+      addZoom() {
+        this.zoom++;
+      },
+      subZoom() {
+        this.zoom--;
+      },
+      changeCenter() {
+        this.center = [this.center[0] + 0.1, this.center[1] + 0.1];
+        console.log(this.center);
       }
     }
   };
 </script>
 <style lang="scss" rel="stylesheet/scss">
-  .amap-page-container {
-    margin: auto;
-  }
-
-  .amap-page-container .el-vue-amap {
-    height: 400px;
-  }
 </style>

@@ -1,9 +1,7 @@
 <template>
 </template>
 <script>
-import guid from '../utils/guid';
-import CONST from '../utils/constant';
-import { toLngLat, toPixel } from '../utils/converts-helper';
+import { toLngLat } from '../utils/converts-helper';
 import registerMixin from '../mixins/register-component';
 export default {
   name: 'el-amap-info-window',
@@ -11,7 +9,7 @@ export default {
   props: [
     'vid',
     'icCustom',
-    'autoMove'
+    'autoMove',
     'closeWhenClickMap',
     'content',
     'size',
@@ -44,4 +42,3 @@ export default {
   }
 };
 </script>
-

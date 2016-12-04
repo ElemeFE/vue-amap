@@ -1,13 +1,13 @@
 {
   "name": "vue-amap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vue amap",
-  "main": "./publish/index.js",
+  "main": "./src/lib/index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "build": "cooking ./src/lib/cooking.build.js",
+    "build": "cooking build",
     "start": "cooking watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

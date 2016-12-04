@@ -1,13 +1,11 @@
 <template>
 </template>
 <script>
-import guid from '../utils/guid';
-import CONST from '../utils/constant';
-
 import registerMixin from '../mixins/register-component';
+import editorMixin from '../mixins/editor-component';
 export default {
   name: 'el-amap-polygon',
-  mixins: [registerMixin],
+  mixins: [registerMixin, editorMixin],
   props: [
     'vid',
     'zIndex',
@@ -17,6 +15,7 @@ export default {
     'strokeOpacity',
     'strokeWeight',
     'fillColor',
+    'editable',
     'fillOpacity',
     'extData',
     'strokeStyle',
@@ -30,10 +29,13 @@ export default {
       converts: {},
       handlers: {
         visible(flag) {
-          visible === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
         },
         zIndex(num) {
           this.setOptions({zIndex: num});
+        },
+        editable(flag) {
+          flag === true ? this.editor.open() : this.editor.close();
         }
       }
     };
@@ -42,6 +44,8 @@ export default {
     initComponent() {
       let options = this.convertProps();
       this.$amapComponent = new AMap.Polygon(options);
+      this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
+      this.setEditorEvents();
     }
   }
 };

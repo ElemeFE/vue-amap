@@ -47,17 +47,17 @@ export default {
     display: block;
     width: 100%;
   }
-
+  #demoComponent {
+    height: 400px;
+  }
   > div {
     float: left;
     height: 100%;
-    overflow-y: scroll;
     &.nav {
       font-size: 14px;
       font-family: sans-serif;
       padding-top: 35px;
       padding-right: 0;
-      width: 0;
       background-color: #f9f9f9;
       animation-name: menu-present;
       animation-duration: 0.6s;
@@ -68,7 +68,6 @@ export default {
       left: -15%;
       top: 0;
       width: 15%;
-
       .chapters {
         margin: 10px 0 30px 35px;
 
@@ -104,38 +103,38 @@ export default {
       }
     }
     &.main {
-      width: 85%;
-      padding: 30px 400px 30px 30px;
+      width: 80%;
+      padding: 30px 0 1rem 1rem;
       margin-left: 15%;
 
-      .map-present {
-        position: fixed;
-        right: 40px;
-        top: 80px;
-        width: 340px;
-
-        .vue-amap {
-          height: 340px;
-          width: 340px;
-        }
-
-        .action-list {
-          padding: 10px;
-
-          button {
-            margin: 0 10px 10px 0;
-            background: #ececec;
-            border: 1px #cccccc solid;
-            padding: 3px 15px;
-            border-radius: 3px;
-          }
-        }
-
-        .demo-component {
-          width: 100%;
-          height: 100%;
-        }
-      }
+      // .map-present {
+      //   position: absolute;;
+      //   right: 40px;
+      //   top: 80px;
+      //   width: 340px;
+      //
+      //   .vue-amap {
+      //     height: 340px;
+      //     width: 340px;
+      //   }
+      //
+      //   .action-list {
+      //     padding: 10px;
+      //
+      //     button {
+      //       margin: 0 10px 10px 0;
+      //       background: #ececec;
+      //       border: 1px #cccccc solid;
+      //       padding: 3px 15px;
+      //       border-radius: 3px;
+      //     }
+      //   }
+      //
+      //   .demo-component {
+      //     width: 100%;
+      //     height: 100%;
+      //   }
+      // }
 
       table {
         border-collapse: collapse;

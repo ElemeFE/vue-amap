@@ -1,10 +1,11 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-import { toLngLat, toPixel } from '../utils/converts-helper';
+import { toLngLat } from '../utils/converts-helper';
+import editorMixin from '../mixins/editor-component';
 export default {
   name: 'el-amap-circle',
-  mixins: [registerMixin],
+  mixins: [registerMixin, editorMixin],
   props: [
     'vid',
     'zIndex',
@@ -14,6 +15,7 @@ export default {
     'strokeColor',
     'strokeOpacity',
     'strokeWeight',
+    'editable',
     'fillColor',
     'fillOpacity',
     'strokeStyle',
@@ -24,14 +26,11 @@ export default {
     'extData',
     'onceEvents'
   ],
-  destroyed() {
-    this.$amapComponent.setMap(null);
-  },
   data() {
     return {
       converts: {
         center(arr) {
-          return toPixel(arr);
+          return toLngLat(arr);
         }
       },
       handlers: {
@@ -40,6 +39,9 @@ export default {
         },
         visible(flag) {
           flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+        },
+        editable(flag) {
+          flag === true ? this.editor.open() : this.editor.close();
         }
       }
     };
@@ -47,6 +49,8 @@ export default {
   methods: {
     initComponent(options) {
       this.$amapComponent = new AMap.Circle(options);
+      this.$amapComponent.editor = new AMap.CircleEditor(this.$amap, this.$amapComponent);
+      this.setEditorEvents();
     }
   }
 };

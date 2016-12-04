@@ -32,7 +32,9 @@ export default {
       let props = {};
       if (this.$amap) props.map = this.$amap;
       for (let key in this.$options.propsData) {
-        props[key] = this.convertSignalProp(key, this.$options.propsData[key]);
+        let propsValue = this.convertSignalProp(key, this.$options.propsData[key]);
+        if (propsValue === undefined) continue;
+        props[key] = propsValue;
       }
       return props;
     },
@@ -70,7 +72,6 @@ export default {
 
     setPropWatchers() {
       for (let prop in this.$options.propsData) {
-        if (prop === 'onceEvents') return;
         let handleFun = this.getHandlerFun(prop);
         if (!handleFun) continue;
         this.$watch(prop, nv => {
@@ -80,10 +81,11 @@ export default {
             return;
           }
           if (handleFun === this.$amapComponent.setOptions) {
-            return handleFun.apply(this.$amapComponent, {[prop]: this.convertSignalProp(prop, nv)});
+            return handleFun.call(handleFun, {[prop]: this.convertSignalProp(prop, nv)});
           }
-          handleFun.apply(this.$amapComponent, this.convertSignalProp(prop, nv));
+          handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
         });
+        // handleFun.call(this.$amapComponent, this.convertSignalProp(prop, this.$options.propsData[prop]));
       }
     },
 

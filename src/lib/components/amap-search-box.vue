@@ -89,7 +89,7 @@
   }
 </style>
 <script>
-import RegisterComponentMixin from '../mixins/register-component-mixin';
+import RegisterComponentMixin from '../mixins/register-component';
 import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
 
 export default {

@@ -40,6 +40,7 @@
        'scrollWheel',
        'touchZoom',
        'mapStyle',
+       'plugin',
        'features',
        'mapManager'  // 地图管理 manager
      ],
@@ -69,7 +70,22 @@
      mounted() {
        this.createMap();
      },
+     addEvents() {
+       this.$amapComponent.on('moveend', () => {
+         let centerLngLat = this.$amapComponent.getCenter();
+         this.center = [centerLngLat.getLng(), centerLngLat.getLat()];
+       });
+     },
      methods: {
+       addPlugins(plugin) {
+         let _notInjectPlugins = plugin.filter(_plugin => !AMap[_plugin]);
+         if (!_notInjectPlugins || !_notInjectPlugins.length) return this.addMapControls();
+         return this.$amapComponent.plugin(_notInjectPlugins, this.addMapControls);
+       },
+       addMapControls() {
+         if (!this.plugin || !this.plugin.length) return;
+         this.plugin.forEach(_plugin => this.$amapComponent.addControl(new AMap[_plugin]()));
+       },
        setStatus(option) {
          this.$amap.setStatus(option);
        },
@@ -79,18 +95,26 @@
            const elementID = this.vid || guid();
            mapElement.id = elementID;
            this.$amap = this.$amapComponent = new AMap.Map(elementID, this.convertProps());
-           if (this.amapManager) this.amapManager.setMap(this.$map);
+           if (this.mapManager) this.mapManager.setMap(this.$amap);
 
            this.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            this.$children.forEach(component => {
              component.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            });
+           if (this.plugin && this.plugin.length) {
+             this.addPlugins(this.plugin);
+           }
          });
        }
      }
    };
 </script>
 
-<style>
-
+<style lang="scss">
+.el-vue-amap-container {
+  height: 100%;
+.el-vue-amap {
+    height: 100%;
+  }
+}
 </style>

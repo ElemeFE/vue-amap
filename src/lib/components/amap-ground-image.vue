@@ -1,9 +1,8 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-import { toLngLat, toPixel } from '../utils/converts-helper';
 export default {
-  name: 'el-amap-group-image',
+  name: 'el-amap-ground-image',
   mixins: [registerMixin],
   props: [
     'vid',
@@ -34,7 +33,7 @@ export default {
   },
   methods: {
     initComponent(options) {
-      this.$amapComponent = new AMap.GroundImage(options.url, options.bounds);
+      this.$amapComponent = new AMap.GroundImage(options.url, options.bounds, options);
     }
   }
 };
