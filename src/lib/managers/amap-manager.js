@@ -5,7 +5,7 @@ export default class AMapManager {
   setMap(map) {
     this._map = map;
   }
-  getMap(map) {
+  getMap() {
     return this._map;
   }
   setComponent(id, component) {

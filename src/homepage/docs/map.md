@@ -107,6 +107,14 @@ labelzIndex | Number | 地图标注显示顺序
 lang | String | 地图语言类型 默认：zh_cn，可选值：zh_cn：中文简体，en：英文，zh_en：中英文对照
 mapStyle	| String |	设置地图显示样式，目前支持normal（默认样式）、dark（深色样式）、light（浅色样式）、fresh(osm清新风格样式)四种
 
+# AmapManager
+方法
+名称 | 返回类型 | 说明
+---|---|---|
+getMap | AMap.Map | 返回地图实例，注入该管理实例的组件的地图实例
+getComponent(vid:String) | AMap[component] | 返回 vid 对应的组件实例
+
+
 ## 事件
 
 事件 | 参数 | 说明

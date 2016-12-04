@@ -7,7 +7,4 @@ dist:
 	@npm run build
 
 deploy:
-	@npm run deploy
-
-test:
-	@npm test
+	@npm run build

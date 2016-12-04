@@ -11,7 +11,7 @@
     </p>
     <h2 class="project-tagline"></h2>
     <a href="https://github.com/ElemeFE/vue-amap" class="btn">GitHub</a>
-    <a href="/#/docs/" class="btn">文档</a>
+    <router-link to="/docs" class="btn">文档</router-link>
   </section>
   <canvas id="meteor"></canvas>
   </section>

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="docs-page">
     <div class="nav">
-      <a href="/" class="back">返回</a>
+      <router-link to="/" class="back">返回</router-link>
       <section v-for="chapter in docs" class="chapters">
         <header class="chapter-title">
           {{chapter.zh}}
