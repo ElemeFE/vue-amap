@@ -30,9 +30,6 @@ export default {
     'events',
     'onceEvents'
   ],
-  destroyed() {
-    this.$amapComponent.setMap(null);
-  },
   data() {
     return {
       converts: {

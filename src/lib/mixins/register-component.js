@@ -18,6 +18,7 @@ export default {
   destroyed() {
     this.unregisterEvents();
     this.$amapComponent.setMap && this.$amapComponent.setMap(null);
+    this.$amapComponent.close && this.$amapComponent.close();
   },
 
   methods: {
