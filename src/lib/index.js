@@ -10,14 +10,24 @@ import {initAMapApiLoader} from './services/injected-amap-api-instance';
 import AMap from './components/amap.vue';
 import AMapMarker from './components/amap-marker.vue';
 import AMapSearchBox from './components/amap-search-box.vue';
+import AMapCircle from './components/amap-circle.vue';
+import AMapGroupImage from './components/amap-ground-image.vue';
+import AMapInfoWindow from './components/amap-info-window.vue';
+import AMapPolyline from './components/amap-polyline.vue';
+import AMapPolygon from './components/amap-polygon.vue';
+
 // managers
 import AMapManager from './managers/amap-manager';
 
-console.log(AMapManager);
 let components = [
   AMap,
   AMapMarker,
-  AMapSearchBox
+  AMapSearchBox,
+  AMapCircle,
+  AMapGroupImage,
+  AMapInfoWindow,
+  AMapPolygon,
+  AMapPolyline
 ];
 
 let VueAMap = {
@@ -31,8 +41,10 @@ VueAMap.install = (Vue) => {
   components.map(_component => {
     console.log('register:' + _component.name);
     Vue.component(_component.name, _component);
-    console.log(upperCamelCase(_component.name).replace(/^El/, ''));
     VueAMap[upperCamelCase(_component.name).replace(/^El/, '')] = _component;
   });
 };
 export default VueAMap;
+
+export {AMapManager};
+export { lazyAMapApiLoaderInstance } from './services/injected-amap-api-instance';

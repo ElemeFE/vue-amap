@@ -27,14 +27,14 @@ export default class AMapAPILoader {
       return Promise.resolve();
     }
 
-    if (this._loading) {
-      return new Promise(resolve => {
-        this._queueEvents.push(() => resolve());
-      });
-    }
+    // if (this._loading) {
+    //   return new Promise(resolve => {
+    //     this._queueEvents.push(() => resolve());
+    //   });
+    // }
 
-    this._loading = true;
-
+    // this._loading = true;
+    if (this._scriptLoadingPromise) return this._scriptLoadingPromise;
     const script = this._document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
@@ -44,6 +44,9 @@ export default class AMapAPILoader {
     this._scriptLoadingPromise = new Promise((resolve, reject) => {
       this._window['amapInitComponent'] = () => {
         this._queueEvents.forEach(event => event());
+        while (this._queueEvents.length) {
+          this._queueEvents.pop().apply();
+        }
         return resolve();
       };
       script.onerror = error => reject(error);

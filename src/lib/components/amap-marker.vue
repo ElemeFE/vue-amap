@@ -1,32 +1,59 @@
 <template></template>
-<script lang="babel" type="text/ecmascript-6">
-  import RegisterComponentMixin from '../mixins/register-component-mixin';
+<script>
+import registerMixin from '../mixins/register-component';
 
-  export default {
-    name: 'el-amap-marker',
-    mixins: [RegisterComponentMixin],
-    props: ['lng', 'lat', 'draggable', 'options', 'position'],
-    destoryed() {
-
-    },
-    methods: {
-      initComponent() {
-        if (!this.$map) throw new Error('map instance not initaled');
-        let markerOptions = this.getOptions();
-        if (markerOptions.position && markerOptions.position.length) {
-          markerOptions.position = new AMap.LngLat(markerOptions.position[0], markerOptions.position[1]);
+export default {
+  name: 'el-amap-marker',
+  mixins: [registerMixin],
+  props: [
+    'vid',
+    'position',
+    'offset',
+    'icon',
+    'content',
+    'topWhenClick',
+    'bubble',
+    'draggable',
+    'raiseOnDrag',
+    'cursor',
+    'visible',
+    'zIndex',
+    'angle',
+    'autoRotation',
+    'animation',
+    'shadow',
+    'title',
+    'clickable',
+    'shape',
+    'extData',
+    'label',
+    'events',
+    'onceEvents'
+  ],
+  data() {
+    return {
+      converts: {
+        shape(options) {
+          return new AMap.MarkerShape(options);
+        },
+        shadow(options) {
+          return new AMap.Icon(options);
         }
-        markerOptions.map = this.$map;
-        this.$marker = new AMap.Marker(markerOptions);
-        this.$markerOptions = markerOptions;
+      },
+      handlers: {
+        zIndex(index) {
+          this.setzIndex(index);
+        },
+        visible(flag) {
+          flag === false ? this.hide() : this.show();
+        }
       }
-    },
-    setCenter() {
-
-    },
-    getCenter() {
-      if (!this.$map) throw new Error('not ready for');
-      return this.$map.getCenter();
+    };
+  },
+  methods: {
+    initComponent(options) {
+      this.$amapComponent = new AMap.Marker(options);
     }
-  };
+  }
+};
 </script>
