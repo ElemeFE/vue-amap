@@ -11,3 +11,5 @@ VueAMap.initAMapApiLoader({
 });
 
 ```
+## 详细文档
+[https://elemefe.github.io/vue-amap](https://elemefe.github.io/vue-amap)

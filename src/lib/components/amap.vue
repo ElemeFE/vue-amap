@@ -47,6 +47,9 @@
      beforeCreate() {
        this._loadPromise = lazyAMapApiLoaderInstance.load();
      },
+     destroyed() {
+       this.$amap && this.$amap.destroy();
+     },
      data() {
        return {
          converts: {
