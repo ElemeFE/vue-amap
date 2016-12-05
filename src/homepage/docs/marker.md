@@ -12,7 +12,7 @@
         </el-amap>
         <button type="button" name="button" v-on:click="toggleVisible">toggle show first marker</button>
         <button type="button" name="button" v-on:click="changePosition">Change Position</button>
-        <button type="button" name="button" v-on:click="chnageDraggle">chnage Draggle</button>
+        <button type="button" name="button" v-on:click="chnageDraggle">change Draggle</button>
         <button type="button" name="button" v-on:click="addMarker">add Marker</button>
         <button type="button" name="button" v-on:click="removeMarker">remove Marker</button>
     </div>

@@ -1,6 +1,11 @@
 # vue-amap
 ## 换种方式写地图
 
+## 安装
+```
+npm install -S vue-amap
+```
+
 ## 快速上手
 ```
 import VueAMap from 'vue-amap';
@@ -11,3 +16,5 @@ VueAMap.initAMapApiLoader({
 });
 
 ```
+## 详细文档
+[https://elemefe.github.io/vue-amap](https://elemefe.github.io/vue-amap)

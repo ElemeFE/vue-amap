@@ -9,11 +9,6 @@ export default [
         zh: '安装'
       },
       {
-        component: require('./init.md'),
-        en: 'init',
-        zh: '地图脚本初始化'
-      },
-      {
         component: require('./guide.md'),
         en: 'Guide',
         zh: '快速上手'
