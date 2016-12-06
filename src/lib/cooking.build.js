@@ -2,7 +2,7 @@ let cooking = require('cooking');
 
 cooking.set({
   entry: './src/lib/index.js',
-  dist: './publish',
+  dist: './dist',
   extends: ['vue2'],
   sourceMap: true,
   clean: true
