@@ -3,8 +3,8 @@
 dev:
 	@npm start
 
-dist:
+doc:
 	@npm run build
 
 deploy:
-	@npm run build
+	@npm run deploy

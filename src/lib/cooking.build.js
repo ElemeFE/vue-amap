@@ -2,9 +2,10 @@ let cooking = require('cooking');
 
 cooking.set({
   entry: './src/lib/index.js',
-  dist: './publish',
+  dist: './dist',
+  clean: false,
+  format: 'cjs',
   extends: ['vue2'],
-  sourceMap: true,
-  clean: true
+  minimize: false
 });
 module.exports = cooking.resolve();
