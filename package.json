@@ -63,7 +63,6 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "uppercamelcase": "^1.1.0",
     "url-loader": "^0.5.7",
     "vue-markdown-loader": "^0.6.0",
     "vue-router": "^2.0.0",
@@ -73,6 +72,7 @@
   },
   "dependencies": {
     "core-js": "^2.4.1",
+    "uppercamelcase": "^1.1.0",
     "highlight.js": "^9.7.0",
     "normalize.css": "^5.0.0",
     "vue": "^2.1.3",
