@@ -3,7 +3,7 @@
 dev:
 	@npm start
 
-dist:
+doc:
 	@npm run build
 
 deploy:
