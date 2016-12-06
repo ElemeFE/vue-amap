@@ -5,3 +5,6 @@
 ./src/e2e-app
 ./git
 ./docs
+.babelrc
+.eslintrc
+.CONTRIBUTING.md

@@ -1,6 +1,6 @@
 {
   "name": "vue-amap",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "vue amap",
   "main": "./src/lib/index.js",
   "directories": {
