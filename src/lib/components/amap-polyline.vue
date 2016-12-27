@@ -33,16 +33,6 @@ export default {
         },
         editable(flag) {
           flag === true ? this.editor.open() : this.editor.close();
-        },
-        strokeStyle(style) {
-          this.setOptions({
-            strokeStyle: style
-          });
-        },
-        strokeColor(color) {
-          this.setOptions({
-            strokeColor: color
-          });
         }
       }
     };
