@@ -2817,7 +2817,7 @@ module.exports =
 	            return;
 	          }
 	          if (handleFun === _this2.$amapComponent.setOptions) {
-	            return handleFun.call(handleFun, _defineProperty({}, prop, _this2.convertSignalProp(prop, nv)));
+	            return handleFun.call(_this2.$amapComponent, _defineProperty({}, prop, _this2.convertSignalProp(prop, nv)));
 	          }
 	          handleFun.call(_this2.$amapComponent, _this2.convertSignalProp(prop, nv));
 	        });

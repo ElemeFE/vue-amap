@@ -82,7 +82,7 @@ export default {
             return;
           }
           if (handleFun === this.$amapComponent.setOptions) {
-            return handleFun.call(handleFun, {[prop]: this.convertSignalProp(prop, nv)});
+            return handleFun.call(this.$amapComponent, {[prop]: this.convertSignalProp(prop, nv)});
           }
           handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
         });
