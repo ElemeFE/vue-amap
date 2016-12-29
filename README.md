@@ -57,33 +57,33 @@ AMap.initAMapApiLoader({
 ### 多边形
 
 ```javascript
-<amap vid="amapDemo" :zoom="zoom" :center="center">
-  <amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></amap-polygon>
-</amap>
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+</el-amap>
 ```
 
 ### 圆
 
 ```javascript
-<amap vid="amapDemo" :zoom="zoom" :center="center">
-  <amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius"></amap-circle>
-</amap>
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius"></el-amap-circle>
+</el-amap>
 ```
 
 ### 图片覆盖物
 
 ```javascript
-<amap vid="amapDemo" :zoom="zoom" :center="center">
-  <amap-groundimage v-for="groundimage in groundimages" :url="groundimage.url"></amap-groundimage>
-</amap>
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-groundimage v-for="groundimage in groundimages" :url="groundimage.url"></el-amap-groundimage>
+</el-amap>
 ```
 
 ### 信息窗体
 
 ```javascript
-<amap vid="amapDemo" :zoom="zoom" :center="center">
-  <amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open"></amap-info-window>
-</amap>
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open"></el-amap-info-window>
+</el-amap>
 ```
 
 ### Search-Box
