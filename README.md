@@ -7,6 +7,10 @@ vue-amap是基于Vue 2.0和高德地图的地图组件。
 npm install -S vue-amap
 ```
 
+## 文档
+[https://elemefe.github.io/vue-amap](https://elemefe.github.io/vue-amap)
+
+
 ## 快速上手
 
 引入vue-amap
@@ -89,6 +93,3 @@ VueAMap.initAMapApiLoader({
 <el-amap vid="amapDemo">
 </el-amap>
 ```
-
-## 文档
-[https://elemefe.github.io/vue-amap](https://elemefe.github.io/vue-amap)
