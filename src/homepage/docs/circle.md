@@ -6,9 +6,9 @@
 
 ```html
 <div id="demoComponent" class="demo-component">
-    <amap vid="amap" :zoom="zoom" :center="center">
-      <amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius" :fillOpacity="circle.fillOpacity" :events="circle.events"></amap-circle>
-    </amap>
+    <el-amap vid="amap" :zoom="zoom" :center="center">
+      <el-amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius" :fillOpacity="circle.fillOpacity" :events="circle.events"></el-amap-circle>
+    </elamap>
   </div>
 </div>
 ```

@@ -7,9 +7,9 @@
 ```html
 <div class="map-present">
   <div id="demoComponent" class="demo-component">
-      <amap vid="amap" :zoom="zoom" :center="center">
-        <amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></amap-info-window>
-      </amap>
+      <el-amap vid="amap" :zoom="zoom" :center="center">
+        <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></el-amap-info-window>
+      </el-amap>
     </div>
   </div>
 </div>
