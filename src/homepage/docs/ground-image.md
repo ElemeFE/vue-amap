@@ -6,7 +6,7 @@
 
 ```html
 <div id="demoComponent" class="demo-component">
-    <amap id="amap" :zoom="zoom" :center="center">
+    <amap vid="amap" :zoom="zoom" :center="center">
       <amap-groundimage v-for="groundimage in groundimages" :url="groundimage.url" :bounds="groundimage.bounds" :events="groundimage.events"></amap-groundimage>
     </amap>
   </div>
@@ -72,6 +72,5 @@ opacity | Number | 图片透明度，取值范围[0,1]，0表示完全透明，1
 
 事件 | 参数 | 说明
 ---|---|---|
-init |[Groundimage](http://lbs.amap.com/api/javascript-api/reference/overlay/#Groundimage) | 高德图片覆盖物实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件

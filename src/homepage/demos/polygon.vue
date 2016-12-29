@@ -1,6 +1,6 @@
 <template>
   <div id="demoComponent" class="demo-component">
-        <el-amap id="amap" :zoom="zoom" :center="center">
+        <el-amap vid="amap" :zoom="zoom" :center="center">
           <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></amap-polygon>
         </amap>
   </div>

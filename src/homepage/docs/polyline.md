@@ -7,7 +7,7 @@
 ```html
 <template lang="html">
   <div id="demoComponent" class="demo-component">
-      <el-amap id="amap" :zoom="zoom" :center="center" :amapManager="amapManager">
+      <el-amap vid="amap" :zoom="zoom" :center="center" :amapManager="amapManager">
         <el-amap-polyline :editable="polyline.editable"  :path="polyline.path" :events="polyline.events"></el-amap-polyline>
       </el-amap>
       <button type="button" name="button" v-on:click="changeEditable">changeEditable</button>
@@ -95,7 +95,6 @@ isOutline | Boolean | 线条是否带描边，默认false
 
 事件 | 参数 | 说明
 ---|---|---|
-init | [Polyline](http://lbs.amap.com/api/javascript-api/reference/overlay/#Polyline) | 高德折线覆盖物实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标右键单击事件

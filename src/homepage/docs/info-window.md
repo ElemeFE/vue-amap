@@ -7,7 +7,7 @@
 ```html
 <div class="map-present">
   <div id="demoComponent" class="demo-component">
-      <amap id="amap" :zoom="zoom" :center="center">
+      <amap vid="amap" :zoom="zoom" :center="center">
         <amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></amap-info-window>
       </amap>
     </div>
@@ -72,7 +72,6 @@ position | Array | 信息窗体显示基点位置（自v1.2 新增）
 
 事件 | 参数 | 说明
 ---|---|---|
-init |[InfoWindow](http://lbs.amap.com/api/javascript-api/reference/infowindow/) | 高德信息窗口实例
 change||属性发生变化时
 open||信息窗体打开之后触发事件
 close||信息窗体关闭之后触发事件

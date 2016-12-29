@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="demoComponent" class="demo-component">
-      <el-amap id="amap" :zoom="zoom" :center="center" :amapManager="amapManager">
+      <el-amap vid="amap" :zoom="zoom" :center="center" :amapManager="amapManager">
         <el-amap-polyline :editable="polyline.editable"  :path="polyline.path" :events="polyline.events"></el-amap-polyline>
       </el-amap>
       <button type="button" name="button" v-on:click="changeEditable">changeEditable</button>

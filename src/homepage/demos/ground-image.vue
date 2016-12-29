@@ -1,6 +1,6 @@
 <template>
   <div id="demoComponent" class="demo-component">
-      <el-amap id="amap" :zoom="zoom" :center="center">
+      <el-amap vid="amap" :zoom="zoom" :center="center">
       <el-amap-ground-image v-for="groundimage in groundimages" :url="groundimage.url" :bounds="groundimage.bounds" :events="groundimage.events"></el-amap-ground-image>
       </el-amap>
   </div>

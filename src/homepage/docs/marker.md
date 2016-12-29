@@ -119,7 +119,6 @@ label | {content,offset} | 添加文本标注，content为文本标注的内容�
 
 事件 | 参数 | 说明
 ---|---|---|
-init |[Marker](http://lbs.amap.com/api/javascript-api/reference/overlay/#Marker) | 高德点标志实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标右键单击事件

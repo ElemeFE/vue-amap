@@ -6,7 +6,7 @@
 
 ```html
 <div id="demoComponent" class="demo-component">
-    <amap id="amap" :zoom="zoom" :center="center">
+    <amap vid="amap" :zoom="zoom" :center="center">
       <amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius" :fillOpacity="circle.fillOpacity" :events="circle.events"></amap-circle>
     </amap>
   </div>
@@ -79,7 +79,6 @@ extData | Any | 用户自定义属性，支持JavaScript API任意数据类型�
 
 事件 | 参数 | 说明
 ---|---|---|
-init |[Circle](http://lbs.amap.com/api/javascript-api/reference/overlay/#Circle) | 高德圆覆盖物实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 右键单击
