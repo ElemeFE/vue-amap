@@ -21,7 +21,7 @@ import AMap from 'vue-amap';
 Vue.use(AMap);
 
 // 初始化vue-amap
-VueAMap.initAMapApiLoader({
+AMap.initAMapApiLoader({
   // 高德的key
   key: 'YOUR_KEY',
   // 插件集合
