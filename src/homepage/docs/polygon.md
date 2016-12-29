@@ -6,9 +6,9 @@
 
 ```html
 <div id="demoComponent" class="demo-component">
-    <amap vid="amap" :zoom="zoom" :center="center">
-      <amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></amap-polygon>
-    </amap>
+    <el-amap vid="amap" :zoom="zoom" :center="center">
+      <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+    </el-amap>
   </div>
 </div>
 ```
