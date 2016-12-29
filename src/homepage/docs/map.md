@@ -119,7 +119,6 @@ getComponent(vid:String) | AMap[component] | 返回 vid 对应的组件实例
 
 事件 | 参数 | 说明
 ---|---|---|
-init | [AMap](http://lbs.amap.com/api/javascript-api/reference/map/) | 高德地图实例
 complete | |地图图块加载完成后触发事件
 click |[MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) |鼠标左键单击事件 相关示例
 dblclick |[MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) |鼠标左键双击事件

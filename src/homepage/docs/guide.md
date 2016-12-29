@@ -5,7 +5,7 @@
 本节将介绍如何在项目中使用vue-amap。
 
 
-### 项目结构
+### 1 - 项目结构
 
 这里提供了简单的示例项目模板。
 
@@ -55,7 +55,7 @@ package.json
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue-amap": "^1.0.0",
+    "vue-amap": "^0.0.8",
     "vue": "^2.0.5"
   },
   "devDependencies": {
@@ -101,6 +101,9 @@ module.exports = {
       }
     ]
   },
+  performance: {
+    hints: false
+  },
   devServer: {
     historyApiFallback: true,
     noInfo: true
@@ -126,18 +129,18 @@ if (process.env.NODE_ENV === 'production') {
 }
 ```
 
-### 引入vue-amap
+### 2 - 引入vue-amap
 
 main.js
 ```javascript
-import Vue from 'vue'
-import AMap from 'vue-amap'
-import App from './App.vue'
+iimport Vue from 'vue';
+import AMap from 'vue-amap';
+import App from './App.vue';
 
 Vue.use(AMap);
-AMap.init({
-  key: 'your key',
-  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar'] // 预先加载插件，同步写逻辑代码
+AMap.initAMapApiLoader({
+  key: 'your amap key',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
 });
 
 new Vue({
@@ -150,9 +153,9 @@ App.vue
 ```html
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
+    <h3 class="title">{{ msg }}</h3>
     <div class="amap-wrapper">
-      <amap id="amap"></amap>
+      <el-amap :vid="'amap-vue'"></el-amap>
     </div>
   </div>
 </template>
@@ -173,4 +176,24 @@ export default {
   height: 500px;
 }
 </style>
+</script>
+
+<style>
+.amap-wrapper {
+  width: 500px;
+  height: 500px;
+}
+</style>
+```
+
+### 安装依赖
+
+```javascript
+npm install
+```
+
+### 构建
+
+```javascript
+npm run dev
 ```

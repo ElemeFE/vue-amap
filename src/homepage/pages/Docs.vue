@@ -12,7 +12,9 @@
       </section>
     </div>
     <div class="main">
-      <router-view></router-view>
+      <div class="inner">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -107,34 +109,9 @@ export default {
       padding: 30px 0 1rem 1rem;
       margin-left: 15%;
 
-      // .map-present {
-      //   position: absolute;;
-      //   right: 40px;
-      //   top: 80px;
-      //   width: 340px;
-      //
-      //   .vue-amap {
-      //     height: 340px;
-      //     width: 340px;
-      //   }
-      //
-      //   .action-list {
-      //     padding: 10px;
-      //
-      //     button {
-      //       margin: 0 10px 10px 0;
-      //       background: #ececec;
-      //       border: 1px #cccccc solid;
-      //       padding: 3px 15px;
-      //       border-radius: 3px;
-      //     }
-      //   }
-      //
-      //   .demo-component {
-      //     width: 100%;
-      //     height: 100%;
-      //   }
-      // }
+      .inner {
+        padding: 0 40px;
+      }
 
       table {
         border-collapse: collapse;

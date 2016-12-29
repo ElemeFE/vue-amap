@@ -1,6 +1,6 @@
 <template>
   <div id="demoComponent" class="demo-component">
-      <el-amap id="amap" :zoom="zoom" :center="center">
+      <el-amap vid="amap" :zoom="zoom" :center="center">
         <el-amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius" :fillOpacity="circle.fillOpacity" :events="circle.events"></el-amap-circle>
       </el-amap>
   </div>

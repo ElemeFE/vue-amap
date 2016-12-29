@@ -6,7 +6,7 @@
 
 ```html
 <div id="demoComponent" class="demo-component">
-    <amap id="amap" :zoom="zoom" :center="center">
+    <amap vid="amap" :zoom="zoom" :center="center">
       <amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></amap-polygon>
     </amap>
   </div>
@@ -78,7 +78,6 @@ strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
 
 事件 | 参数 | 说明
 ---|---|---|
-init |[Polygon](http://lbs.amap.com/api/javascript-api/reference/overlay/#Polygon) | 高德多边形覆盖物实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 右键单击
