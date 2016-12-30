@@ -28,9 +28,6 @@ export default {
           events: {
             click: () => {
               alert('click polygon');
-            },
-            init: (o) => {
-              console.log(o);
             }
           }
         }

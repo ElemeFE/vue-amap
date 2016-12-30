@@ -26,11 +26,6 @@ export default {
           events: {
             click() {
               alert('click polygon');
-            },
-            init(o) {
-              // o为多边形覆盖物实例
-              // 这里为直接操作实例的入口
-              // 不推荐使用
             }
           }
         }
