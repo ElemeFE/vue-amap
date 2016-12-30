@@ -17,7 +17,7 @@ docs.map(components => {
   }
 });
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'hash',
   base: __dirname,
   routes: [
@@ -36,3 +36,9 @@ export default new VueRouter({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  window.scroll(0, 0);
+  return next();
+});
+export default router;
