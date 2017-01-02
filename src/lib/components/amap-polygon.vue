@@ -29,7 +29,7 @@ export default {
       converts: {},
       handlers: {
         visible(flag) {
-          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+          flag === false ? this.hide() : this.show();
         },
         zIndex(num) {
           this.setOptions({zIndex: num});

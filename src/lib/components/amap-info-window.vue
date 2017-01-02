@@ -26,7 +26,7 @@ export default {
       },
       handlers: {
         visible(flag) {
-          flag === false ? this.$amapComponent.close() : this.$amapComponent.open();
+          flag === false ? this.close() : this.open();
         }
       }
     };
