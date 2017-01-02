@@ -23,9 +23,9 @@ export default {
       handlers: {
         visible(flag) {
           if (flag === false) {
-            this.$amapComponent.setMap(null);
+            this.setMap(null);
           } else {
-            this.$amapComponent.setMap(this.$amap);
+            this.setMap(this.$amap);
           }
         }
       }

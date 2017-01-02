@@ -35,10 +35,10 @@ export default {
       },
       handlers: {
         zIndex(index) {
-          this.$amapComponent.setzIndex(index);
+          this.setzIndex(index);
         },
         visible(flag) {
-          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+          flag === false ? this.hide() : this.show();
         },
         editable(flag) {
           flag === true ? this.editor.open() : this.editor.close();
