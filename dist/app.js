@@ -3318,10 +3318,10 @@ module.exports =
 	      },
 	      handlers: {
 	        zIndex: function zIndex(index) {
-	          this.$amapComponent.setzIndex(index);
+	          this.setzIndex(index);
 	        },
 	        visible: function visible(flag) {
-	          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+	          flag === false ? this.hide() : this.show();
 	        },
 	        editable: function editable(flag) {
 	          flag === true ? this.editor.open() : this.editor.close();
@@ -3439,9 +3439,9 @@ module.exports =
 	      handlers: {
 	        visible: function visible(flag) {
 	          if (flag === false) {
-	            this.$amapComponent.setMap(null);
+	            this.setMap(null);
 	          } else {
-	            this.$amapComponent.setMap(this.$amap);
+	            this.setMap(this.$amap);
 	          }
 	        }
 	      }
@@ -3519,7 +3519,7 @@ module.exports =
 	      converts: {},
 	      handlers: {
 	        visible: function visible(flag) {
-	          flag === false ? this.$amapComponent.close() : this.$amapComponent.open();
+	          flag === false ? this.close() : this.open();
 	        }
 	      }
 	    };
@@ -3686,7 +3686,7 @@ module.exports =
 	      converts: {},
 	      handlers: {
 	        visible: function visible(flag) {
-	          flag === false ? this.$amapComponent.hide() : this.$amapComponent.show();
+	          flag === false ? this.hide() : this.show();
 	        },
 	        zIndex: function zIndex(num) {
 	          this.setOptions({ zIndex: num });
