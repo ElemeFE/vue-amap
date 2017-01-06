@@ -1,20 +1,17 @@
 <template>
   <div class="amap-page-container">
     <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
-    <el-amap :vid="'amap-vue'" :center="[121.59996, 31.197646]" :zoom="12" :map-manager="amapManager">
+    <el-amap :vid="'amap-vue'" :center="mapCenter" :zoom="12">
       <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
     </el-amap>
   </div>
 </template>
 <script>
-  import VueAMap from '../../lib';
-  let amapManager = new VueAMap.AMapManager();
   export default {
     name: 'search-box-page',
     data: function() {
       return {
         vid: 'amap-vue-2',
-        amapManager: amapManager,
         markers: [
           [121.59996, 31.197646],
           [121.40018, 31.197622],
@@ -23,7 +20,8 @@
         searchOption: {
           city: '上海',
           citylimit: true
-        }
+        },
+        mapCenter: [121.59996, 31.197646]
       };
     },
     methods: {
@@ -45,7 +43,7 @@
           lng: lngSum / pois.length,
           lat: latSum / pois.length
         };
-        this.amapManager.getMap().setZoomAndCenter(17, new AMap.LngLat(center.lng, center.lat));
+        this.mapCenter = [center.lng, center.lat];
       }
     }
   };

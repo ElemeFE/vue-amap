@@ -48,7 +48,9 @@
     },
     methods: {
       getMap: function() {
-        console.log(this.amapManager.getMap());
+        // 高德map对象实例
+        let amap = this.amapManager.getMap();
+        console.log(amap);
       },
       addZoom() {
         this.zoom++;
@@ -58,7 +60,6 @@
       },
       changeCenter() {
         this.center = [this.center[0] + 0.1, this.center[1] + 0.1];
-        console.log(this.center);
       }
     }
   };
@@ -80,22 +81,22 @@ export default {
 
 名称 | 类型 | 说明
 ---|---|---|
-vid | String | 地图容器节点的ID
-amapManager| AMapManager | 地图管理对象
-cursor | String | 地图默认鼠标样式。参数cursor应符合CSS的cursor属性规范
-animateEnable | Boolean | 地图平移过程中是否使用动画（如调用panBy、panTo、setCenter、setZoomAndCenter等函数，将对地图产生平移操作，是否使用动画平移的效果），默认为true，即使用动画
-isHotspot | Boolean | 是否开启地图热点，默认false 不打开
-rotateEnable | Boolean  | 地图是否可旋转，默认false
-resizeEnable | Boolean  | 是否监控地图容器尺寸变化，默认值为false
-showIndoorMap | Boolean  | 	是否在有矢量底图的时候自动展示室内地图，PC端默认是true，移动端默认是false
-expandZoomRange | Boolean | 	是否支持可以扩展最大缩放级别.设置为true的时候，zooms的最大级别在PC上可以扩大到20级，移动端还是高清19/非高清20
-dragEnable | Boolean  | 	地图是否可通过鼠标拖拽平移，默认为true。此属性可被setStatus/getStatus 方法控制
-zoomEnable | Boolean  | 	地图是否可缩放，默认值为true。此属性可被setStatus/getStatus 方法控制
-doubleClickZoom | Boolean  | 	地图是否可通过双击鼠标放大地图，默认为true。此属性可被setStatus/getStatus 方法控制
-keyboardEnable | Boolean  | 	地图是否可通过键盘控制，方向键控制地图平移，"+"和"-"可以控制地图的缩放，Ctrl+“→”顺时针旋转，Ctrl+“←”逆时针旋转，默认为true。此属性可被setStatus/getStatus 方法控制
-jogEnable | Boolean  | 	地图是否使用缓动效果，默认值为true。此属性可被setStatus/getStatus 方法控制
-scrollWheel | Boolean  | 	地图是否可通过鼠标滚轮缩放浏览，默认为true。此属性可被setStatus/getStatus 方法控制
-touchZoom | Boolean  | 	地图在移动终端上是否可通过多点触控缩放浏览地图，默认为true
+vid | String | 地图容器节点的ID。
+amapManager| AMapManager | 地图管理对象。
+cursor | String | 地图默认鼠标样式。参数cursor应符合CSS的cursor属性规范。
+animateEnable | Boolean | 地图平移过程中是否使用动画，默认为true，即使用动画。
+isHotspot | Boolean | 是否开启地图热点，默认false 不打开。
+rotateEnable | Boolean  | 地图是否可旋转，默认false。
+resizeEnable | Boolean  | 是否监控地图容器尺寸变化，默认值为false。
+showIndoorMap | Boolean  | 	是否在有矢量底图的时候自动展示室内地图，PC端默认是true，移动端默认是false。
+expandZoomRange | Boolean | 	是否支持可以扩展最大缩放级别.设置为true的时候，zooms的最大级别在PC上可以扩大到20级，移动端还是高清19/非高清20。
+dragEnable | Boolean  | 	地图是否可通过鼠标拖拽平移，默认为true。
+zoomEnable | Boolean  | 	地图是否可缩放，默认值为true。
+doubleClickZoom | Boolean  | 	地图是否可通过双击鼠标放大地图，默认为true。
+keyboardEnable | Boolean  | 	地图是否可通过键盘控制，方向键控制地图平移，"+"和"-"可以控制地图的缩放，Ctrl+“→”顺时针旋转，Ctrl+“←”逆时针旋转，默认为true。
+jogEnable | Boolean  | 	地图是否使用缓动效果，默认值为true。
+scrollWheel | Boolean  | 	地图是否可通过鼠标滚轮缩放浏览，默认为true。
+touchZoom | Boolean  | 	地图在移动终端上是否可通过多点触控缩放浏览地图，默认为true。
 
 ## 动态属性
 支持响应式。
@@ -107,8 +108,8 @@ labelzIndex | Number | 地图标注显示顺序
 lang | String | 地图语言类型 默认：zh_cn，可选值：zh_cn：中文简体，en：英文，zh_en：中英文对照
 mapStyle	| String |	设置地图显示样式，目前支持normal（默认样式）、dark（深色样式）、light（浅色样式）、fresh(osm清新风格样式)四种
 
-# AmapManager
-方法
+## AmapManager
+用于获取地图实例，以及获得地图内组件的实例。
 名称 | 返回类型 | 说明
 ---|---|---|
 getMap | AMap.Map | 返回地图实例，注入该管理实例的组件的地图实例

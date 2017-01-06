@@ -3,11 +3,11 @@
         <el-amap vid="amap" :zoom="zoom" :center="center">
           <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
         </el-amap>
-        <button type="button" name="button" v-on:click="toggleVisible">toggle show first marker</button>
-        <button type="button" name="button" v-on:click="changePosition">Change Position</button>
-        <button type="button" name="button" v-on:click="chnageDraggle">chnage Draggle</button>
-        <button type="button" name="button" v-on:click="addMarker">add Marker</button>
-        <button type="button" name="button" v-on:click="removeMarker">remove Marker</button>
+        <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
+        <button type="button" name="button" v-on:click="changePosition">change position</button>
+        <button type="button" name="button" v-on:click="chnageDraggle">change draggable</button>
+        <button type="button" name="button" v-on:click="addMarker">add marker</button>
+        <button type="button" name="button" v-on:click="removeMarker">remove marker</button>
     </div>
 </template>
 
@@ -23,10 +23,8 @@ export default {
           events: {
             click: () => {
               alert('click marker');
-              console.log(this);
             },
             dragend: (e) => {
-              console.log(e);
               this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
             }
           },

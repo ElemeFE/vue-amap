@@ -22,7 +22,7 @@
 
 ## 使用说明
 ``` html
-<el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
+<el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult" :center="mapCenter"></el-amap-search-box>
 <el-amap>
   <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
 </el-amap>
@@ -42,7 +42,7 @@ onSearchResult(pois) {
     lng: lngSum / pois.length,
     lat: latSum / pois.length
   };
-  this.amapManager.getMap().setZoomAndCenter(17, new AMap.LngLat(center.lng, center.lat));
+  this.mapCenter = [center.lng, center.lat];
 }
 ```
 

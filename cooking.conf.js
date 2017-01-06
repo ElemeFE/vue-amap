@@ -7,7 +7,6 @@ const path = require('path');
 
 cooking.set({
   entry: ['./src/homepage/index.js'],
-  template: './src/homepage/index.html',
   dist: './docs',
   publicPath: '.',
   devServer: {
@@ -17,7 +16,14 @@ cooking.set({
   extends: ['vue2', 'lint'],
   clean: true,
   hash: true,
-  sourceMap: true
+  sourceMap: true,
+  template: [
+    {
+      template: './src/homepage/index.html',
+      filename: './index.html',
+      favicon: './src/homepage/assets/images/logo.ico'
+    }
+  ]
 });
 
 cooking.add('loader.md', {

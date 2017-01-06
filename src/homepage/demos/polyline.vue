@@ -3,8 +3,8 @@
       <el-amap vid="amap" :zoom="zoom" :center="center" :amapManager="amapManager">
         <el-amap-polyline :editable="polyline.editable"  :path="polyline.path" :events="polyline.events"></el-amap-polyline>
       </el-amap>
-      <button type="button" name="button" v-on:click="changeEditable">changeEditable</button>
-      <button type="button" name="button" v-on:click="logPath">logPath</button>
+      <button type="button" name="button" v-on:click="changeEditable">change editable</button>
+      <button type="button" name="button" v-on:click="logPath">log path</button>
   </div>
 </template>
 

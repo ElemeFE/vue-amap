@@ -51,6 +51,7 @@ export default {
 
 名称 | 类型 | 说明
 ---|---|---|
+vid | String | 组件的ID。
 clickable | Boolean | 图层是否可点击，若为可点击则GroundImage支持鼠标点击事件默认值：false
 bounds | Array | 区域
 url | String | 图片路径
