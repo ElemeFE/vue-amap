@@ -8,7 +8,7 @@ const path = require('path');
 cooking.set({
   entry: ['./src/homepage/index.js'],
   dist: './docs',
-  publicPath: '.',
+  publicPath: './',
   devServer: {
     port: 4200,
     publicPath: '/'
