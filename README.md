@@ -1,6 +1,13 @@
-# vue-amap
 
-vue-amap是基于Vue 2.0和高德地图的地图组件。
+<p align="center" style="width: 200px;">
+  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/homepage/assets/images/logo_a.png">
+</p>
+
+# vue-amap
+[![npm package](https://img.shields.io/npm/v/vue-amap.svg)](https://www.npmjs.org/package/vue-amap)
+[![NPM downloads](http://img.shields.io/npm/dm/vue-amap.svg)](https://npmjs.org/package/vue-amap)
+
+> vue-amap是一套基于Vue 2.0和高德地图的地图组件。
 
 ## 安装
 ```
