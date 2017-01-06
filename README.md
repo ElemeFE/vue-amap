@@ -1,6 +1,6 @@
 
 <p align="center" style="width: 200px;">
-  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/homepage/assets/images/logo_a.png">
+  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/homepage/assets/images/logo_c.png">
 </p>
 
 # vue-amap
