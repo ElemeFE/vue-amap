@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/homepage/assets/images/logo_a.png">
+</p>
+
 # vue-amap
 [![npm package](https://img.shields.io/npm/v/vue-amap.svg)](https://www.npmjs.org/package/vue-amap)
 [![NPM downloads](http://img.shields.io/npm/dm/vue-amap.svg)](https://npmjs.org/package/vue-amap)
