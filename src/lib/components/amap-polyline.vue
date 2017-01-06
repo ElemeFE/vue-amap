@@ -26,7 +26,7 @@ export default {
   ],
   data() {
     return {
-      converts: {},
+      converters: {},
       handlers: {
         visible(flag) {
           flag === false ? this.hide() : this.show();

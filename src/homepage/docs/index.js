@@ -72,5 +72,16 @@ export default [
         zh: 'SearchBox'
       }
     ]
+  },
+  {
+    zh: '插件',
+    en: 'plugins',
+    children: [
+      {
+        component: require('./plugins.md'),
+        en: 'Plugins',
+        zh: '插件'
+      }
+    ]
   }
 ];

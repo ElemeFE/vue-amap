@@ -27,13 +27,6 @@ export default class AMapAPILoader {
       return Promise.resolve();
     }
 
-    // if (this._loading) {
-    //   return new Promise(resolve => {
-    //     this._queueEvents.push(() => resolve());
-    //   });
-    // }
-
-    // this._loading = true;
     if (this._scriptLoadingPromise) return this._scriptLoadingPromise;
     const script = this._document.createElement('script');
     script.type = 'text/javascript';
@@ -56,17 +49,28 @@ export default class AMapAPILoader {
   }
 
   _getScriptSrc() {
-    const queryParams = this._config;
+    // amap plugin prefix reg
+    const amap_prefix_reg = /^AMap./;
+
+    const config = this._config;
     const paramKeys = ['v', 'key', 'plugin', 'callback'];
-    const params = Object.keys(queryParams)
+
+    // check 'AMap.' prefix
+    if (config.plugin && config.plugin.length > 0) {
+      config.plugin = config.plugin.map(item => {
+        return (amap_prefix_reg.test(item)) ? item : 'AMap.' + item;
+      });
+    }
+
+    const params = Object.keys(config)
                          .filter(k => paramKeys.indexOf(k) !== -1)
-                         .filter(k => queryParams[k] != null)
+                         .filter(k => config[k] != null)
                          .filter(k => {
-                           return !Array.isArray(queryParams[k]) ||
-                                (Array.isArray(queryParams[k]) && queryParams[k].length > 0);
+                           return !Array.isArray(config[k]) ||
+                                (Array.isArray(config[k]) && config[k].length > 0);
                          })
                          .map(k => {
-                           let v = queryParams[k];
+                           let v = config[k];
                            if (Array.isArray(v)) return { key: k, value: v.join(',')};
                            return {key: k, value: v};
                          })

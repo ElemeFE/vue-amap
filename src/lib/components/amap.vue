@@ -7,7 +7,7 @@
 <script>
    import guid from '../utils/guid';
    import CONST from '../utils/constant';
-   import { toLngLat } from '../utils/converts-helper';
+   import { toLngLat } from '../utils/convert-helper';
    import registerMixin from '../mixins/register-component';
    import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
    export default {
@@ -44,15 +44,49 @@
        'features',
        'mapManager'  // 地图管理 manager
      ],
+
      beforeCreate() {
        this._loadPromise = lazyAMapApiLoaderInstance.load();
      },
+
      destroyed() {
        this.$amap && this.$amap.destroy();
      },
+
+     computed: {
+       /**
+        * convert plugin prop from 'plugin' to 'plugins'
+        * unify plugin options
+        * @return {Array}
+        */
+       plugins() {
+         let plus = [];
+
+         if (typeof this.plugin === 'string') {
+           plus.push({
+             pName: this.plugin
+           });
+         } else if (this.plugin instanceof Array) {
+           plus = this.plugin.map(oPlugin => {
+             let nPlugin = {};
+
+             if (typeof oPlugin === 'string') {
+               nPlugin.pName = oPlugin;
+             } else {
+               nPlugin = oPlugin;
+             }
+
+             return nPlugin;
+           });
+         }
+
+         return plus;
+       }
+     },
+
      data() {
        return {
-         converts: {
+         converters: {
            center(arr) {
              return toLngLat(arr);
            }
@@ -70,28 +104,37 @@
          }
        };
      },
+
      mounted() {
        this.createMap();
      },
+
      addEvents() {
        this.$amapComponent.on('moveend', () => {
          let centerLngLat = this.$amapComponent.getCenter();
          this.center = [centerLngLat.getLng(), centerLngLat.getLat()];
        });
      },
+
      methods: {
-       addPlugins(plugin) {
-         let _notInjectPlugins = plugin.filter(_plugin => !AMap[_plugin]);
+       addPlugins() {
+         let _notInjectPlugins = this.plugins.filter(_plugin => !AMap[_plugin.pName]);
          if (!_notInjectPlugins || !_notInjectPlugins.length) return this.addMapControls();
          return this.$amapComponent.plugin(_notInjectPlugins, this.addMapControls);
        },
+
        addMapControls() {
-         if (!this.plugin || !this.plugin.length) return;
-         this.plugin.forEach(_plugin => this.$amapComponent.addControl(new AMap[_plugin]()));
+         if (!this.plugins || !this.plugins.length) return;
+
+         this.plugins.forEach(_plugin => {
+           this.$amapComponent.addControl(new AMap[_plugin.pName](_plugin));
+         });
        },
+
        setStatus(option) {
          this.$amap.setStatus(option);
        },
+
        createMap() {
          this._loadPromise.then(() => {
            let mapElement = this.$el.querySelector('.el-vue-amap');
@@ -104,8 +147,8 @@
            this.$children.forEach(component => {
              component.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            });
-           if (this.plugin && this.plugin.length) {
-             this.addPlugins(this.plugin);
+           if (this.plugins && this.plugins.length) {
+             this.addPlugins();
            }
          });
        }

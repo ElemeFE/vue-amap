@@ -148,22 +148,32 @@
             }
           }
         }
+
         a {
           margin: 0 3px;
         }
+
         h1 {
-          font-size: 28px;
-          font-weight: normal;
-          margin: 0 0 0.7em 0;
+          font-size: 26px;
         }
+
         h2 {
-          font-size: 18px;
-          font-weight: bold;
-          margin: 2.2em 0 1.2em 0;
+          font-size: 20px;
+          margin: 40px 0 20px 0
         }
+
+        h3 {
+          font-size: 18px;
+        }
+
+        h4 {
+          font-size: 16px;
+        }
+
         hr {
           border: 0;
-          border-bottom: 1px solid #eee;
+          border-bottom: 3px solid #e4e1e1;
+          margin: 35px 0;
         }
         p {
           font-size: 14px;

@@ -1,6 +1,6 @@
 import upperCamelCase from 'uppercamelcase';
 import CONST from '../utils/constant';
-import { toLngLat, toPixel, toBounds } from '../utils/converts-helper';
+import { toLngLat, toPixel, toBounds } from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
 export default {
   mounted() {
@@ -41,8 +41,8 @@ export default {
     },
 
     convertSignalProp(key, sourceDate) {
-      if (this.converts && this.converts[key]) {
-        return this.converts[key](sourceDate);
+      if (this.converters && this.converters[key]) {
+        return this.converters[key](sourceDate);
       } else if (key === 'position') {
         return toLngLat(sourceDate);
       } else if (key === 'offset') {
@@ -86,7 +86,6 @@ export default {
           }
           handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
         });
-        // handleFun.call(this.$amapComponent, this.convertSignalProp(prop, this.$options.propsData[prop]));
       }
     },
 
