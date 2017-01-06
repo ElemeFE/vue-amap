@@ -110,10 +110,10 @@ mapStyle	| String |	设置地图显示样式，目前支持normal（默认样式
 
 ## AmapManager
 用于获取地图实例，以及获得地图内组件的实例。
-名称 | 返回类型 | 说明
----|---|---|
-getMap | AMap.Map | 返回地图实例，注入该管理实例的组件的地图实例
-getComponent(vid:String) | AMap[component] | 返回 vid 对应的组件实例
+名称 | 参数 | 返回类型 | 说明
+---|--- | --- |---|
+getMap | | AMap.Map | 返回地图实例，注入该管理实例的组件的地图实例
+getChildInstance| vid | instance | 返回 vid 对应的组件实例
 
 
 ## 事件

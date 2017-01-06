@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      converts: {},
+      converters: {},
       handlers: {
         visible(flag) {
           if (flag === false) {

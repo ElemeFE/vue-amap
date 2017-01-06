@@ -32,7 +32,10 @@
             alert('map clicked');
           }
         },
-        plugin: ['ToolBar'],
+        plugin: [{
+          pName: 'MapType',
+          defaultType: 1
+        }],
         amapManager: amapManager,
         markers: [
                  [121.59996, 31.197646],
