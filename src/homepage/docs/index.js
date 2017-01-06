@@ -16,7 +16,7 @@ export default [
     ]
   },
   {
-    zh: '基础',
+    zh: '覆盖物',
     en: 'mask',
     children: [
       {
@@ -59,7 +59,13 @@ export default [
         component: require('./info-window.md'),
         en: 'Info Window',
         zh: '信息窗体'
-      },
+      }
+    ]
+  },
+  {
+    zh: '其他服务',
+    en: 'other',
+    children: [
       {
         component: require('./searchbox.md'),
         en: 'SearchBox',

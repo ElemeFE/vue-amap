@@ -52,6 +52,7 @@ export default {
 
 名称 | 类型 | 说明
 ---|---|---|
+vid | String | 组件的ID。
 bubble | Boolean | 是否将覆盖物的鼠标或touch等事件冒泡到地图上（自v1.3 新增）默认值：false
 
 ## 动态属性

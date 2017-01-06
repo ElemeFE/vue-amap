@@ -38,7 +38,7 @@
     }
   };
 </script>
-<style lang="scss">
+<style lang="scss" scope>
   @keyframes menu-present {
     from {
       left: -15%
@@ -50,19 +50,26 @@
 
   .docs-page {
     height: 100%;
-    .back {
-      font-size: 14px;
-      margin: -10px 0 0 35px;
-      color: #b9b4b4;
-      display: block;
-      width: 100%;
-    }
     #demoComponent {
       height: 400px;
     }
     >div {
       float: left;
       height: 100%;
+
+      .back {
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #f3f3f3;
+        padding: 6px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
       &.nav {
         font-size: 14px;
         font-family: sans-serif;
