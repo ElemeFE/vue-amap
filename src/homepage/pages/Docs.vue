@@ -85,6 +85,8 @@
         left: -15%;
         top: 0;
         width: 15%;
+        overflow: auto;
+
         .chapters {
           margin: 10px 0 30px 35px;
           .chapter-title {

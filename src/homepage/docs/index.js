@@ -52,7 +52,7 @@ export default [
     ]
   },
   {
-    zh: '信息窗体',
+    zh: '窗体',
     en: 'examples',
     children: [
       {
@@ -80,7 +80,7 @@ export default [
       {
         component: require('./plugins.md'),
         en: 'Plugins',
-        zh: '插件'
+        zh: '地图插件'
       }
     ]
   }
