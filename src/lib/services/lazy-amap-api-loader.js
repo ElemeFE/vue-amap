@@ -57,6 +57,9 @@ export default class AMapAPILoader {
 
     // check 'AMap.' prefix
     if (config.plugin && config.plugin.length > 0) {
+      // push default types
+      config.plugin.push('Autocomplete', 'PlaceSearch', 'PolyEditor', 'CircleEditor');
+
       config.plugin = config.plugin.map(item => {
         return (amap_prefix_reg.test(item)) ? item : 'AMap.' + item;
       });

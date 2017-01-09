@@ -17,52 +17,65 @@
   </div>
 </template>
 <script>
-  import { AMapManager } from 'vue-amap';
-  let amapManager = new AMapManager();
-  export default {
-    name: 'amap-page',
-    data: function() {
-      return {
-        vid: 'amap-vue-1',
-        zoom: 12,
-        center: [121.59996, 31.197646],
-        events: {
-          'moveend': () => {
-            let mapCenter = this.amapManager.getMap().getCenter();
-            this.center = [mapCenter.getLng(), mapCenter.getLat()];
-          },
-          'zoomchange': () => {
-            this.zoom = this.amapManager.getMap().getZoom();
-          },
-          'click': (e) => {
-            alert('map clicked');
-          }
+import { AMapManager } from '../../lib';
+let amapManager = new AMapManager();
+export default {
+  name: 'amap-page',
+  data: function() {
+    return {
+      vid: 'amap-vue-1',
+      zoom: 12,
+      center: [121.59996, 31.197646],
+      events: {
+        'moveend': () => {
+          let mapCenter = this.amapManager.getMap().getCenter();
+          this.center = [mapCenter.getLng(), mapCenter.getLat()];
         },
-        plugin: ['ToolBar'],
-        amapManager: amapManager,
-        markers: [
-                 [121.59996, 31.197646],
-                 [121.40018, 31.197622],
-                 [121.69991, 31.207649]]
-      };
+        'zoomchange': () => {
+          this.zoom = this.amapManager.getMap().getZoom();
+        },
+        'click': (e) => {
+          alert('map clicked');
+        }
+      },
+      plugin: ['ToolBar', {
+        pName: 'MapType',
+        defaultType: 0,
+        events: {
+          init(o) {
+            console.log(o);
+          }
+        }
+      }],
+      amapManager: amapManager,
+      markers: [
+               [121.59996, 31.197646],
+               [121.40018, 31.197622],
+               [121.69991, 31.207649]]
+    };
+  },
+  methods: {
+    getMap: function() {
+      console.log(this.amapManager.getMap());
+      console.log(this.center);
     },
-    methods: {
-      getMap: function() {
-        // 高德map对象实例
-        let amap = this.amapManager.getMap();
-        console.log(amap);
-      },
-      addZoom() {
-        this.zoom++;
-      },
-      subZoom() {
-        this.zoom--;
-      },
-      changeCenter() {
-        this.center = [this.center[0] + 0.1, this.center[1] + 0.1];
-      }
+    addMarker: function() {
+      let lng = 121.5 + Math.round(Math.random() * 1000) / 10000;
+      let lat = 31.197646 + Math.round(Math.random() * 500) / 10000;
+      this.markers.push([lng, lat]);
+    },
+    addZoom() {
+      this.zoom++;
+    },
+    subZoom() {
+      this.zoom--;
+    },
+    changeCenter() {
+      this.center = [this.center[0] + 0.1, this.center[1] + 0.1];
+      console.log(this.center);
     }
-  };
+  }
+};
 </script>
 ```
 
