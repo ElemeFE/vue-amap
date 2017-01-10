@@ -123,7 +123,6 @@ module.exports =
 	  if (VueAMap.installed) return;
 	  Vue.config.optionMergeStrategies.deferredReady = Vue.config.optionMergeStrategies.created;
 	  components.map(function (_component) {
-	    console.log('register:' + _component.name);
 	    Vue.component(_component.name, _component);
 	    VueAMap[(0, _uppercamelcase2.default)(_component.name).replace(/^El/, '')] = _component;
 	  });
@@ -2835,10 +2834,22 @@ module.exports =
 	        manager.setComponent(this.vid, this.$amapComponent);
 	      }
 	    },
+	    initProps: function initProps() {
+	      var _this3 = this;
+
+	      var props = ['editable', 'visible'];
+	      props.forEach(function (propstr) {
+	        if (_this3[propstr] !== undefined) {
+	          var _handleFun = _this3.getHandlerFun(propstr);
+	          _handleFun.call(_this3.$amapComponent, _this3.convertSignalProp(propstr, _this3[propstr]));
+	        }
+	      });
+	    },
 	    register: function register() {
 	      this.initComponent && this.initComponent(this.convertProps());
 	      this.registerEvents();
 	      if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
+	      this.initProps();
 	      this.setPropWatchers();
 	    }
 	  }
@@ -2930,12 +2941,12 @@ module.exports =
 /* 91 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
 	    staticClass: "el-vue-amap-container"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "el-vue-amap"
-	  }), " ", _vm._t("default")])
+	  }), _vm._v(" "), _vm._t("default")], 2)
 	},staticRenderFns: []}
 
 /***/ },
@@ -3019,8 +3030,8 @@ module.exports =
 /* 94 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3193,21 +3204,21 @@ module.exports =
 /* 99 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
 	    staticClass: "el-vue-search-box-container",
 	    on: {
 	      "keydown": [function($event) {
-	        if ($event.keyCode !== 38) { return; }
+	        if (_vm._k($event.keyCode, "up", 38)) { return; }
 	        _vm.selectTip('up')
 	      }, function($event) {
-	        if ($event.keyCode !== 40) { return; }
+	        if (_vm._k($event.keyCode, "down", 40)) { return; }
 	        _vm.selectTip('down')
 	      }]
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "search-box-wrapper"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -3222,7 +3233,7 @@ module.exports =
 	    },
 	    on: {
 	      "keyup": function($event) {
-	        if ($event.keyCode !== 13) { return; }
+	        if (_vm._k($event.keyCode, "enter", 13)) { return; }
 	        _vm.search($event)
 	      },
 	      "input": [function($event) {
@@ -3230,15 +3241,15 @@ module.exports =
 	        _vm.keyword = $event.target.value
 	      }, _vm.autoComplete]
 	    }
-	  }), " ", _h('a', {
+	  }), _vm._v(" "), _c('a', {
 	    staticClass: "search-btn",
 	    on: {
 	      "click": _vm.search
 	    }
-	  }, ["搜索"])]), " ", _h('div', {
+	  }, [_vm._v("搜索")])]), _vm._v(" "), _c('div', {
 	    staticClass: "search-tips"
-	  }, [_h('ul', [_vm._l((_vm.tips), function(tip, index) {
-	    return _h('li', {
+	  }, [_c('ul', _vm._l((_vm.tips), function(tip, index) {
+	    return _c('li', {
 	      class: {
 	        'autocomplete-selected': index === _vm.selectedTip
 	      },
@@ -3250,8 +3261,8 @@ module.exports =
 	          _vm.selectedTip = index
 	        }
 	      }
-	    }, [_vm._s(tip.name)])
-	  })])])])
+	    }, [_vm._v(_vm._s(tip.name))])
+	  }))])])
 	},staticRenderFns: []}
 
 /***/ },
@@ -3377,8 +3388,8 @@ module.exports =
 /* 103 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3459,8 +3470,8 @@ module.exports =
 /* 106 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3540,8 +3551,8 @@ module.exports =
 /* 109 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3596,7 +3607,7 @@ module.exports =
 	exports.default = {
 	  name: 'el-amap-polyline',
 	  mixins: [_registerComponent2.default, _editorComponent2.default],
-	  props: ['vid', 'zIndex', 'editable', 'bubble', 'geodesic', 'isOutline', 'outlineColor', 'path', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'strokeStyle', 'strokeDasharray', 'events', 'extData', 'onceEvents'],
+	  props: ['vid', 'zIndex', 'visible', 'editable', 'bubble', 'geodesic', 'isOutline', 'outlineColor', 'path', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'strokeStyle', 'strokeDasharray', 'events', 'extData', 'onceEvents'],
 	  data: function data() {
 	    return {
 	      converts: {},
@@ -3624,8 +3635,8 @@ module.exports =
 /* 112 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3712,8 +3723,8 @@ module.exports =
 /* 115 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h("div")
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c("div")
 	},staticRenderFns: []}
 
 /***/ },
