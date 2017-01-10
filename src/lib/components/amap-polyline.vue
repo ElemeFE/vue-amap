@@ -9,6 +9,7 @@ export default {
   props: [
     'vid',
     'zIndex',
+    'visible',
     'editable',
     'bubble',
     'geodesic',

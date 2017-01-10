@@ -97,10 +97,22 @@ export default {
       }
     },
 
+    // some prop can not init by initial created methods
+    initProps() {
+      const props = ['editable', 'visible'];
+      props.forEach(propstr => {
+        if (this[propstr] !== undefined) {
+          let handleFun = this.getHandlerFun(propstr);
+          handleFun.call(this.$amapComponent, this.convertSignalProp(propstr, this[propstr]));
+        }
+      });
+    },
+
     register() {
       this.initComponent && this.initComponent(this.convertProps());
       this.registerEvents();
       if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
+      this.initProps();
       this.setPropWatchers();
     }
   }
