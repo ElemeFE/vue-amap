@@ -1,7 +1,7 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-import { toLngLat } from '../utils/converts-helper';
+import { toLngLat } from '../utils/convert-helper';
 import editorMixin from '../mixins/editor-component';
 export default {
   name: 'el-amap-circle',
@@ -28,7 +28,7 @@ export default {
   ],
   data() {
     return {
-      converts: {
+      converters: {
         center(arr) {
           return toLngLat(arr);
         }

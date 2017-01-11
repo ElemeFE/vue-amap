@@ -52,7 +52,7 @@ export default [
     ]
   },
   {
-    zh: '信息窗体',
+    zh: '窗体',
     en: 'examples',
     children: [
       {
@@ -70,6 +70,17 @@ export default [
         component: require('./searchbox.md'),
         en: 'SearchBox',
         zh: 'SearchBox'
+      }
+    ]
+  },
+  {
+    zh: '插件',
+    en: 'plugins',
+    children: [
+      {
+        component: require('./plugins.md'),
+        en: 'Plugins',
+        zh: '地图插件'
       }
     ]
   }

@@ -14,6 +14,9 @@ export default class AMapManager {
   getComponent(id) {
     return this._componentMap.get(id);
   }
+  getChildInstance(id) {
+    return this.getComponent(id);
+  }
   removeComponent(id) {
     this._componentMap.delete(id);
   }

@@ -32,7 +32,7 @@ export default {
   ],
   data() {
     return {
-      converts: {
+      converters: {
         shape(options) {
           return new AMap.MarkerShape(options);
         },

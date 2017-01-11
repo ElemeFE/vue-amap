@@ -1,7 +1,7 @@
 <template>
 </template>
 <script>
-import { toLngLat } from '../utils/converts-helper';
+import { toLngLat } from '../utils/convert-helper';
 import registerMixin from '../mixins/register-component';
 export default {
   name: 'el-amap-info-window',
@@ -21,7 +21,7 @@ export default {
   ],
   data() {
     return {
-      converts: {
+      converters: {
 
       },
       handlers: {
