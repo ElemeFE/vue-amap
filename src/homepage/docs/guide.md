@@ -140,7 +140,7 @@ import App from './App.vue';
 Vue.use(AMap);
 AMap.initAMapApiLoader({
   key: 'your amap key',
-  plugin: ['Autocomplete', 'PlaceSearch', 'Scale', 'OverView', 'ToolBar', 'MapType', 'PolyEditor', 'CircleEditor']
+  plugin: ['Scale', 'OverView', 'ToolBar', 'MapType']
 });
 
 new Vue({
