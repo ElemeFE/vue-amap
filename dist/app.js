@@ -225,16 +225,27 @@ module.exports =
 	  }, {
 	    key: '_getScriptSrc',
 	    value: function _getScriptSrc() {
-	      var queryParams = this._config;
+	      var amap_prefix_reg = /^AMap./;
+
+	      var config = this._config;
 	      var paramKeys = ['v', 'key', 'plugin', 'callback'];
-	      var params = Object.keys(queryParams).filter(function (k) {
+
+	      if (config.plugin && config.plugin.length > 0) {
+	        config.plugin.push('Autocomplete', 'PlaceSearch', 'PolyEditor', 'CircleEditor');
+
+	        config.plugin = config.plugin.map(function (item) {
+	          return amap_prefix_reg.test(item) ? item : 'AMap.' + item;
+	        });
+	      }
+
+	      var params = Object.keys(config).filter(function (k) {
 	        return paramKeys.indexOf(k) !== -1;
 	      }).filter(function (k) {
-	        return queryParams[k] != null;
+	        return config[k] != null;
 	      }).filter(function (k) {
-	        return !Array.isArray(queryParams[k]) || Array.isArray(queryParams[k]) && queryParams[k].length > 0;
+	        return !Array.isArray(config[k]) || Array.isArray(config[k]) && config[k].length > 0;
 	      }).map(function (k) {
-	        var v = queryParams[k];
+	        var v = config[k];
 	        if (Array.isArray(v)) return { key: k, value: v.join(',') };
 	        return { key: k, value: v };
 	      }).map(function (entry) {
@@ -2547,6 +2558,10 @@ module.exports =
 	  value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 	var _guid = __webpack_require__(86);
 
 	var _guid2 = _interopRequireDefault(_guid);
@@ -2555,7 +2570,7 @@ module.exports =
 
 	var _constant2 = _interopRequireDefault(_constant);
 
-	var _convertsHelper = __webpack_require__(88);
+	var _convertHelper = __webpack_require__(88);
 
 	var _registerComponent = __webpack_require__(89);
 
@@ -2569,17 +2584,62 @@ module.exports =
 	  name: 'el-amap',
 	  mixins: [_registerComponent2.default],
 	  props: ['vid', 'events', 'center', 'zoom', 'draggEnable', 'level', 'zooms', 'lang', 'cursor', 'crs', 'animateEnable', 'isHotspot', 'defaultLayer', 'rotateEnable', 'resizeEnable', 'showIndoorMap', 'indoorMap', 'expandZoomRange', 'dragEnable', 'zoomEnable', 'doubleClickZoom', 'keyboardEnable', 'jogEnable', 'scrollWheel', 'touchZoom', 'mapStyle', 'plugin', 'features', 'mapManager'],
+
 	  beforeCreate: function beforeCreate() {
 	    this._loadPromise = _injectedAmapApiInstance.lazyAMapApiLoaderInstance.load();
 	  },
 	  destroyed: function destroyed() {
 	    this.$amap && this.$amap.destroy();
 	  },
+
+
+	  computed: {
+	    plugins: function plugins() {
+	      var plus = [];
+
+	      var amap_prefix_reg = /^AMap./;
+
+	      var parseFullName = function parseFullName(pluginName) {
+	        return amap_prefix_reg.test(pluginName) ? pluginName : 'AMap.' + pluginName;
+	      };
+
+	      var parseShortName = function parseShortName(pluginName) {
+	        return pluginName.replace(amap_prefix_reg, '');
+	      };
+
+	      if (typeof this.plugin === 'string') {
+	        plus.push({
+	          pName: parseFullName(this.plugin),
+	          sName: parseShortName(this.plugin)
+	        });
+	      } else if (this.plugin instanceof Array) {
+	        plus = this.plugin.map(function (oPlugin) {
+	          var nPlugin = {};
+
+	          if (typeof oPlugin === 'string') {
+	            nPlugin = {
+	              pName: parseFullName(oPlugin),
+	              sName: parseShortName(oPlugin)
+	            };
+	          } else {
+	            oPlugin.pName = parseFullName(oPlugin.pName);
+	            oPlugin.sName = parseShortName(oPlugin.pName);
+	            nPlugin = oPlugin;
+	          }
+
+	          return nPlugin;
+	        });
+	      }
+
+	      return plus;
+	    }
+	  },
+
 	  data: function data() {
 	    return {
-	      converts: {
+	      converters: {
 	        center: function center(arr) {
-	          return (0, _convertsHelper.toLngLat)(arr);
+	          return (0, _convertHelper.toLngLat)(arr);
 	        }
 	      },
 	      handlers: {
@@ -2607,21 +2667,88 @@ module.exports =
 	    });
 	  },
 
+
 	  methods: {
-	    addPlugins: function addPlugins(plugin) {
-	      var _notInjectPlugins = plugin.filter(function (_plugin) {
-	        return !AMap[_plugin];
+	    addPlugins: function addPlugins() {
+	      var _notInjectPlugins = this.plugins.filter(function (_plugin) {
+	        return !AMap[_plugin.sName];
 	      });
+
 	      if (!_notInjectPlugins || !_notInjectPlugins.length) return this.addMapControls();
 	      return this.$amapComponent.plugin(_notInjectPlugins, this.addMapControls);
 	    },
 	    addMapControls: function addMapControls() {
 	      var _this2 = this;
 
-	      if (!this.plugin || !this.plugin.length) return;
-	      this.plugin.forEach(function (_plugin) {
-	        return _this2.$amapComponent.addControl(new AMap[_plugin]());
+	      if (!this.plugins || !this.plugins.length) return;
+
+	      this.$plugins = this.$plugins || {};
+
+	      this.plugins.forEach(function (_plugin) {
+	        var realPlugin = _this2.convertProps(_plugin);
+	        _this2.$plugins[realPlugin.pName] = new AMap[realPlugin.sName](realPlugin);
+
+	        _this2.$amapComponent.addControl(_this2.$plugins[realPlugin.pName]);
+
+	        if (_plugin.events) {
+	          if (realPlugin.events.init) {
+	            realPlugin.events.init(_this2.$plugins[realPlugin.pName]);
+	          }
+
+	          var _iteratorNormalCompletion = true;
+	          var _didIteratorError = false;
+	          var _iteratorError = undefined;
+
+	          try {
+	            for (var _iterator = Object.entries(_plugin.events)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	              var _step$value = _slicedToArray(_step.value, 2),
+	                  k = _step$value[0],
+	                  v = _step$value[1];
+
+	              if (k === 'init') return;
+
+	              AMap.event.addListener(_this2.$plugins[realPlugin.pName], k, v);
+	            }
+	          } catch (err) {
+	            _didIteratorError = true;
+	            _iteratorError = err;
+	          } finally {
+	            try {
+	              if (!_iteratorNormalCompletion && _iterator.return) {
+	                _iterator.return();
+	              }
+	            } finally {
+	              if (_didIteratorError) {
+	                throw _iteratorError;
+	              }
+	            }
+	          }
+	        }
 	      });
+	    },
+	    convertProps: function convertProps(plugin) {
+
+	      if ((typeof plugin === 'undefined' ? 'undefined' : _typeof(plugin)) === 'object' && plugin.pName) {
+	        switch (plugin.pName) {
+	          case 'AMap.ToolBar':
+	            {
+	              if (plugin.offset && plugin.offset instanceof Array) {
+	                plugin.offset = (0, _convertHelper.toPixel)(plugin.offset);
+	              }
+	              break;
+	            }
+	          case 'AMap.Scale':
+	            {
+	              if (plugin.offset && plugin.offset instanceof Array) {
+	                plugin.offset = (0, _convertHelper.toPixel)(plugin.offset);
+	              }
+	              break;
+	            }
+	        }
+	        return plugin;
+	      } else {
+	        return '';
+	      }
 	    },
 	    setStatus: function setStatus(option) {
 	      this.$amap.setStatus(option);
@@ -2640,8 +2767,8 @@ module.exports =
 	        _this3.$children.forEach(function (component) {
 	          component.$emit(_constant2.default.AMAP_READY_EVENT, _this3.$amap);
 	        });
-	        if (_this3.plugin && _this3.plugin.length) {
-	          _this3.addPlugins(_this3.plugin);
+	        if (_this3.plugins && _this3.plugins.length) {
+	          _this3.addPlugins();
 	        }
 	      });
 	    }
@@ -2727,7 +2854,7 @@ module.exports =
 
 	var _constant2 = _interopRequireDefault(_constant);
 
-	var _convertsHelper = __webpack_require__(88);
+	var _convertHelper = __webpack_require__(88);
 
 	var _eventHelper = __webpack_require__(90);
 
@@ -2776,14 +2903,14 @@ module.exports =
 	      return props;
 	    },
 	    convertSignalProp: function convertSignalProp(key, sourceDate) {
-	      if (this.converts && this.converts[key]) {
-	        return this.converts[key](sourceDate);
+	      if (this.converters && this.converters[key]) {
+	        return this.converters[key](sourceDate);
 	      } else if (key === 'position') {
-	        return (0, _convertsHelper.toLngLat)(sourceDate);
+	        return (0, _convertHelper.toLngLat)(sourceDate);
 	      } else if (key === 'offset') {
-	        return (0, _convertsHelper.toPixel)(sourceDate);
+	        return (0, _convertHelper.toPixel)(sourceDate);
 	      } else if (key === 'bounds') {
-	        return (0, _convertsHelper.toBounds)(sourceDate);
+	        return (0, _convertHelper.toBounds)(sourceDate);
 	      } else {
 	        return sourceDate;
 	      }
@@ -3000,7 +3127,7 @@ module.exports =
 	  props: ['vid', 'position', 'offset', 'icon', 'content', 'topWhenClick', 'bubble', 'draggable', 'raiseOnDrag', 'cursor', 'visible', 'zIndex', 'angle', 'autoRotation', 'animation', 'shadow', 'title', 'clickable', 'shape', 'extData', 'label', 'events', 'onceEvents'],
 	  data: function data() {
 	    return {
-	      converts: {
+	      converters: {
 	        shape: function shape(options) {
 	          return new AMap.MarkerShape(options);
 	        },
@@ -3308,7 +3435,7 @@ module.exports =
 
 	var _registerComponent2 = _interopRequireDefault(_registerComponent);
 
-	var _convertsHelper = __webpack_require__(88);
+	var _convertHelper = __webpack_require__(88);
 
 	var _editorComponent = __webpack_require__(102);
 
@@ -3322,9 +3449,9 @@ module.exports =
 	  props: ['vid', 'zIndex', 'center', 'bubble', 'radius', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'editable', 'fillColor', 'fillOpacity', 'strokeStyle', 'extData', 'strokeDasharray', 'events', 'visible', 'extData', 'onceEvents'],
 	  data: function data() {
 	    return {
-	      converts: {
+	      converters: {
 	        center: function center(arr) {
-	          return (0, _convertsHelper.toLngLat)(arr);
+	          return (0, _convertHelper.toLngLat)(arr);
 	        }
 	      },
 	      handlers: {
@@ -3446,7 +3573,7 @@ module.exports =
 	  },
 	  data: function data() {
 	    return {
-	      converts: {},
+	      converters: {},
 	      handlers: {
 	        visible: function visible(flag) {
 	          if (flag === false) {
@@ -3513,7 +3640,7 @@ module.exports =
 	  value: true
 	});
 
-	var _convertsHelper = __webpack_require__(88);
+	var _convertHelper = __webpack_require__(88);
 
 	var _registerComponent = __webpack_require__(89);
 
@@ -3527,7 +3654,7 @@ module.exports =
 	  props: ['vid', 'icCustom', 'autoMove', 'closeWhenClickMap', 'content', 'size', 'offset', 'position', 'showShadow', 'visible', 'events'],
 	  data: function data() {
 	    return {
-	      converts: {},
+	      converters: {},
 	      handlers: {
 	        visible: function visible(flag) {
 	          flag === false ? this.close() : this.open();
@@ -3542,7 +3669,7 @@ module.exports =
 	  methods: {
 	    initComponent: function initComponent(options) {
 	      this.$amapComponent = new AMap.InfoWindow(options);
-	      if (this.visible !== false) this.$amapComponent.open(this.$amap, (0, _convertsHelper.toLngLat)(this.position));
+	      if (this.visible !== false) this.$amapComponent.open(this.$amap, (0, _convertHelper.toLngLat)(this.position));
 	    }
 	  }
 	};
@@ -3610,7 +3737,7 @@ module.exports =
 	  props: ['vid', 'zIndex', 'visible', 'editable', 'bubble', 'geodesic', 'isOutline', 'outlineColor', 'path', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'strokeStyle', 'strokeDasharray', 'events', 'extData', 'onceEvents'],
 	  data: function data() {
 	    return {
-	      converts: {},
+	      converters: {},
 	      handlers: {
 	        visible: function visible(flag) {
 	          flag === false ? this.hide() : this.show();
@@ -3694,7 +3821,7 @@ module.exports =
 	  props: ['vid', 'zIndex', 'path', 'bubble', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'fillColor', 'editable', 'fillOpacity', 'extData', 'strokeStyle', 'visible', 'strokeDasharray', 'events', 'onceEvents'],
 	  data: function data() {
 	    return {
-	      converts: {},
+	      converters: {},
 	      handlers: {
 	        visible: function visible(flag) {
 	          flag === false ? this.hide() : this.show();
@@ -3767,6 +3894,11 @@ module.exports =
 	    key: "getComponent",
 	    value: function getComponent(id) {
 	      return this._componentMap.get(id);
+	    }
+	  }, {
+	    key: "getChildInstance",
+	    value: function getChildInstance(id) {
+	      return this.getComponent(id);
 	    }
 	  }, {
 	    key: "removeComponent",
