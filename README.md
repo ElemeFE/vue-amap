@@ -31,7 +31,7 @@ AMap.initAMapApiLoader({
   // 高德的key
   key: 'YOUR_KEY',
   // 插件集合
-  plugin: ['Autocomplete', 'PlaceSearch', 'Scale', 'OverView', 'ToolBar', 'MapType', 'PolyEditor', 'CircleEditor']
+  plugin: ['Scale', 'OverView', 'ToolBar', 'MapType']
 });
 ```
 
