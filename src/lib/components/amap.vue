@@ -149,7 +149,7 @@
          this.$plugins = this.$plugins || {};
 
          this.plugins.forEach(_plugin => {
-           let realPlugin = this.convertProps(_plugin);
+           let realPlugin = this.convertAMapProps(_plugin);
            this.$plugins[realPlugin.pName] = new AMap[realPlugin.sName](realPlugin);
 
            // add plugin into map
@@ -176,7 +176,7 @@
         * @param  {Object}
         * @return {Object}
         */
-       convertProps(plugin) {
+       convertAMapProps(plugin) {
 
          if (typeof plugin === 'object' && plugin.pName) {
            switch (plugin.pName) {
