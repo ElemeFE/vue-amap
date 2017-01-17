@@ -5,7 +5,7 @@
 # vue-amap
 [![npm package](https://img.shields.io/npm/v/vue-amap.svg)](https://www.npmjs.org/package/vue-amap)
 [![NPM downloads](http://img.shields.io/npm/dm/vue-amap.svg)](https://npmjs.org/package/vue-amap)
-![JS gzip size](http://img.badgesize.io/https://unpkg.com/vue-amap@0.1.4/src/lib/index.js?compression=gzip&label=gzip%20size:%20JS)
+![JS gzip size](http://img.badgesize.io/https://unpkg.com/vue-amap/src/lib/index.js?compression=gzip&label=gzip%20size:%20JS)
 
 > vue-amap是一套基于Vue 2.0和高德地图的地图组件。
 
