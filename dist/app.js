@@ -2685,7 +2685,7 @@ module.exports =
 	      this.$plugins = this.$plugins || {};
 
 	      this.plugins.forEach(function (_plugin) {
-	        var realPlugin = _this2.convertProps(_plugin);
+	        var realPlugin = _this2.convertAMapPluginProps(_plugin);
 	        _this2.$plugins[realPlugin.pName] = new AMap[realPlugin.sName](realPlugin);
 
 	        _this2.$amapComponent.addControl(_this2.$plugins[realPlugin.pName]);
@@ -2726,7 +2726,7 @@ module.exports =
 	        }
 	      });
 	    },
-	    convertProps: function convertProps(plugin) {
+	    convertAMapPluginProps: function convertAMapPluginProps(plugin) {
 
 	      if ((typeof plugin === 'undefined' ? 'undefined' : _typeof(plugin)) === 'object' && plugin.pName) {
 	        switch (plugin.pName) {
