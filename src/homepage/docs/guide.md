@@ -133,7 +133,7 @@ if (process.env.NODE_ENV === 'production') {
 
 main.js
 ```javascript
-iimport Vue from 'vue';
+import Vue from 'vue';
 import AMap from 'vue-amap';
 import App from './App.vue';
 
@@ -168,14 +168,6 @@ export default {
     }
   }
 }
-</script>
-
-<style>
-.amap-wrapper {
-  width: 500px;
-  height: 500px;
-}
-</style>
 </script>
 
 <style>
