@@ -3,7 +3,7 @@ node_js:
   - "6"
 branches:
   only:
-    - master
+    - update-webpack
 cache:
   directories:
     - node_modules
@@ -15,3 +15,6 @@ berfore_script:
 script:
   - npm run deploy
   - npm run build
+
+after_success:
+  - ls
