@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "6"
+branches:
+  only:
+    - ci-testing
+cache:
+  directories:
+    - node_modules
+
+
+berfore_script:
+  - npm i
+
+script:
+  - npm run deploy
+  - npm run build
