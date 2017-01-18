@@ -16,7 +16,7 @@
 
 ```javascript
 {
-  plugins: ['MapType']
+  plugin: ['MapType']
 }
 ```
 
@@ -28,7 +28,7 @@
 
 ```javascript
 {
-  plugins: [{
+  plugin: [{
     // pName为必填字段
     pName: 'MapType',
     defaultType: 1
@@ -45,7 +45,7 @@
 ```html
 <template>
     <div id="demoComponent" class="demo-component">
-        <el-amap vid="amap" :plugins="plugins">
+        <el-amap vid="amap" :plugin="plugin">
         </el-amap>
     </div>
 </template>
@@ -54,7 +54,7 @@
 export default {
   data() {
     return {
-      plugins: [{
+      plugin: [{
         pName: 'MapType',
         events: {
           init(instance) {
@@ -95,7 +95,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 ```html
 <template>
     <div id="demoComponent" class="demo-component">
-        <el-amap vid="amap" :plugins="plugins">
+        <el-amap vid="amap" :plugin="plugin">
         </el-amap>
     </div>
 </template>
@@ -104,7 +104,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 export default {
   data() {
     return {
-      plugins: [{
+      plugin: [{
         pName: 'OverView',
         events: {
           init(instance) {
@@ -148,7 +148,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 ```html
 <template>
     <div id="demoComponent" class="demo-component">
-        <el-amap vid="amap" :plugins="plugins">
+        <el-amap vid="amap" :plugin="plugin">
         </el-amap>
     </div>
 </template>
@@ -157,7 +157,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 export default {
   data() {
     return {
-      plugins: [{
+      plugin: [{
         pName: 'Scale',
         events: {
           init(instance) {
@@ -199,7 +199,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 ```html
 <template>
     <div id="demoComponent" class="demo-component">
-        <el-amap vid="amap" :plugins="plugins">
+        <el-amap vid="amap" :plugin="plugin">
         </el-amap>
     </div>
 </template>
@@ -208,7 +208,7 @@ init | Object | 初始化完成后触发的事件，参数为插件实例
 export default {
   data() {
     return {
-      plugins: [{
+      plugin: [{
         pName: 'ToolBar',
         events: {
           init(instance) {
