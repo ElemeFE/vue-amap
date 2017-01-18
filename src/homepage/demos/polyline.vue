@@ -4,7 +4,6 @@
         <el-amap-polyline :editable="polyline.editable"  :path="polyline.path" :events="polyline.events"></el-amap-polyline>
       </el-amap>
       <button type="button" name="button" v-on:click="changeEditable">change editable</button>
-      <button type="button" name="button" v-on:click="logPath">log path</button>
   </div>
 </template>
 
@@ -27,7 +26,8 @@ export default {
             alert('click polyline');
           },
           end: (e) => {
-            this.polyline.path = e.target.getPath().map(point => [point.lng, point.lat]);
+            let newPath = e.target.getPath().map(point => [point.lng, point.lat]);
+            console.log(newPath);
           }
         },
         editable: false
@@ -37,9 +37,6 @@ export default {
   methods: {
     changeEditable() {
       this.polyline.editable = !this.polyline.editable;
-    },
-    logPath() {
-      console.log(this.polyline.path);
     }
   }
 };
