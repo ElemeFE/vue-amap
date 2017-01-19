@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-  - "6"
+  - "6.9.1"
 branches:
   only:
     - update-webpack
-cache:
-  directories:
-    - node_modules
+
 
 
 berfore_script:
@@ -14,10 +12,7 @@ berfore_script:
 
 script:
   - npm run lib
-  - npm run build
-
-after_success:
-  - sh ./scripts/git-page.sh
+  - npm run build && sh ./scripts/git-page.sh
 
 deploy:
   skip_cleanup: true
