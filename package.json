@@ -10,7 +10,6 @@
     "dev": "webpack-dashboard -- node build/dev-server.js",
     "build": "node build/build.js",
     "lib": "node build/lib.js",
-    "deploy": "cooking build -c ./src/lib/cooking.build.js",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

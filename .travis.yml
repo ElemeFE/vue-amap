@@ -13,7 +13,7 @@ berfore_script:
   - npm i
 
 script:
-  - npm run deploy
+  - npm run lib
   - npm run build
 
 after_success:
