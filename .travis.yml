@@ -3,7 +3,7 @@ node_js:
   - "6.9.1"
 branches:
   only:
-    - update-webpack
+    - master
 
 
 
@@ -20,4 +20,4 @@ deploy:
   email: ${NPM_EMAIL}
   api_key: ${NPM_TOKEN}
   on:
-    branch: update-webpack
+    branch: master
