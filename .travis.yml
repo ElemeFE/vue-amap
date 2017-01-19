@@ -17,5 +17,12 @@ script:
   - npm run build
 
 after_success:
-  - ls
   - sh ./scripts/git-page.sh
+
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: ${NPM_EMAIL}
+  api_key: ${NPM_TOKEN}
+  on:
+    branch: update-webpack

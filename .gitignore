@@ -8,3 +8,6 @@ example
 .dist
 .vscode
 .tags*
+docs
+dist
+yarn-error*
