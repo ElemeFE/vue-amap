@@ -17,4 +17,5 @@ script:
   - npm run build
 
 after_success:
-  - sh ./script/git-page.sh
+  - ls
+  - sh ./scripts/git-page.sh
