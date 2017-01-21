@@ -24,15 +24,12 @@ const router = new VueRouter({
     {
       path: '/docs',
       component: Docs,
-      children: componentsChildren
+      children: componentsChildren,
+      redirect: '/docs/introduction'
     },
     {
       path: '/',
       component: Home
-    },
-    {
-      path: '/docs/',
-      redirect: '/docs/introduction'
     }
   ]
 });

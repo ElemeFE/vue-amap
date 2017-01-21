@@ -5,6 +5,8 @@ node_modules
 .idea
 .npmrc
 example
-.dist
+dist
 .vscode
 .tags*
+docs
+dist

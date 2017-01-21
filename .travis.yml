@@ -1,17 +1,24 @@
 language: node_js
 node_js:
-  - "6"
+  - "6.9.1"
 branches:
   only:
     - master
-cache:
-  directories:
-    - node_modules
+
 
 
 berfore_script:
   - npm i
 
 script:
-  - npm run deploy
-  - npm run build
+  - npm run lib
+  - npm run build && sh ./scripts/git-page.sh
+
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: ${NPM_EMAIL}
+  api_key: ${NPM_TOKEN}
+  on:
+    branch: master
+    tags: true
