@@ -2246,8 +2246,8 @@ module.exports =
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-50858012!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-50858012!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-ac9ad3aa!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-ac9ad3aa!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2705,7 +2705,7 @@ module.exports =
 	                  k = _step$value[0],
 	                  v = _step$value[1];
 
-	              if (k === 'init') return;
+	              if (k === 'init') continue;
 
 	              AMap.event.addListener(_this2.$plugins[realPlugin.pName], k, v);
 	            }
@@ -3068,12 +3068,12 @@ module.exports =
 /* 91 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h('div', {
 	    staticClass: "el-vue-amap-container"
-	  }, [_c('div', {
+	  }, [_vm._h('div', {
 	    staticClass: "el-vue-amap"
-	  }), _vm._v(" "), _vm._t("default")], 2)
+	  }), " ", _vm._t("default")])
 	},staticRenderFns: []}
 
 /***/ },
@@ -3157,8 +3157,8 @@ module.exports =
 /* 94 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3209,8 +3209,8 @@ module.exports =
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-39fb0371!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap-search-box.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-39fb0371!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap-search-box.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-573d53b8!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap-search-box.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-573d53b8!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./amap-search-box.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3331,21 +3331,21 @@ module.exports =
 /* 99 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h('div', {
 	    staticClass: "el-vue-search-box-container",
 	    on: {
 	      "keydown": [function($event) {
-	        if (_vm._k($event.keyCode, "up", 38)) { return; }
+	        if ($event.keyCode !== 38) { return; }
 	        _vm.selectTip('up')
 	      }, function($event) {
-	        if (_vm._k($event.keyCode, "down", 40)) { return; }
+	        if ($event.keyCode !== 40) { return; }
 	        _vm.selectTip('down')
 	      }]
 	    }
-	  }, [_c('div', {
+	  }, [_vm._h('div', {
 	    staticClass: "search-box-wrapper"
-	  }, [_c('input', {
+	  }, [_vm._h('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -3360,7 +3360,7 @@ module.exports =
 	    },
 	    on: {
 	      "keyup": function($event) {
-	        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+	        if ($event.keyCode !== 13) { return; }
 	        _vm.search($event)
 	      },
 	      "input": [function($event) {
@@ -3368,15 +3368,15 @@ module.exports =
 	        _vm.keyword = $event.target.value
 	      }, _vm.autoComplete]
 	    }
-	  }), _vm._v(" "), _c('a', {
+	  }), " ", _vm._h('a', {
 	    staticClass: "search-btn",
 	    on: {
 	      "click": _vm.search
 	    }
-	  }, [_vm._v("搜索")])]), _vm._v(" "), _c('div', {
+	  }, ["搜索"])]), " ", _vm._h('div', {
 	    staticClass: "search-tips"
-	  }, [_c('ul', _vm._l((_vm.tips), function(tip, index) {
-	    return _c('li', {
+	  }, [_vm._h('ul', [_vm._l((_vm.tips), function(tip, index) {
+	    return _vm._h('li', {
 	      class: {
 	        'autocomplete-selected': index === _vm.selectedTip
 	      },
@@ -3388,8 +3388,8 @@ module.exports =
 	          _vm.selectedTip = index
 	        }
 	      }
-	    }, [_vm._v(_vm._s(tip.name))])
-	  }))])])
+	    }, [_vm._s(tip.name)])
+	  })])])])
 	},staticRenderFns: []}
 
 /***/ },
@@ -3515,8 +3515,8 @@ module.exports =
 /* 103 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3597,8 +3597,8 @@ module.exports =
 /* 106 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3678,8 +3678,8 @@ module.exports =
 /* 109 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3762,8 +3762,8 @@ module.exports =
 /* 112 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },
@@ -3850,8 +3850,8 @@ module.exports =
 /* 115 */
 /***/ function(module, exports) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c("div")
+	module.exports={render:function (){var _vm=this;
+	  return _vm._h("div")
 	},staticRenderFns: []}
 
 /***/ },

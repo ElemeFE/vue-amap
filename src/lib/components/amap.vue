@@ -163,7 +163,7 @@
              }
 
              for (let [k, v] of Object.entries(_plugin.events)) {
-               if (k === 'init') return;
+               if (k === 'init') continue;
 
                AMap.event.addListener(this.$plugins[realPlugin.pName], k, v);
              }
