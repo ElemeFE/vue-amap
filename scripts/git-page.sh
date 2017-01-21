@@ -6,6 +6,6 @@ if [ "$GITHUB_TOKEN" ]; then
   git checkout -b gh-pages
   git add .
   git -c user.name='travis' -c user.email=$NPM_EMAIL commit -m "update: docs-branch"
-  git push -f -q https://$GITHUB_TOKEN:x-oauth-basic@github.com/ElemeFE/vue-amap.git gh-pages &2>/dev/null
+  git push -f https://$GITHUB_TOKEN:x-oauth-basic@github.com/ElemeFE/vue-amap.git gh-pages
   cd ..
 fi
