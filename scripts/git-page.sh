@@ -1,5 +1,5 @@
 #! /bin/sh
-if [ "$" ]; then
+if [ "$GITHUB_TOKEN" ]; then
   cd docs
   rm -rf .git
   git init
