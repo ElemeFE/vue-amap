@@ -21,7 +21,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.lib_build.assetsRoot,
     filename: 'index.js',
-    libraryTarget: "commonjs",
+    libraryTarget: "commonjs2",
   },
   vue: {
     loaders: utils.cssLoaders({
