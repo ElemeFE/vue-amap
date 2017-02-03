@@ -17,7 +17,7 @@
       <a href="https://github.com/ElemeFE/vue-amap" class="btn">GitHub</a>
       <router-link to="/docs" class="btn">文档</router-link>
     </section>
-    <canvas id="meteor"></canvas>
+    <div id="meteor"></div>
     </section>
   </section>
 </template>
@@ -26,9 +26,8 @@ export default {
   name: 'homepage',
   mounted() {
     setTimeout(function() {
-      if (window.meteor) {
-        window.meteor();
-      }
+      particlesJS.load('meteor', 'static/json/particles.json', () => {
+      });
     }, 2000);
   }
 };
@@ -63,16 +62,14 @@ export default {
   }
 
   .page-header-bg {
-    background-color: #159957;
-    background-image: linear-gradient(120deg, #21364c, #156a77);
+    background-color: #21364c;
     left: 0;
     z-index: 9;
   }
 
   #meteor {
-    left: 50%;
-    width: 900px;
-    margin-left: -450px;
+    height: 100%;
+    width: 100%;
     z-index: 10;
   }
 
@@ -80,10 +77,14 @@ export default {
     color: #fff;
     text-align: center;
     z-index: 11;
-    left: 0;
-    height: 440px;
+    height: 432px;
     top: 50%;
-    margin-top: -220px;
+    margin-top: -222px;
+    background: rgba(17, 29, 47, 0.4);
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    border-radius: 15px;
 
     .sub {
       color: #939b9e;
