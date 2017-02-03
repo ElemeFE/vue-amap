@@ -1,6 +1,7 @@
 var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var projectRoot = path.resolve(__dirname, '../')
 
 var env = process.env.NODE_ENV
@@ -9,6 +10,7 @@ var env = process.env.NODE_ENV
 var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+var assetsPublicPath = process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath;
 
 module.exports = {
   entry: {
@@ -16,7 +18,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+    publicPath: assetsPublicPath,
     filename: '[name].js'
   },
   resolve: {
@@ -100,5 +102,16 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, '../src/homepage/assets/scripts/particles.min.js'),
+        to: 'static/js/particles.min.js'
+      }, {
+        from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
+        to: 'static/json/particles.json'
+      }
+    ])
+  ]
 }
