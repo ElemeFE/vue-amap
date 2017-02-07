@@ -7,15 +7,15 @@ import docs from './docs';
 import enToSnake from './utils/enToSnake';
 import Home from './pages/Home';
 
-let componentsChildren = [];
-docs.map(components => {
-  if (components.children && components.children.length) {
-    components.children.forEach(c => componentsChildren.push({
-      path: enToSnake(c.en),
-      component: c.component
-    }));
-  }
-});
+let componentChildren = docs.reduce((componentChildrenSoFar, component) =>
+  component.children
+    ? componentChildrenSoFar.concat(component.children.map(child => {
+      return {
+        path: enToSnake(child.en),
+        component: child.component
+      };
+    }))
+    : componentChildrenSoFar, []);
 
 const router = new VueRouter({
   mode: 'hash',
@@ -24,7 +24,7 @@ const router = new VueRouter({
     {
       path: '/docs',
       component: Docs,
-      children: componentsChildren,
+      children: componentChildren,
       redirect: '/docs/introduction'
     },
     {
