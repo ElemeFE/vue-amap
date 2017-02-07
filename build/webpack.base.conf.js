@@ -106,9 +106,6 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, '../src/homepage/assets/scripts/particles.min.js'),
-        to: 'static/js/particles.min.js'
-      }, {
         from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
         to: 'static/json/particles.json'
       }
