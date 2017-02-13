@@ -8,7 +8,7 @@ import enToSnake from './utils/enToSnake';
 import Home from './pages/Home';
 
 let componentsChildren = [];
-docs.map(components => {
+docs.forEach(components => {
   if (components.children && components.children.length) {
     components.children.forEach(c => componentsChildren.push({
       path: enToSnake(c.en),

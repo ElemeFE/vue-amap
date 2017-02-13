@@ -38,7 +38,7 @@
     }
   };
 </script>
-<style lang="scss" scope>
+<style lang="scss" rel="stylesheet/scss" scoped>
   @keyframes menu-present {
     from {
       left: -15%

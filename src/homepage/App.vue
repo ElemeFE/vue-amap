@@ -10,7 +10,7 @@
     name: 'app'
   };
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss" scoped>
   @import './assets/scss/common';
   .container {
     height: 100%;
