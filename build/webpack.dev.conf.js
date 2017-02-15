@@ -5,6 +5,8 @@ var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+var path = require('path')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -45,5 +47,11 @@ module.exports = merge(baseWebpackConfig, {
       inject: true
     }),
     // new FriendlyErrors()
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
+        to: 'static/json/particles.json'
+      }
+    ])
   ]
 })
