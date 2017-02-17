@@ -84,7 +84,7 @@ AMap.initAMapApiLoader({
 
 ```javascript
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
-  <el-amap-groundimage v-for="groundimage in groundimages" :url="groundimage.url"></el-amap-groundimage>
+  <el-amap-ground-image v-for="groundimage in groundimages" :url="groundimage.url"></el-amap-ground-image>
 </el-amap>
 ```
 

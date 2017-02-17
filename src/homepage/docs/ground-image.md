@@ -7,7 +7,7 @@
 ```html
 <div id="demoComponent" class="demo-component">
     <el-amap vid="amap" :zoom="zoom" :center="center">
-      <el-amap-groundimage v-for="groundimage in groundimages" :url="groundimage.url" :bounds="groundimage.bounds" :events="groundimage.events"></el-amap-groundimage>
+      <el-amap-ground-image v-for="groundimage in groundimages" :url="groundimage.url" :bounds="groundimage.bounds" :events="groundimage.events"></el-amap-ground-image>
     </el-amap>
   </div>
 </div>
