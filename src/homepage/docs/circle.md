@@ -77,6 +77,7 @@ extData | Any | 用户自定义属性，支持JavaScript API任意数据类型�
 
 事件 | 参数 | 说明
 ---|---|---|
+init | Object | 组件实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 右键单击
