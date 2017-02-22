@@ -98,6 +98,7 @@ autoRotation | Boolean | 是否自动旋转。点标记在使用moveAlong动画�
 
 名称 | 类型 | 说明
 ---|---|---|
+init | Object | 高德组件实例
 visible | Boolean | 点标记是否可见，默认为true。
 zIndex | Number | 点标记的叠加顺序。地图上存在多个点标记叠加时，通过该属性使级别较高的点标记在上层显示默认zIndex：100。
 position | Array | 点标记在地图上显示的位置，默认为地图中心点。

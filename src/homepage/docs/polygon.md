@@ -74,6 +74,7 @@ strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
 
 事件 | 参数 | 说明
 ---|---|---|
+init | Object | 高德组件实例
 click | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键单击事件
 dblclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 鼠标左键双击事件
 rightclick | [MapsEvent](http://lbs.amap.com/api/javascript-api/reference/event/#MapsEvent) | 右键单击
