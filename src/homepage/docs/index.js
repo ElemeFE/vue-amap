@@ -12,6 +12,11 @@ export default [
         component: require('./guide.md'),
         en: 'Guide',
         zh: '快速上手'
+      },
+      {
+        component: require('./init.md'),
+        en: 'promise',
+        zh: '脚本初始化'
       }
     ]
   },

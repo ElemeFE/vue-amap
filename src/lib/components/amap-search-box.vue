@@ -133,7 +133,6 @@ export default {
     search() {
       this.tips = [];
       this._placeSearch.search(this.keyword, (status, result) => {
-        console.log(result);
         let {poiList: {pois}} = result;
 
         let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));

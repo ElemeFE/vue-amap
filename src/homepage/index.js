@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import router from './router';
-import AMap from '../lib';
+import AMap from 'vue-amap';
 Vue.use(AMap);
 AMap.initAMapApiLoader({
   key: '28966b6be8e4fa0e4c4f4c9b4bf8d3ce',
