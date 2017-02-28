@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { lazyAMapApiLoaderInstance } from '../../lib';
+import { lazyAMapApiLoaderInstance } from 'vue-amap';
 export default {
   mounted() {
     lazyAMapApiLoaderInstance.load().then(() => {

@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-  import { AMapManager } from '../../lib';
+  import { AMapManager } from 'vue-amap';
   let amapManager = new AMapManager();
   export default {
     name: 'amap-page',
