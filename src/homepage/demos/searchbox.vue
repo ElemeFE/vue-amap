@@ -33,17 +33,19 @@
       onSearchResult(pois) {
         let latSum = 0;
         let lngSum = 0;
-        pois.forEach(poi => {
-          let {lng, lat} = poi;
-          lngSum += lng;
-          latSum += lat;
-          this.markers.push([poi.lng, poi.lat]);
-        });
-        let center = {
-          lng: lngSum / pois.length,
-          lat: latSum / pois.length
-        };
-        this.mapCenter = [center.lng, center.lat];
+        if (pois.length > 0) {
+          pois.forEach(poi => {
+            let {lng, lat} = poi;
+            lngSum += lng;
+            latSum += lat;
+            this.markers.push([poi.lng, poi.lat]);
+          });
+          let center = {
+            lng: lngSum / pois.length,
+            lat: latSum / pois.length
+          };
+          this.mapCenter = [center.lng, center.lat];
+        }
       }
     }
   };
