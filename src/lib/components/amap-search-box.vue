@@ -136,7 +136,7 @@ export default {
         let {poiList: {pois}} = result;
 
         let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
-        this._onSearchResult(LngLats);
+        this._onSearchResult(LngLats, pois);
       });
     },
     changeTip(tip) {
