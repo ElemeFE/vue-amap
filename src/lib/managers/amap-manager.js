@@ -1,6 +1,7 @@
 export default class AMapManager {
   constructor() {
     this._componentMap = new Map();
+    this._map = null;
   }
   setMap(map) {
     this._map = map;
