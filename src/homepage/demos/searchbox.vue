@@ -1,6 +1,6 @@
 <template>
   <div class="amap-page-container">
-    <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
+    <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult" :events="events"></el-amap-search-box>
     <el-amap :vid="'amap-vue'" :center="mapCenter" :zoom="12">
       <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
     </el-amap>
@@ -21,7 +21,12 @@
           city: '上海',
           citylimit: true
         },
-        mapCenter: [121.59996, 31.197646]
+        mapCenter: [121.59996, 31.197646],
+        events: {
+          init(o) {
+            console.log(o);
+          }
+        }
       };
     },
     methods: {
@@ -33,6 +38,7 @@
       onSearchResult(pois) {
         let latSum = 0;
         let lngSum = 0;
+        console.log(pois);
         if (pois.length > 0) {
           pois.forEach(poi => {
             let {lng, lat} = poi;

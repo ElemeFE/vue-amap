@@ -20,11 +20,16 @@
 | ---- | --- | ---- |
 | pois | 经纬度对象数组 | Object |
 
+### 事件
+| 事件名 | 参数 | 说明 |
+| ---- | --- | ---- |
+| init | Object | 参数包含 { autoComplete,  placeSearch} ，分别为自动补全以及地址搜索插件的高德实例 |
+
 ## 使用说明
 ``` html
 <template>
   <div class="amap-page-container">
-    <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
+    <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult" :events="events"></el-amap-search-box>
     <el-amap :vid="'amap-vue'" :center="mapCenter" :zoom="12">
       <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
     </el-amap>
@@ -45,7 +50,12 @@
           city: '上海',
           citylimit: true
         },
-        mapCenter: [121.59996, 31.197646]
+        mapCenter: [121.59996, 31.197646],
+        events: {
+          init(o) {
+            console.log(o);
+          }
+        }
       };
     },
     methods: {
