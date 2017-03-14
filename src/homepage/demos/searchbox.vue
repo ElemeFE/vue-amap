@@ -38,7 +38,7 @@
       onSearchResult(pois) {
         let latSum = 0;
         let lngSum = 0;
-        console.log(pois);
+
         if (pois.length > 0) {
           pois.forEach(poi => {
             let {lng, lat} = poi;
