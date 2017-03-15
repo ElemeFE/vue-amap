@@ -144,12 +144,13 @@ export default {
     search() {
       this.tips = [];
       this._placeSearch.search(this.keyword, (status, result) => {
-        if(result && result.poiList && result.poiList.length > 0){
+        result.poiList = undefined;
+        if (result && result.poiList && result.poiList.length > 0) {
           let {poiList: {pois}} = result;
 
           let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
           this._onSearchResult(LngLats);
-        } else if (result.poiList === undefined){
+        } else if (result.poiList === undefined) {
           throw new Error(result);
         }
       });
