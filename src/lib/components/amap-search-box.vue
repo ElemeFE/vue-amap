@@ -91,6 +91,9 @@
 <script>
 import RegisterComponentMixin from '../mixins/register-component';
 import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
+import {
+  assign
+} from '../utils/polyfill';
 
 export default {
   name: 'el-amap-search-box',
@@ -123,10 +126,10 @@ export default {
   },
   methods: {
     getOptions() {
-      let tmpOptions = Object.assign({}, this.$options.propsData);
+      let tmpOptions = assign({}, this.$options.propsData);
       if (this.$options.propsData.options) {
         delete tmpOptions.options;
-        Object.assign(tmpOptions, this.$options.propsData.options);
+        assign(tmpOptions, this.$options.propsData.options);
       }
       return tmpOptions;
     },
