@@ -141,10 +141,12 @@ export default {
     search() {
       this.tips = [];
       this._placeSearch.search(this.keyword, (status, result) => {
-        let {poiList: {pois}} = result;
+        if (result && result.poiList && result.poiList.length > 0) {
+          let {poiList: {pois}} = result;
 
-        let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
-        this._onSearchResult(LngLats);
+          let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
+          this._onSearchResult(LngLats);
+        }
       });
     },
     changeTip(tip) {
