@@ -91,11 +91,14 @@
 <script>
 import RegisterComponentMixin from '../mixins/register-component';
 import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
+import {
+  assign
+} from '../utils/polyfill';
 
 export default {
   name: 'el-amap-search-box',
   mixins: [RegisterComponentMixin],
-  props: ['searchOption', 'onSearchResult'],
+  props: ['searchOption', 'onSearchResult', 'events'],
   data() {
     return {
       keyword: '',
@@ -104,6 +107,8 @@ export default {
     };
   },
   beforeCreate() {
+    this.events = this.events || {};
+
     this._loadApiPromise = lazyAMapApiLoaderInstance.load();
     this._loadApiPromise.then(() => {
       let options = this.getOptions();
@@ -111,14 +116,20 @@ export default {
       this._autoComplete = new AMap.Autocomplete(mapConfig);
       this._placeSearch = new AMap.PlaceSearch(mapConfig);
       this._onSearchResult = onSearchResult;
+
+      // register init event
+      this.events.init && this.events.init({
+        autoComplete: this._autoComplete,
+        placeSearch: this._placeSearch
+      });
     });
   },
   methods: {
     getOptions() {
-      let tmpOptions = Object.assign({}, this.$options.propsData);
+      let tmpOptions = assign({}, this.$options.propsData);
       if (this.$options.propsData.options) {
         delete tmpOptions.options;
-        Object.assign(tmpOptions, this.$options.propsData.options);
+        assign(tmpOptions, this.$options.propsData.options);
       }
       return tmpOptions;
     },
@@ -133,10 +144,14 @@ export default {
     search() {
       this.tips = [];
       this._placeSearch.search(this.keyword, (status, result) => {
-        let {poiList: {pois}} = result;
+        if (result && result.poiList && result.poiList.length > 0) {
+          let {poiList: {pois}} = result;
 
-        let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
-        this._onSearchResult(LngLats);
+          let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
+          this._onSearchResult(LngLats);
+        } else if (result.poiList === undefined) {
+          throw new Error(result);
+        }
       });
     },
     changeTip(tip) {

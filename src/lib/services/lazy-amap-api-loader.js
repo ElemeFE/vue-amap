@@ -1,3 +1,7 @@
+import {
+  assign
+} from '../utils/polyfill';
+
 const DEFAULT_AMP_CONFIG = {
   key: null,
   v: 1.3,
@@ -6,16 +10,13 @@ const DEFAULT_AMP_CONFIG = {
   plugin: [],
   callback: 'amapInitComponent'
 };
-/**
- *
- */
 
 export default class AMapAPILoader {
   /**
    * @param config required 初始化参数
    */
   constructor(config) {
-    this._config = Object.assign({}, DEFAULT_AMP_CONFIG, config);
+    this._config = assign({}, DEFAULT_AMP_CONFIG, config);
     this._document = document;
     this._window = window;
     this._scriptLoaded = false;

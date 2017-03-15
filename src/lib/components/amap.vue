@@ -162,7 +162,8 @@
                realPlugin.events.init(this.$plugins[realPlugin.pName]);
              }
 
-             for (let [k, v] of Object.entries(_plugin.events)) {
+             for (let k in _plugin.events) {
+               let v = _plugin.events[k];
                if (k === 'init') continue;
 
                AMap.event.addListener(this.$plugins[realPlugin.pName], k, v);
