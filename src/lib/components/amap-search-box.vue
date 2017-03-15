@@ -144,7 +144,6 @@ export default {
     search() {
       this.tips = [];
       this._placeSearch.search(this.keyword, (status, result) => {
-        result.poiList = undefined;
         if (result && result.poiList && result.poiList.length > 0) {
           let {poiList: {pois}} = result;
 
