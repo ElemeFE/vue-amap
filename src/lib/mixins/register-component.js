@@ -57,6 +57,7 @@ export default {
     },
 
     registerEvents() {
+      this.setEditorEvents && this.setEditorEvents();
       if (this.$options.propsData.events) {
         for (let eventName in this.events) {
           eventHelper.addListener(this.$amapComponent, eventName, this.events[eventName]);

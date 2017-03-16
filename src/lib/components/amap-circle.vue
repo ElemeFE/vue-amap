@@ -50,7 +50,6 @@ export default {
     initComponent(options) {
       this.$amapComponent = new AMap.Circle(options);
       this.$amapComponent.editor = new AMap.CircleEditor(this.$amap, this.$amapComponent);
-      this.setEditorEvents();
     }
   }
 };

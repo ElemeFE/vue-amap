@@ -45,7 +45,6 @@ export default {
       let options = this.convertProps();
       this.$amapComponent = new AMap.Polygon(options);
       this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
-      this.setEditorEvents();
     }
   }
 };
