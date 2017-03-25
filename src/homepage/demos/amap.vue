@@ -1,7 +1,7 @@
 <template>
   <div class="amap-page-container">
     <el-amap :vid="'amap-vue'" :center="center" :zoom="zoom" :map-manager="amapManager" :plugin="plugin" :events="events">
-       <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
+       <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker"></el-amap-marker>
     </el-amap>
     <button v-on:click="addMarker">add marker</button>
     <button v-on:click="getMap">get map</button>

@@ -2,7 +2,7 @@
 <template>
   <div id="demoComponent" class="demo-component">
       <el-amap vid="amap" :zoom="zoom" :center="center">
-        <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></el-amap-info-window>
+        <el-amap-info-window v-for="(window, index) in windows" :key="index" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></el-amap-info-window>
       </el-amap>
   </div>
 </template>

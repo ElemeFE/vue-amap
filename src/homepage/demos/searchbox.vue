@@ -2,7 +2,7 @@
   <div class="amap-page-container">
     <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult" :events="events"></el-amap-search-box>
     <el-amap :vid="'amap-vue'" :center="mapCenter" :zoom="12">
-      <el-amap-marker v-for="marker in markers" :position="marker"></el-amap-marker>
+      <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker"></el-amap-marker>
     </el-amap>
   </div>
 </template>
@@ -38,7 +38,7 @@
       onSearchResult(pois) {
         let latSum = 0;
         let lngSum = 0;
-
+        console.log(pois);
         if (pois.length > 0) {
           pois.forEach(poi => {
             let {lng, lat} = poi;

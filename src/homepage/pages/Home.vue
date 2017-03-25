@@ -38,39 +38,39 @@
       margin: 70px 0 !important;
       font-size: 24px;
     }
-  
+
     .main-content {
       width: 900px;
       margin: 0 auto;
       line-height: 24px;
       margin-top: 380px;
-  
+
       .h1, h2, h3, h4, h5, h6 {
         margin-bottom: 1rem;
         font-weight: normal;
         color: #159957;
       }
     }
-  
+
     #meteor, .page-header-bg, .page-header {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
     }
-  
+
     .page-header-bg {
       background-color: #21364c;
       left: 0;
       z-index: 9;
     }
-  
+
     #meteor {
       height: 100%;
       width: 100%;
       z-index: 10;
     }
-  
+
     .page-header {
       color: #fff;
       text-align: center;
@@ -83,12 +83,12 @@
       left: 50%;
       margin-left: -250px;
       border-radius: 15px;
-  
+
       .sub {
         color: #939b9e;
         margin: 20px 0 55px 0;
       }
-  
+
       .intro {
         width: 450px;
         margin: 0 auto 60px auto;
@@ -100,17 +100,17 @@
         border-left: 0;
         padding: 22px 10px;
       }
-  
+
       .project-name {
         font-size: 80px;
         font-family: cursive;
-  
+
         .logo {
           width: 60px;
           vertical-align: middle;
         }
       }
-  
+
       .btn {
         display: inline-block;
         color: rgba(255, 255, 255, 0.7);
@@ -120,7 +120,7 @@
         transition: color 0.2s, background-color 0.2s, border-color 0.2s;
         padding: 15px 40px;
         margin: 0 10px;
-  
+
         &:hover {
           color: rgba(255, 255, 255, 0.8);
           text-decoration: none;
