@@ -91,10 +91,6 @@
 <script>
 import RegisterComponentMixin from '../mixins/register-component';
 import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
-import {
-  assign
-} from '../utils/polyfill';
-
 export default {
   name: 'el-amap-search-box',
   mixins: [RegisterComponentMixin],
@@ -106,17 +102,15 @@ export default {
       selectedTip: -1
     };
   },
-  beforeCreate() {
+  mounted() {
     this.events = this.events || {};
 
-    this._loadApiPromise = lazyAMapApiLoaderInstance.load();
-    this._loadApiPromise.then(() => {
-      let options = this.getOptions();
-      let {mapConfig, onSearchResult} = options;
+    let _loadApiPromise = lazyAMapApiLoaderInstance.load();
+    _loadApiPromise.then(() => {
+      let mapConfig = this.searchOption;
       this._autoComplete = new AMap.Autocomplete(mapConfig);
       this._placeSearch = new AMap.PlaceSearch(mapConfig);
-      this._onSearchResult = onSearchResult;
-
+      this._onSearchResult = this.onSearchResult;
       // register init event
       this.events.init && this.events.init({
         autoComplete: this._autoComplete,
@@ -125,14 +119,6 @@ export default {
     });
   },
   methods: {
-    getOptions() {
-      let tmpOptions = assign({}, this.$options.propsData);
-      if (this.$options.propsData.options) {
-        delete tmpOptions.options;
-        assign(tmpOptions, this.$options.propsData.options);
-      }
-      return tmpOptions;
-    },
     autoComplete() {
       if (!this.keyword) return ;
       this._autoComplete.search(this.keyword, (status, result) => {
@@ -143,11 +129,15 @@ export default {
     },
     search() {
       this.tips = [];
+      if (!this._placeSearch) return;
       this._placeSearch.search(this.keyword, (status, result) => {
-        if (result && result.poiList && result.poiList.length > 0) {
+        if (result && result.poiList && result.poiList.count) {
           let {poiList: {pois}} = result;
-
-          let LngLats = pois.map(poi => ({lat: poi.location.lat, lng: poi.location.lng}));
+          let LngLats = pois.map(poi => {
+            poi.lat = poi.location.lat;
+            poi.lng = poi.location.lng;
+            return poi;
+          });
           this._onSearchResult(LngLats);
         } else if (result.poiList === undefined) {
           throw new Error(result);

@@ -1,33 +1,40 @@
 var path = require('path')
-var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
+var config = require('../config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
-  : config.build.env
+  : config.lib_build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
     app: './src/lib/index.js'
   },
   module: {
-    loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: false })
+    rules: utils.styleLoaders({
+      sourceMap: config.lib_build.productionSourceMap,
+      extract: true
+    })
   },
   devtool: config.lib_build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.lib_build.assetsRoot,
     filename: 'index.js',
-    libraryTarget: "commonjs2",
+    chunkFilename: 'index.js',
+    libraryTarget: "umd"
   },
-  vue: {
-    loaders: utils.cssLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: false
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'search-box.css'
     })
-  }
+  ]
 })
+
 module.exports = webpackConfig

@@ -1,7 +1,7 @@
 <template>
     <div id="demoComponent" class="demo-component">
         <el-amap vid="amap" :zoom="zoom" :center="center">
-          <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
+          <el-amap-marker v-for="(marker, index) in markers" :key="index" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
         </el-amap>
         <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
         <button type="button" name="button" v-on:click="changePosition">change position</button>

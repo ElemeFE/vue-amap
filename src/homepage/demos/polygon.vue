@@ -1,7 +1,7 @@
 <template>
   <div id="demoComponent" class="demo-component">
         <el-amap vid="amap" :zoom="zoom" :center="center">
-          <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+          <el-amap-polygon v-for="(polygon, index) in polygons" :key="index" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
         </el-amap>
   </div>
 </template>
