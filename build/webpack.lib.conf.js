@@ -12,16 +12,16 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.lib_build.env
-
+let rules = utils.styleLoaders({
+      sourceMap: false,
+      extract: false
+});
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
     app: './src/lib/index.js'
   },
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.lib_build.productionSourceMap,
-      extract: true
-    })
+    rules
   },
   devtool: config.lib_build.productionSourceMap ? '#source-map' : false,
   output: {
@@ -29,12 +29,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     filename: 'index.js',
     chunkFilename: 'index.js',
     libraryTarget: "umd"
-  },
-  plugins: [
-    new ExtractTextPlugin({
-      filename: 'search-box.css'
-    })
-  ]
+  }
 })
 
 module.exports = webpackConfig
