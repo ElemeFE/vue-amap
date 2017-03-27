@@ -277,7 +277,7 @@ export default {
         pName: 'Geolocation',
         events: {
           init(instance) {
-            o.getCurrentPosition((status, result) => {
+            instance.getCurrentPosition((status, result) => {
               self.center = [result.position.lng, result.position.lat];
             });
           }
