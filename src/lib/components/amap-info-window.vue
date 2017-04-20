@@ -26,7 +26,8 @@ export default {
       },
       handlers: {
         visible(flag) {
-          flag === false ? this.close() : this.open();
+          // fixed Amap info-window reopen 
+          flag === false ? this.close() : this.open(this.G.map, [this.si.position.lng, this.si.position.lat]);
         }
       }
     };
