@@ -1,7 +1,7 @@
 <template>
 </template>
 <script>
-import { toLngLat } from '../utils/convert-helper';
+import { toLngLat, lngLatTo } from '../utils/convert-helper';
 import registerMixin from '../mixins/register-component';
 export default {
   name: 'el-amap-info-window',
@@ -26,7 +26,7 @@ export default {
       },
       handlers: {
         visible(flag) {
-          // fixed Amap info-window reopen 
+          // fixed Amap info-window reopen
           flag === false ? this.close() : this.open(this.G.map, [this.si.position.lng, this.si.position.lat]);
         }
       }

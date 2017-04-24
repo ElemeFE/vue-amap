@@ -6,6 +6,12 @@ export function toLngLat(arr) {
   return new AMap.LngLat(arr[0], arr[1]);
 }
 
+export function lngLatTo(lngLat) {
+  if (!lngLat) return;
+  if (Array.isArray(lngLat)) return lngLat.slice();
+  return [lngLat.getLng(), lngLat.getLat()];
+}
+
 /**
  * @param arrs 二重数组 southWest, northEast
  */
