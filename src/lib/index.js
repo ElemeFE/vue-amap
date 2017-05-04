@@ -43,7 +43,25 @@ VueAMap.install = (Vue) => {
     VueAMap[upperCamelCase(_component.name).replace(/^El/, '')] = _component;
   });
 };
+
+const install = function(Vue, opts = {}) {
+  /* istanbul ignore if */
+  if (install.installed) return;
+
+  VueAMap.install(Vue);
+};
+
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+
+  // window.VueAmap = VueAMap;
+};
+
 export default VueAMap;
 
-export {AMapManager};
+export {
+  AMapManager,
+  initAMapApiLoader
+};
 export { lazyAMapApiLoaderInstance } from './services/injected-amap-api-instance';
