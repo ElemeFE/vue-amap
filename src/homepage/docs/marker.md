@@ -32,7 +32,8 @@ export default {
               alert('click marker');
             },
             dragend: (e) => {
-              this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+              const {lng, lat} = e.target.getPosition();
+              this.markers[0].position = [lng, lat];
             }
           },
           visible: true,
