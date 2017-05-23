@@ -1,6 +1,6 @@
-### 点坐标
+# 点坐标
 
-#### 基础示例
+## 基础示例
 
 <vuep template="#example"></vuep>
 

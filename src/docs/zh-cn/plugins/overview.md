@@ -2,7 +2,7 @@
 
 地图鹰眼插件。
 
-### 示例
+## 示例
 
 <vuep template="#example"></vuep>
 
@@ -39,3 +39,18 @@
   </script>
 
 </script>
+
+
+## 属性
+
+名称 | 类型 | 说明
+---|---|---|
+isOpen | Boolean | 鹰眼是否展开，默认为false
+visible | Boolean | 鹰眼是否显示，默认为true
+
+
+## 事件
+
+事件 | 参数 | 说明
+---|---|---|
+init | Object | 高德插件示例

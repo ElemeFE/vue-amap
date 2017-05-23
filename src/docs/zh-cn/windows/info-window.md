@@ -1,6 +1,6 @@
-### 信息窗体
+# 信息窗体
 
-#### 基础示例
+## 基础示例
 
 <vuep template="#example"></vuep>
 

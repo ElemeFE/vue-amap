@@ -1,6 +1,6 @@
-### 地图实例
+# 地图实例
 
-##### 1 - 点击地图获取经纬度
+## 点击地图获取经纬度
 
 <vuep template="#example"></vuep>
 
@@ -31,7 +31,7 @@
     module.exports = {
       data: function() {
         let self = this;
-        
+
         return {
           zoom: 12,
           center: [121.59996, 31.197646],

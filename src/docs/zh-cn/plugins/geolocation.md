@@ -4,7 +4,7 @@ Geolocation定位服务插件。融合了浏览器定位、高精度IP定位、�
 
 由于 Chrome 、IOS10 等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到 HTTPS 。
 
-### 示例
+## 示例
 
 <vuep template="#example"></vuep>
 
@@ -12,8 +12,12 @@ Geolocation定位服务插件。融合了浏览器定位、高精度IP定位、�
 
   <template>
     <div class="amap-page-container">
-      <el-amap vid="amap" :plugin="plugin" class="amap-demo">
+      <el-amap vid="amap" :plugin="plugin" class="amap-demo" :center="center">
       </el-amap>
+
+      <div class="toolbar">
+        location: lng = {{ lng }} lat = {{ lat }}
+      </div>
     </div>
   </template>
 
@@ -26,12 +30,23 @@ Geolocation定位服务插件。融合了浏览器定位、高精度IP定位、�
   <script>
     module.exports = {
       data() {
+        let self = this;
         return {
+          center: [121.59996, 31.197646],
+          lng: 0,
+          lat: 0,
           plugin: [{
             pName: 'Geolocation',
             events: {
-              init(instance) {
-                console.log(instance);
+              init(o) {
+                // o 是高德地图定位插件实例
+                o.getCurrentPosition((status, result) => {
+                  self.lng = result.position.lng;
+                  self.lat = result.position.lat;
+                  self.center = [self.lng, self.lat];
+
+                  self.$nextTick();
+                });
               }
             }
           }]

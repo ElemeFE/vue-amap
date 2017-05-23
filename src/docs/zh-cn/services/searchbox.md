@@ -1,6 +1,6 @@
-### 搜索框
+# 搜索框
 
-#### 基础示例
+## 基础示例
 
 <vuep template="#example"></vuep>
 
@@ -83,18 +83,18 @@
 | searchOption | 搜索条件 | Object |
 | onSearchResult) | 搜索回调函数 | function[ {lng, lat} ] |
 
-### searchOption
+## searchOption
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | ---- | --- | ----- |
 | city | 城市名 | String | 全国 |
 | citylimit | 是否限制城市内搜索 | Boolean | false |
 
-### onSearchResult
+## onSearchResult
 | 参数 | 说明 | 类型 |
 | ---- | --- | ---- |
 | pois | 经纬度对象数组 | Object |
 
-### 事件
+## 事件
 | 事件名 | 参数 | 说明 |
 | ---- | --- | ---- |
 | init | Object | 参数包含 { autoComplete,  placeSearch} ，分别为自动补全以及地址搜索插件的高德实例 |

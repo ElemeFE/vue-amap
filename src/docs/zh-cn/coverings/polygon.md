@@ -1,6 +1,6 @@
-### 多边形
+# 多边形
 
-#### 基础示例
+## 基础示例
 
 <vuep template="#example"></vuep>
 

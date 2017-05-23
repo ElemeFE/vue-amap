@@ -1,6 +1,6 @@
-### 折线
+# 折线
 
-#### 基础示例
+## 基础示例
 
 <vuep template="#example"></vuep>
 
