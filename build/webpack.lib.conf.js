@@ -17,9 +17,6 @@ let rules = utils.styleLoaders({
       extract: false
 });
 var webpackConfig = merge(baseWebpackConfig, {
-  entry: {
-    app: './src/lib/index.js'
-  },
   module: {
     rules
   },
