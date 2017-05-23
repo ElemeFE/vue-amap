@@ -9,7 +9,7 @@
   <template>
     <div class="amap-page-container">
       <el-amap vid="amap" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open" :events="window.events"></el-amap-info-window>
+        <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :visible="window.visible" :events="window.events"></el-amap-info-window>
       </el-amap>
     </div>
   </template>
@@ -30,7 +30,7 @@
             {
               position: [121.5273285, 31.21515044],
               content: 'Hi! I am here!',
-              open: true,
+              visible: true,
               events: {
                 close() {
                   console.log('close infowindow');
