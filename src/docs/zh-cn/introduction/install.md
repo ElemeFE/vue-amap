@@ -40,7 +40,7 @@ npm install vue-amap --save
   <script src="https://unpkg.com/vue-amap/dist/index.js"></script>
   <script>
     // 初始化高德地图的 key 和插件
-    window.VueAmap.initAMapApiLoader({
+    window.VueAMap.initAMapApiLoader({
       key: 'YOUR_KEY',
       plugin: ['Autocomplete', 'PlaceSearch', 'Scale', 'OverView', 'ToolBar', 'MapType', 'PolyEditor', 'AMap.CircleEditor']
     });
