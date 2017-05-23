@@ -56,7 +56,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ? 'index.html'
         : config.build.index,
       template: './src/docs/index.html',
-      favicon: './src/homepage/assets/images/logo.ico',
+      favicon: './src/docs/assets/images/logo.ico',
       inject: true,
       minify: {
         removeComments: true,
@@ -96,8 +96,9 @@ var webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
       {
-        from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
-        to: 'static/json/particles.json'
+        from: path.join(__dirname, '../src/docs'),
+        to: '',
+        ignore: ['index.html']
       }
     ])
   ]

@@ -34,14 +34,15 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/docs/index.html',
-      favicon: './src/homepage/assets/images/logo.ico',
+      favicon: './src/docs/assets/images/logo.ico',
       inject: true
     }),
     new FriendlyErrorsPlugin(),
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
-        to: 'static/json/particles.json'
+        from: path.join(__dirname, '../src/docs'),
+        to: '',
+        ignore: ['index.html']
       }
     ])
   ]

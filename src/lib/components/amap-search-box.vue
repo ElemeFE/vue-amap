@@ -112,7 +112,7 @@ export default {
       this._placeSearch = new AMap.PlaceSearch(mapConfig);
       this._onSearchResult = this.onSearchResult;
       // register init event
-      this.events.init && this.events.init({
+      this.events && this.events.init && this.events.init({
         autoComplete: this._autoComplete,
         placeSearch: this._placeSearch
       });

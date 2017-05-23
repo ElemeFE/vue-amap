@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件 | vue-amap</title>
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+
+  <script src="//unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  window.$docsify = {
+    name: '',
+    repo: '',
+    loadSidebar: true,
+    coverpage: true
+  }
+</script>
+
+<style>
+  .vuep {
+    flex-direction: column;
+    clear: both;
+    overflow: hidden;
+    box-shadow: 0 0 13px #a0a0a0;
+    height: auto;
+    margin: 30px 0;
+  }
+
+  .vuep-editor {
+    height: 300px;
+  }
+
+  .vuep-editor,
+  .vuep-preview {
+    width: auto;
+    overflow: visible;
+    margin-right: 0;
+  }
+
+  .vuep-preview {
+    padding: 0;
+  }
+
+  .amap-demo {
+    height: 300px;
+  }
+
+  .toolbar {
+    padding: 10px;
+  }
+
+  .toolbar button{
+    background: #42b983;
+    border: 0;
+    color: white;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .search-box {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+  }
+
+  .amap-page-container {
+    position: relative;
+  }
+</style>
+
+<script type="text/javascript">
+  window.VueAMap.initAMapApiLoader({
+    key: '28966b6be8e4fa0e4c4f4c9b4bf8d3ce',
+    plugin: ['Autocomplete', 'PlaceSearch', 'Scale', 'OverView', 'ToolBar', 'MapType', 'PolyEditor', 'AMap.CircleEditor', 'Geolocation']
+  });
+</script>
+
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+</html>
