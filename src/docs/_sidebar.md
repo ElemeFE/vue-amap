@@ -17,7 +17,7 @@
 - 窗体
   - [信息窗体](zh-cn/windows/info-window)
 
-- 其他服务
+- 扩展
   - [搜索组件](zh-cn/services/searchbox.md)
 
 - 插件

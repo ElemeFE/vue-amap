@@ -63,7 +63,6 @@
 名称 | 类型 | 说明
 ---|---|---|
 vid | String | 组件的ID。
-bubble | Boolean | 是否将覆盖物的鼠标或touch等事件冒泡到地图上。默认值：false
 
 
 
@@ -84,6 +83,9 @@ strokeWeight | Number | 线条宽度，单位：像素
 strokeStyle | String | 线样式，实线:solid，虚线:dashed
 geodesic | Boolean | 是否绘制大地线，默认false，不支持相关示例
 isOutline | Boolean | 线条是否带描边，默认false
+bubble | Boolean | 是否将覆盖物的鼠标或touch等事件冒泡到地图上。默认值：false
+lineJoin | Boolean | 折线拐点的绘制样式，默认值为'miter'尖角，其他可选值：'round'圆角、'bevel'斜角
+strokeDasharray	| Array | 勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效， 此属性在ie9+浏览器有效 取值：实线：[0,0,0] 虚线：[10,10] ，[10,10] 表示10个像素的实线和10个像素的空白（如此反复）组成的虚线点画线：[10,2,10]， [10,2,10] 表示10个像素的实线和2个像素的空白 + 10个像素的实线和10个像素的空白 （如此反复）组成的虚线
 
 ## 事件
 

@@ -75,7 +75,6 @@
 
         this.markers = markers;
         this.windows = windows;
-        console.log(this.windows);
       }
     };
   </script>
