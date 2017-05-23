@@ -8,6 +8,8 @@
 
 首先需要在项目初始化时，通过 `initAMapApiLoader` 引入所需要的插件。
 
+*使用插件之前一定要初始化，否则会报错！*
+
 ```javascript
 import VueAMap from 'vue-amap';
 VueAMap.initAMapApiLoader({

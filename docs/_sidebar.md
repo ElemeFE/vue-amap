@@ -2,6 +2,7 @@
  - [安装](zh-cn/introduction/install)
  - [快速上手](zh-cn/introduction/quick-start)
  - [脚本初始化](zh-cn/introduction/init)
+ - [兼容高德原生 SDK](zh-cn/introduction/compatible)
 
 - 基础
  - [地图](zh-cn/base/amap)
@@ -28,4 +29,7 @@
   - [定位插件](zh-cn/plugins/geolocation.md)
 
 - 示例中心
- - 覆盖物
+ - 基础
+   - [地图](zh-cn/examples/base/amap.md)
+ - 窗体
+   - [信息窗体](zh-cn/examples/windows/info-window.md)
