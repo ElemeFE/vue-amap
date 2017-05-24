@@ -45,7 +45,7 @@ Geolocation定位服务插件。融合了浏览器定位、高精度IP定位、�
               init(o) {
                 // o 是高德地图定位插件实例
                 o.getCurrentPosition((status, result) => {
-                  if (result.position) {
+                  if (result && result.position) {
                     self.lng = result.position.lng;
                     self.lat = result.position.lat;
                     self.center = [self.lng, self.lat];
