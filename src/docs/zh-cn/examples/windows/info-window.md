@@ -59,7 +59,9 @@
                   window.visible = false;
                 });
 
-                self.windows[i].visible = true;
+                self.$nextTick(() => {
+                  self.windows[i].visible = true;
+                });
               }
             }
           });

@@ -23,7 +23,8 @@ export default {
     'strokeDasharray',
     'events',
     'extData',
-    'onceEvents'
+    'onceEvents',
+    'lineJoin'
   ],
   data() {
     return {
