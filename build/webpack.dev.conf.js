@@ -23,21 +23,26 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vue-amap'],
+      minChunks: 2
+    }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/homepage/index.html',
-      favicon: './src/homepage/assets/images/logo.ico',
+      template: './src/docs/index.html',
+      favicon: './src/docs/assets/images/logo.ico',
       inject: true
     }),
     new FriendlyErrorsPlugin(),
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, '../src/homepage/assets/json/particles.json'),
-        to: 'static/json/particles.json'
+        from: path.join(__dirname, '../src/docs'),
+        to: '',
+        ignore: ['index.html']
       }
     ])
   ]

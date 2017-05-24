@@ -9,14 +9,26 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/homepage/index.js'
+    'vue-amap': ['./src/lib/index.js']
   },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+      : config.dev.assetsPublicPath,
+    chunkFilename: 'index.js',
+    library: 'VueAMap',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
+  externals: {
+      vue: {
+        root: 'Vue',
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue'
+      }
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

@@ -1,10 +1,9 @@
 .PHONY: dist test build
 
-dev:
-	@npm start
-
-doc:
-	@npm run build
-
 build:
 	@npm run build
+
+# 然后新开一个 console
+# make dev
+dev:
+	@npm start
