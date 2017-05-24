@@ -8,5 +8,5 @@ example
 dist
 .vscode
 .tags*
-./docs
+/docs
 dist

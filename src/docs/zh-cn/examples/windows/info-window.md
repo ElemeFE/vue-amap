@@ -55,13 +55,11 @@
             position: [121.59996, 31.197646 + i * 0.001],
             events: {
               click() {
-                (function(i) {
-                  self.windows.forEach(window => {
-                    window.visible = false;
-                  });
+                self.windows.forEach(window => {
+                  window.visible = false;
+                });
 
-                  self.windows[i].visible = true;
-                })(i);
+                self.windows[i].visible = true;
               }
             }
           });
