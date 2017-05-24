@@ -1,13 +1,13 @@
 {
   "name": "vue-amap",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "vue amap",
   "main": "./dist/index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "webpack-dashboard -- node build/dev-server.js",
+    "dev": "webpack-dashboard -- node build/dev-server.js --content-base dist/",
     "build": "node build/build.js",
     "lib": "export LIB_ENV=lib && node build/lib.js",
     "start": "node build/dev-server.js",
@@ -113,8 +113,10 @@
     "webpack-merge": "^2.6.1"
   },
   "dependencies": {
+    "codemirror": "^5.25.2",
     "core-js": "^2.4.1",
-    "uppercamelcase": "^1.1.0"
+    "uppercamelcase": "^1.1.0",
+    "vuep": "^0.7.0"
   },
   "engines": {
     "node": ">= 4.0.0",

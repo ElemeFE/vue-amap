@@ -1,87 +1,85 @@
-# 点标志
+# 点坐标
 
----
+## 基础示例
 
-## 示例
+<vuep template="#example"></vuep>
 
-```html
-<template>
-    <div id="demoComponent" class="demo-component">
-        <el-amap vid="amap" :zoom="zoom" :center="center">
-          <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
-        </el-amap>
+<script v-pre type="text/x-template" id="example">
+
+  <template>
+    <div class="amap-page-container">
+      <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
+        <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
+      </el-amap>
+
+      <div class="toolbar">
         <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
         <button type="button" name="button" v-on:click="changePosition">change position</button>
         <button type="button" name="button" v-on:click="chnageDraggle">change draggle</button>
         <button type="button" name="button" v-on:click="addMarker">add marker</button>
         <button type="button" name="button" v-on:click="removeMarker">remove marker</button>
+      </div>
     </div>
-</template>
+  </template>
 
-<script>
-export default {
-  data() {
-    return {
-      zoom: 14,
-      center: [121.5273285, 31.21515044],
-      markers: [
-        {
-          position: [121.5273285, 31.21515044],
-          events: {
-            click: () => {
-              alert('click marker');
-            },
-            dragend: (e) => {
-              const {lng, lat} = e.target.getPosition();
-              this.markers[0].position = [lng, lat];
-            }
-          },
-          visible: true,
-          draggable: false
-        }
-      ]
-    };
-  },
-  methods: {
-    changePosition() {
-      let position = this.markers[0].position;
-      this.markers[0].position = [position[0] + 0.002, position[1] - 0.002];
-    },
-    chnageDraggle() {
-      let draggable = this.markers[0].draggable;
-      this.markers[0].draggable = !draggable;
-    },
-    toggleVisible() {
-      let visableVar = this.markers[0].visible;
-      this.markers[0].visible = !visableVar;
-    },
-    addMarker() {
-      let marker = {
-        position: [121.5273285 + (Math.random() - 0.5) * 0.02, 31.21515044 + (Math.random() - 0.5) * 0.02]
-      };
-      this.markers.push(marker);
-    },
-    removeMarker() {
-      if (!this.markers.length) return;
-      this.markers.splice(this.markers.length - 1, 1);
+  <style>
+    .amap-demo {
+      height: 300px;
     }
-  }
-};
+  </style>
+
+  <script>
+    module.exports = {
+      name: 'amap-page',
+      data() {
+        return {
+          zoom: 14,
+          center: [121.5273285, 31.21515044],
+          markers: [
+            {
+              position: [121.5273285, 31.21515044],
+              events: {
+                click: () => {
+                  alert('click marker');
+                },
+                dragend: (e) => {
+                  this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+                }
+              },
+              visible: true,
+              draggable: false
+            }
+          ]
+        };
+      },
+      methods: {
+        changePosition() {
+          let position = this.markers[0].position;
+          this.markers[0].position = [position[0] + 0.002, position[1] - 0.002];
+        },
+        chnageDraggle() {
+          let draggable = this.markers[0].draggable;
+          this.markers[0].draggable = !draggable;
+        },
+        toggleVisible() {
+          let visableVar = this.markers[0].visible;
+          this.markers[0].visible = !visableVar;
+        },
+        addMarker() {
+          let marker = {
+            position: [121.5273285 + (Math.random() - 0.5) * 0.02, 31.21515044 + (Math.random() - 0.5) * 0.02]
+          };
+          this.markers.push(marker);
+        },
+        removeMarker() {
+          if (!this.markers.length) return;
+          this.markers.splice(this.markers.length - 1, 1);
+        }
+      }
+    };
+  </script>
+
 </script>
-
-```
-
-
-<demo></demo>
-<script>
-import Demo from 'demos/marker.vue';
-export default {
-  components: {
-    Demo
-  }
-}
-</script>
-
 
 
 ## 静态属性
