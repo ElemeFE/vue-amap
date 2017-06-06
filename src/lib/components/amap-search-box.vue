@@ -103,8 +103,6 @@ export default {
     };
   },
   mounted() {
-    this.events = this.events || {};
-
     let _loadApiPromise = lazyAMapApiLoaderInstance.load();
     _loadApiPromise.then(() => {
       let mapConfig = this.searchOption;
