@@ -139,15 +139,6 @@
           }
           th {
             background: #f7f6f6;
-            &:nth-child(1) {
-              width: 15%
-            }
-            &:nth-child(2) {
-              width: 15%
-            }
-            &:nth-child(3) {
-              width: 70%
-            }
           }
         }
 
