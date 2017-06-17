@@ -7,7 +7,7 @@
              v-model="keyword"
              @keyup.enter="search"
              @input="autoComplete">
-      <a class="search-btn" @click="search" >搜索</a>
+      <span class="search-btn" @click="search" >搜索</span>
     </div>
     <div class="search-tips">
       <ul>
