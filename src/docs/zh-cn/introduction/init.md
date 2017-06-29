@@ -9,10 +9,10 @@
 NPM 安装：
 
 ```javascript
-import AMap from 'vue-amap';
+import VueAMap from 'vue-amap';
 
-Vue.use(AMap);
-AMap.initAMapApiLoader({
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...]
 });
@@ -34,11 +34,11 @@ window.VueAMap.initAMapApiLoader({
 NPM 安装：
 
 ```javascript
-import AMap from 'vue-amap';
+import VueAMap from 'vue-amap';
 import { lazyAMapApiLoaderInstance } from 'vue-amap';
 
-Vue.use(AMap);
-AMap.initAMapApiLoader({
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...]
 });
