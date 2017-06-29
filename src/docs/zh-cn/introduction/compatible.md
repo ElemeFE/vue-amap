@@ -11,6 +11,11 @@
 
 这里以 `el-amap` 组件举例。`el-amap` 比较特殊，它同时还支持一个 `amap-manager` 属性，通过这个属性，可以在任何地方拿到高德原生 `AMap.Map` 实例。下面的例子，将介绍两种方式的使用。
 
+*若涉及到高德原生 `AMap` 需要注意的点：*
+
+* 确保 `vue-amap` 的导入名不是 `AMap`，推荐 `import VueAMap from 'vue-amap'` 避免和高德全局的 `AMap` 冲突。
+* 若 `eslint` 报错 `AMap is undefined` 之类的错误。请将 `AMap` 配置到 `.eslintrc` 的 `globals` 中。
+
 <vuep template="#example"></vuep>
 
 <script v-pre type="text/x-template" id="example">
