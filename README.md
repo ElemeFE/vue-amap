@@ -27,11 +27,11 @@ npm install -S vue-amap
 
 ```javascript
 // 引入vue-amap
-import AMap from 'vue-amap';
-Vue.use(AMap);
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
 
 // 初始化vue-amap
-AMap.initAMapApiLoader({
+VueAMap.initAMapApiLoader({
   // 高德的key
   key: 'YOUR_KEY',
   // 插件集合
