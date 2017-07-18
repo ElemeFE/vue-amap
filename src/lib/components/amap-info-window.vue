@@ -8,7 +8,7 @@ export default {
   mixins: [registerMixin],
   props: [
     'vid',
-    'icCustom',
+    'isCustom',
     'autoMove',
     'closeWhenClickMap',
     'content',
