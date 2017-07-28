@@ -77,7 +77,7 @@ export default {
     setPropWatchers() {
       for (let prop in this.$options.propsData) {
         let handleFun = this.getHandlerFun(prop);
-        if (!handleFun) continue;
+        if (!handleFun && prop !== 'events') continue;
         this.$watch(prop, nv => {
           if (prop === 'events') {
             this.unregisterEvents();
