@@ -3,7 +3,7 @@
  - [快速上手](zh-cn/introduction/quick-start)
  - [脚本初始化](zh-cn/introduction/init)
  - [兼容高德原生 SDK](zh-cn/introduction/compatible)
-
+ - [引入官方 UI 组件库](zh-cn/introduction/ui-component)
 - 基础
  - [地图](zh-cn/base/amap)
 

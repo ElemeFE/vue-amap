@@ -1,23 +1,17 @@
 language: node_js
 node_js:
-  - "6.9.1"
+  - "8"
 branches:
   only:
     - master
-
-
-
-berfore_script:
+addons:
+  chrome: stable # have Travis install chrome stable.
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
   - npm i
-
 script:
   - npm run lib
   - npm run build && sh ./scripts/git-page.sh
-
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: ${NPM_EMAIL}
-  api_key: ${NPM_TOKEN}
-  on:
-    tags: true

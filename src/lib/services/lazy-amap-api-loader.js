@@ -1,7 +1,3 @@
-import {
-  assign
-} from '../utils/polyfill';
-
 const DEFAULT_AMP_CONFIG = {
   key: null,
   v: 1.3,
@@ -16,7 +12,10 @@ export default class AMapAPILoader {
    * @param config required 初始化参数
    */
   constructor(config) {
-    this._config = assign({}, DEFAULT_AMP_CONFIG, config);
+    this._config = {
+      ...DEFAULT_AMP_CONFIG,
+      ...config
+    };
     this._document = document;
     this._window = window;
     this._scriptLoaded = false;
@@ -35,18 +34,41 @@ export default class AMapAPILoader {
     script.defer = true;
     script.src = this._getScriptSrc();
 
+    const UIPromise = this._config.uiVersion ? this.loadUIAMap() : null;
+
     this._scriptLoadingPromise = new Promise((resolve, reject) => {
       this._window['amapInitComponent'] = () => {
-        this._queueEvents.forEach(event => event());
         while (this._queueEvents.length) {
           this._queueEvents.pop().apply();
         }
-        return resolve();
+        if (UIPromise) {
+          UIPromise.then(() => {
+            window.initAMapUI();
+            return resolve();
+          });
+        } else {
+          return resolve();
+        }
       };
       script.onerror = error => reject(error);
     });
     this._document.head.appendChild(script);
     return this._scriptLoadingPromise;
+  }
+
+  loadUIAMap() {
+    return new Promise((resolve, reject) => {
+      const UIScript = document.createElement('script');
+      UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
+      UIScript.type = 'text/javascript';
+      UIScript.async = true;
+      UIScript.defer = true;
+      this._document.head.appendChild(UIScript);
+      UIScript.onload = () => {
+        resolve();
+      };
+      UIScript.onerror = () => reject();
+    });
   }
 
   _getScriptSrc() {
@@ -67,7 +89,7 @@ export default class AMapAPILoader {
     }
 
     const params = Object.keys(config)
-                         .filter(k => paramKeys.indexOf(k) !== -1)
+                         .filter(k => ~paramKeys.indexOf(k))
                          .filter(k => config[k] != null)
                          .filter(k => {
                            return !Array.isArray(config[k]) ||

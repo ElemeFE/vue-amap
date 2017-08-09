@@ -1,5 +1,5 @@
 #! /bin/sh
-if [ "$GITHUB_TOKEN" ]; then
+if [ "$GITHUB_TOKEN" ] && [ !"$TRAVIS_PULL_REQUEST" ]; then
   cd docs
   rm -rf .git
   git init

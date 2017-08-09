@@ -47,14 +47,12 @@ VueAMap.install = (Vue) => {
 const install = function(Vue, opts = {}) {
   /* istanbul ignore if */
   if (install.installed) return;
-
   VueAMap.install(Vue);
 };
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
-
   // window.VueAmap = VueAMap;
 };
 

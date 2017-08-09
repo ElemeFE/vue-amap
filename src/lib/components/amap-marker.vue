@@ -1,7 +1,7 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-
+import { lngLatTo, pixelTo } from '../utils/convert-helper';
 export default {
   name: 'el-amap-marker',
   mixins: [registerMixin],
@@ -53,6 +53,15 @@ export default {
   methods: {
     initComponent(options) {
       this.$amapComponent = new AMap.Marker(options);
+    },
+    $$getExtData() {
+      return this.$amapComponent.getExtData();
+    },
+    $$getPosition() {
+      return lngLatTo(this.$amapComponent.getPosition());
+    },
+    $$getOffset() {
+      return pixelTo(this.$amapComponent.getOffset());
     }
   }
 };

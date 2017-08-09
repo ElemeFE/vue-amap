@@ -7,7 +7,7 @@
 <script>
    import guid from '../utils/guid';
    import CONST from '../utils/constant';
-   import { toLngLat, toPixel } from '../utils/convert-helper';
+   import { lngLatTo, toLngLat, toPixel } from '../utils/convert-helper';
    import registerMixin from '../mixins/register-component';
    import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
    export default {
@@ -42,7 +42,7 @@
        'mapStyle',
        'plugin',
        'features',
-       'mapManager'  // 地图管理 manager
+       'amapManager'  // 地图管理 manager
      ],
 
      beforeCreate() {
@@ -165,7 +165,6 @@
              for (let k in _plugin.events) {
                let v = _plugin.events[k];
                if (k === 'init') continue;
-
                AMap.event.addListener(this.$plugins[realPlugin.pName], k, v);
              }
            }
@@ -212,8 +211,7 @@
            const elementID = this.vid || guid();
            mapElement.id = elementID;
            this.$amap = this.$amapComponent = new AMap.Map(elementID, this.convertProps());
-           if (this.mapManager) this.mapManager.setMap(this.$amap);
-
+           if (this.amapManager) this.amapManager.setMap(this.$amap);
            this.$emit(CONST.AMAP_READY_EVENT, this.$amap);
            this.$children.forEach(component => {
              component.$emit(CONST.AMAP_READY_EVENT, this.$amap);
@@ -222,6 +220,9 @@
              this.addPlugins();
            }
          });
+       },
+       $$getCenter() {
+         return lngLatTo(this.center);
        }
      }
    };

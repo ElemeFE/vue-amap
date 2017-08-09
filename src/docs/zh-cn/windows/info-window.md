@@ -77,6 +77,14 @@ size | Size | 信息窗体尺寸（isCustom为true时，该属性无效）
 position | Array | 信息窗体显示基点位置（自v1.2 新增）
 visible | Boolean | 信息窗体是否显示。**这里需要注意的是，高德地图只支持同时一个信息窗体的显示**。所以一旦有窗体显示切换的场景，visible数组的状态需要自行维护。
 
+
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.InfoWindow](http://lbs.amap.com/api/javascript-api/reference/infowindow) | 获取`infoWindow`实例
+
 ## 事件
 
 事件 | 参数 | 说明

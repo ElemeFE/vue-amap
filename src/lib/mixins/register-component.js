@@ -94,7 +94,7 @@ export default {
 
     registerToManager() {
       let manager = this.amapManager || this.$parent.amapManager;
-      if (manager && this.vid) {
+      if (manager && this.vid !== undefined) {
         manager.setComponent(this.vid, this.$amapComponent);
       }
     },
@@ -113,10 +113,15 @@ export default {
     register() {
       this.initComponent && this.initComponent(this.convertProps());
       this.registerEvents();
-      if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
       this.initProps();
       this.setPropWatchers();
       this.registerToManager();
+      if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
+    },
+
+    // helper method
+    $$getInstance() {
+      return this.$amapComponent;
     }
   }
 };

@@ -3,6 +3,7 @@
 <script>
 import registerMixin from '../mixins/register-component';
 import editorMixin from '../mixins/editor-component';
+import { lngLatTo } from '../utils/convert-helper';
 export default {
   name: 'el-amap-polygon',
   mixins: [registerMixin, editorMixin],
@@ -45,6 +46,16 @@ export default {
       let options = this.convertProps();
       this.$amapComponent = new AMap.Polygon(options);
       this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
+    },
+    $$getPath() {
+      return this.$amapComponent.getPath().map(lngLatTo);
+    },
+    $$getExtData() {
+      return this.$amapComponent.getExtData();
+    },
+    $$contains(point) {
+      if (Array.isArray(point)) point = new AMap.LngLat(point[0], point[1]);
+      return this.$amapComponent.getBounds().contains(point);
     }
   }
 };

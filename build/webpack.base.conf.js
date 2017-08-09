@@ -22,18 +22,19 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  externals: {
-      vue: {
-        root: 'Vue',
-        commonjs: 'vue',
-        commonjs2: 'vue',
-        amd: 'vue'
-      }
-  },
+  // externals: {
+  //     vue: {
+  //       root: 'Vue',
+  //       commonjs: 'vue',
+  //       commonjs2: 'vue',
+  //       amd: 'vue'
+  //     }
+  // },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
       'src': path.resolve(__dirname, '../src'),
       demos: path.join(__dirname, '../src/homepage/demos'),
       'vue-amap': path.join(__dirname, '../src/lib')
