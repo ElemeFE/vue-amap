@@ -1,9 +1,12 @@
 language: node_js
 node_js:
   - "8"
+dist: trusty
+sudo: false
 branches:
   only:
     - master
+    - dev
 addons:
   chrome: stable # have Travis install chrome stable.
 cache:
@@ -13,5 +16,4 @@ cache:
 install:
   - npm i
 script:
-  - npm run lib
-  - npm run build && sh ./scripts/git-page.sh
+  - npm run lib && npm run build && sh ./scripts/git-page.sh
