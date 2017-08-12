@@ -72,6 +72,15 @@ fillOpacity | Float | 圆形填充透明度，取值范围[0,1]，0表示完全�
 strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
 extData | Any | 用户自定义属性，支持JavaScript API任意数据类型，如Circle的id等
 
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.Circle](http://lbs.amap.com/api/javascript-api/reference/overlay#Circle) | 获取`circle`实例
+$$getCenter() | [lng:Number,lat:Number] | 获取 `circle` 圆心坐标
+
+
 ## 事件
 
 事件 | 参数 | 说明

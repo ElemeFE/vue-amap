@@ -4,17 +4,18 @@
        @keydown.down="selectTip('down')">
     <div class="search-box-wrapper">
       <input type="text"
-             v-model="keyword"
-             @keyup.enter="search"
-             @input="autoComplete">
+        v-model="keyword"
+        @keyup.enter="search"
+        @input="autoComplete">
       <span class="search-btn" @click="search" >搜索</span>
     </div>
     <div class="search-tips">
       <ul>
         <li v-for="(tip, index) in tips"
-            @click="changeTip(tip)"
-            @mouseover="selectedTip=index"
-            :class="{'autocomplete-selected': index === selectedTip}">{{tip.name}}</li>
+          :key="index"
+          @click="changeTip(tip)"
+          @mouseover="selectedTip=index"
+          :class="{'autocomplete-selected': index === selectedTip}">{{tip.name}}</li>
       </ul>
     </div>
   </div>
@@ -28,7 +29,6 @@
     box-shadow: 0 2px 2px rgba(0,0,0,.15);
     border-radius: 2px 3px 3px 2px;
     z-index: 10;
-
     .search-box-wrapper {
       position: absolute;
       display: flex;
@@ -94,20 +94,19 @@ import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance'
 export default {
   name: 'el-amap-search-box',
   mixins: [RegisterComponentMixin],
-  props: ['searchOption', 'onSearchResult', 'events'],
+  props: ['searchOption', 'onSearchResult', 'events', 'default'],
   data() {
     return {
-      keyword: '',
+      keyword: this.default || '',
       tips: [],
-      selectedTip: -1
+      selectedTip: -1,
+      loaded: false
     };
   },
   mounted() {
     let _loadApiPromise = lazyAMapApiLoaderInstance.load();
     _loadApiPromise.then(() => {
-      let mapConfig = this.searchOption;
-      this._autoComplete = new AMap.Autocomplete(mapConfig);
-      this._placeSearch = new AMap.PlaceSearch(mapConfig);
+      this.loaded = true;
       this._onSearchResult = this.onSearchResult;
       // register init event
       this.events && this.events.init && this.events.init({
@@ -116,9 +115,19 @@ export default {
       });
     });
   },
+  computed: {
+    _autoComplete() {
+      if (!this.loaded) return;
+      return new AMap.Autocomplete(this.searchOption || {});
+    },
+    _placeSearch() {
+      if (!this.loaded) return;
+      return new AMap.PlaceSearch(this.searchOption || {});
+    }
+  },
   methods: {
     autoComplete() {
-      if (!this.keyword) return ;
+      if (!this.keyword || !this._autoComplete) return;
       this._autoComplete.search(this.keyword, (status, result) => {
         if (status === 'complete') {
           this.tips = result.tips;

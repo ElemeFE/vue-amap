@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/homepage/assets/images/logo_c.png">
+  <img src="https://cdn.rawgit.com/ElemeFE/vue-amap/master/src/docs/assets/images/logo.png">
 </p>
 
 # vue-amap

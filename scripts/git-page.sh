@@ -1,5 +1,6 @@
 #! /bin/sh
-if [ "$GITHUB_TOKEN" ]; then
+if [ "$GITHUB_TOKEN" ] && [ "$TRAVIS_PULL_REQUEST" = false ] && [ "$TRAVIS_BRANCH"x = "master"x] ; then
+  echo "---- deploy  doc branch ----"
   cd docs
   rm -rf .git
   git init

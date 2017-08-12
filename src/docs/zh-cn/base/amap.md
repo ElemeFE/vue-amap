@@ -10,7 +10,7 @@
 
   <template>
     <div class="amap-page-container">
-      <el-amap vid="amapDemo" :map-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
+      <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
       </el-amap>
 
       <div class="toolbar">
@@ -37,6 +37,13 @@
           zoom: 12,
           center: [121.59996, 31.197646],
           events: {
+            init: (o) => {
+              console.log(o.getCenter())
+              console.log(this.$refs.map.$$getInstance())
+              o.getCity(result => {
+                console.log(result)
+              })
+            },
             'moveend': () => {
             },
             'zoomchange': () => {
@@ -112,6 +119,14 @@ mapStyle	| String |	设置地图显示样式，目前支持normal（默认样式
 ---|--- | --- |---|
 getMap | | AMap.Map | 返回地图实例，注入该管理实例的组件的地图实例
 getChildInstance| vid | instance | 返回 vid 对应的组件实例
+
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.Map](http://lbs.amap.com/api/javascript-api/reference/map) | 获取地图实例
+$$getCenter()   | [lng: Number, lat: Number] | 获取地图中心
 
 
 ## 事件

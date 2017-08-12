@@ -112,6 +112,16 @@ animation | String | 点标记的动画效果，默认值：“AMAP_ANIMATION_NO
 title | String | 鼠标滑过点标记时的文字提示，不设置则鼠标滑过点标无文字提示。
 clickable | Boolean | 点标记是否可点击。
 
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.Marker](http://lbs.amap.com/api/javascript-api/reference/overlay#Marker) | 获取`marker`实例
+$$getPosition() | [lng:Number,lat:Number] | 获取位置
+$$getOffset()   |  [x:Number,y:Number]    | 获取偏移像素坐标
+$$getExtData()   | any | 获取用户自定义属性
+
 ## 事件
 
 事件 | 参数 | 说明
