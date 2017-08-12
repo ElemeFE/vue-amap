@@ -63,6 +63,13 @@ url | String | 图片路径
 path | Array | 多边形轮廓线的节点坐标数组，当为“环”多边形时（多边形区域在多边形内显示为“岛”），path为二维数组，数组元素为多边形轮廓的节点坐标数组“环”多边形时，要求数组第一个元素为外多边形，其余为“岛”多边形，外多边形需包含“岛”多边形，否则程序不作处理
 opacity | Number | 图片透明度，取值范围[0,1]，0表示完全透明，1表示不透明默认值：1
 
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.GroundImage](http://lbs.amap.com/api/javascript-api/reference/overlay#GroundImage) | 获取`groundImage`实例
+
 ## 事件
 
 事件 | 参数 | 说明

@@ -9,10 +9,13 @@
     }
   },
   "env": {
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "globals": {
       "AMap": true,
-      "particlesJS": true
+      "particlesJS": true,
+      "expect": true,
+      "sinon": true
   }
 }

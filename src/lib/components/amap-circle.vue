@@ -1,7 +1,7 @@
 <template></template>
 <script>
 import registerMixin from '../mixins/register-component';
-import { toLngLat } from '../utils/convert-helper';
+import { toLngLat, lngLatTo } from '../utils/convert-helper';
 import editorMixin from '../mixins/editor-component';
 export default {
   name: 'el-amap-circle',
@@ -50,6 +50,9 @@ export default {
     initComponent(options) {
       this.$amapComponent = new AMap.Circle(options);
       this.$amapComponent.editor = new AMap.CircleEditor(this.$amap, this.$amapComponent);
+    },
+    $$getCenter() {
+      return lngLatTo(this.$amapComponent.getCenter());
     }
   }
 };

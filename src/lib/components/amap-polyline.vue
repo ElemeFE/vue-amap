@@ -3,6 +3,7 @@
 <script>
 import registerMixin from '../mixins/register-component';
 import editorMixin from '../mixins/editor-component';
+import { lngLatTo } from '../utils/convert-helper';
 export default {
   name: 'el-amap-polyline',
   mixins: [registerMixin, editorMixin],
@@ -43,6 +44,15 @@ export default {
     initComponent(options) {
       this.$amapComponent = new AMap.Polyline(options);
       this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
+    },
+    $$getPath() {
+      return this.$amapComponent.getPath().map(lngLatTo);
+    },
+    $$getBounds() {
+      return this.$amapComponent.getBounds();
+    },
+    $$getExtData() {
+      return this.$amapComponent.getExtData();
     }
   }
 };

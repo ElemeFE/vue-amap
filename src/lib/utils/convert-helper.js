@@ -2,6 +2,11 @@ export function toPixel(arr) {
   return new AMap.Pixel(arr[0], arr[1]);
 }
 
+export function pixelTo(pixel) {
+  if (Array.isArray(pixel)) return pixel;
+  return [pixel.getX(), pixel.getY()];
+}
+
 export function toLngLat(arr) {
   return new AMap.LngLat(arr[0], arr[1]);
 }

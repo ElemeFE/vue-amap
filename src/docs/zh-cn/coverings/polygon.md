@@ -8,8 +8,10 @@
 
   <template>
     <div class="amap-page-container">
-      <el-amap vid="amap" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+      <el-amap vid="amap" :zoom="zoom" :amap-manager="amapManager" :center="center" 
+      ref="map"
+      class="amap-demo">
+        <el-amap-polygon v-for="(polygon, index) in polygons" :vid="index" :ref="`polygon_${index}`" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
       </el-amap>
     </div>
   </template>
@@ -21,17 +23,22 @@
   </style>
 
   <script>
+    let amapManager = new VueAMap.AMapManager();
     module.exports = {
       data () {
         return {
           zoom: 15,
           center: [121.5273285, 31.21515044],
+          amapManager: amapManager,
           polygons: [
             {
               path: [[121.5273285, 31.21515044], [121.5293285, 31.21515044], [121.5293285, 31.21915044], [121.5273285, 31.21515044]],
               events: {
-                click() {
+                click: () => {
                   alert('click polygon');
+                  console.log(amapManager.getComponent(0));
+                  console.log(this.$refs.map.$$getCenter())
+                  console.log(this.$refs.polygon_0[0].$$getPath())
                 }
               }
             }
@@ -40,7 +47,6 @@
       }
     };
   </script>
-
 </script>
 
 
@@ -69,6 +75,15 @@ fillOpacity | Float | 多边形填充透明度，取值范围[0,1]，0表示完�
 extData | Any | 用户自定义属性，支持JavaScript API任意数据类型，如Polygon的id等
 strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
 
+## ref 可用方法
+提供无副作用的同步帮助方法
+
+函数 | 返回 | 说明
+---|---|---|
+$$getInstance() | [AMap.Polygon](http://lbs.amap.com/api/javascript-api/reference/overlay#Polygon) | 获取`polygon`实例
+$$getPath() | [[lng:Number,lat:Number]] | 获取 `polygon` 的边界坐标
+$$contain([lng:Number, lat: Number] | lngLat:AMap.LngLat)   |  Boolean    | `polygon` 是否包含某点
+$$getExtData()   | any | 获取用户自定义属性
 
 ## 事件
 
