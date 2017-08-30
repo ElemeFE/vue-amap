@@ -12,7 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.lib_build.env
-let rules = utils.styleLoaders({
+var rules = utils.styleLoaders({
       sourceMap: false,
       extract: false
 });
