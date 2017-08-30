@@ -20,6 +20,7 @@ export default {
     'events'
   ],
   data() {
+    let self = this;
     return {
       converters: {
 
@@ -28,9 +29,8 @@ export default {
         visible(flag) {
           // fixed Amap info-window reopen
           let position = this.getPosition();
-          let map = this.getMap();
           if (position) {
-            flag === false ? this.close() : this.open(map, [position.lng, position.lat]);
+            flag === false ? this.close() : this.open(self.$amap, [position.lng, position.lat]);
           }
         }
       }
