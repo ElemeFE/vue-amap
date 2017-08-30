@@ -28,8 +28,9 @@ export default {
         visible(flag) {
           // fixed Amap info-window reopen
           let position = this.getPosition();
+          let map = this.getMap();
           if (position) {
-            flag === false ? this.close() : this.open(this.G.map, [position.lng, position.lat]);
+            flag === false ? this.close() : this.open(map, [position.lng, position.lat]);
           }
         }
       }
