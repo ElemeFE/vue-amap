@@ -1,7 +1,7 @@
 const DEFAULT_AMP_CONFIG = {
   key: null,
   v: 1.3,
-  protocol: 'https',
+  protocol: location.protocol || 'https:',
   hostAndPath: 'webapi.amap.com/maps',
   plugin: [],
   callback: 'amapInitComponent'
@@ -59,6 +59,8 @@ export default class AMapAPILoader {
   loadUIAMap() {
     return new Promise((resolve, reject) => {
       const UIScript = document.createElement('script');
+      // 为了兼容之前没有：的写法，location.protocol带有：，当protocol没有：时，增加：
+      this._config.protocol.indexOf(':') === -1 && (this._config.protocol += ':');
       UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
       UIScript.type = 'text/javascript';
       UIScript.async = true;
