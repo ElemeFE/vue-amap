@@ -1,6 +1,6 @@
 const DEFAULT_AMP_CONFIG = {
   key: null,
-  v: 1.3,
+  v: '1.3',
   protocol: 'https',
   hostAndPath: 'webapi.amap.com/maps',
   plugin: [],
@@ -23,8 +23,8 @@ export default class AMapAPILoader {
   }
 
   load() {
-    if (this._window.AMap) {
-      return Promise.resolve();
+    if (this._window.AMap && this._window.AMap.Map) {
+      return this.loadUIAMap();
     }
 
     if (this._scriptLoadingPromise) return this._scriptLoadingPromise;
@@ -44,7 +44,7 @@ export default class AMapAPILoader {
         if (UIPromise) {
           UIPromise.then(() => {
             window.initAMapUI();
-            return resolve();
+            setTimeout(resolve);
           });
         } else {
           return resolve();
@@ -57,6 +57,7 @@ export default class AMapAPILoader {
   }
 
   loadUIAMap() {
+    if (window.AMapUI) return Promise.resolve();
     return new Promise((resolve, reject) => {
       const UIScript = document.createElement('script');
       UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
@@ -65,7 +66,7 @@ export default class AMapAPILoader {
       UIScript.defer = true;
       this._document.head.appendChild(UIScript);
       UIScript.onload = () => {
-        resolve();
+        setTimeout(resolve);
       };
       UIScript.onerror = () => reject();
     });
