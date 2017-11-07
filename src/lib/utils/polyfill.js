@@ -1,3 +1,5 @@
+import { RemoGeoLocation } from '../patch/remote';
+
 /**
  * assign pollyfill
  * @param  {Object} target
@@ -30,3 +32,20 @@ export function assign(target, varArgs) {
     return Object.assign.apply(Object, arguments);
   }
 };
+
+// http://a.amap.com/jsapi_demos/static/remogeo/remo.html
+export function patchIOS11Geo() {
+  // ios环境切换到使用远程https定位
+  if (AMap.UA.ios && document.location.protocol !== 'https:') {
+    // 使用远程定位，见 remogeo.js
+    var remoGeo = new RemoGeoLocation();
+    // 替换方法
+    navigator.geolocation.getCurrentPosition = function() {
+      return remoGeo.getCurrentPosition.apply(remoGeo, arguments);
+    };
+    // 替换方法
+    navigator.geolocation.watchPosition = function() {
+      return remoGeo.watchPosition.apply(remoGeo, arguments);
+    };
+  }
+}
