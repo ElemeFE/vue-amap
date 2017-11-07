@@ -3,6 +3,7 @@
 <script>
 import { toLngLat } from '../utils/convert-helper';
 import registerMixin from '../mixins/register-component';
+import { compile } from '../utils/compile';
 export default {
   name: 'el-amap-info-window',
   mixins: [registerMixin],
@@ -17,13 +18,20 @@ export default {
     'position',
     'showShadow',
     'visible',
-    'events'
+    'events',
+    'template'
   ],
   data() {
     let self = this;
     return {
+      propsRedirect: {
+        template: 'content'
+      },
       converters: {
-
+        template(tpl) {
+          let node = compile(tpl, self);
+          return node;
+        }
       },
       handlers: {
         visible(flag) {
@@ -32,12 +40,15 @@ export default {
           if (position) {
             flag === false ? this.close() : this.open(self.$amap, [position.lng, position.lat]);
           }
+        },
+        template(node) {
+          this.setContent(node);
         }
       }
     };
   },
   destroyed() {
-    this.$amapComponent.close();;
+    this.$amapComponent.close();
   },
   methods: {
     initComponent(options) {
