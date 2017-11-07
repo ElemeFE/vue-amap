@@ -155,7 +155,7 @@ App.vue
   <div id="app">
     <h3 class="title">{{ msg }}</h3>
     <div class="amap-wrapper">
-      <el-amap :vid="'amap-vue'"></el-amap>
+      <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
     </div>
   </div>
 </template>
@@ -171,7 +171,7 @@ export default {
 </script>
 
 <style>
-.amap-wrapper {
+.amap-box {
   width: 500px;
   height: 500px;
 }

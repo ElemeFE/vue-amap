@@ -47,7 +47,8 @@
                 }
               },
               visible: true,
-              draggable: false
+              draggable: false,
+              template: '<span>1</span>'
             }
           ]
         };
@@ -104,6 +105,7 @@ position | Array | 点标记在地图上显示的位置，默认为地图中心�
 offset | Array | 点标记显示位置偏移量，默认值为Pixel(-10,-34)。Marker指定position后，默认以marker左上角位置为基准点，对准所给定的position位置，若需使marker指定位置对准在position处，需根据marker的尺寸设置一定的偏移量。
 icon | String | 需在点标记中显示的图标。可以是一个本地图标地址，或者Icon对象。有合法的content内容时，此属性无效。
 content | String | 点标记显示内容，可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。
+template | String | 支持传入 Vue 模板。
 draggable | Boolean | 设置点标记是否可拖拽移动，默认为false。
 raiseOnDrag | Boolean | 设置拖拽点标记时是否开启点标记离开地图的效果。
 cursor | String | 指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不。支持自定义cursor。
