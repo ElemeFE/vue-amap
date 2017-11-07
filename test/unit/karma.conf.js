@@ -7,24 +7,23 @@ module.exports = function(config) {
         timeout: 40000
       }
     },
-    browsers: ['ChromeHeadless'],
+    browsers: ['HeadlessChrome'],
+    customLaunchers: {
+      HeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec'],
     files: ['./index.js'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
-
+    browserNoActivityTimeout: 20000,
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
-    },
-    // coverageReporter: {
-    //   dir: './coverage',
-    //   reporters: [
-    //     { type: 'lcov', subdir: '.' },
-    //     { type: 'text-summary' }
-    //   ]
-    // }
+    }
   });
 };

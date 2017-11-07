@@ -8,7 +8,7 @@
 VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...],
-  uiVersion: '1.0' // 版本号
+  uiVersion: '1.0.11' // 版本号
 });
 ```
 

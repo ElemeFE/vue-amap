@@ -43,14 +43,14 @@ VueAMap.initAMapApiLoader({
 
 ### 地图
 
-```javascript
+```
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
 </el-amap>
 ```
 
 ### 点坐标
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-marker v-for="marker in markers" :position="marker.position"></el-amap-marker>
 </el-amap>
@@ -58,7 +58,7 @@ VueAMap.initAMapApiLoader({
 
 ### 折线
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-polyline :path="polyline.path"></el-amap-polyline>
 </el-amap>
@@ -66,7 +66,7 @@ VueAMap.initAMapApiLoader({
 
 ### 多边形
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-polygon v-for="polygon in polygons" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
 </el-amap>
@@ -74,7 +74,7 @@ VueAMap.initAMapApiLoader({
 
 ### 圆
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-circle v-for="circle in circles" :center="circle.center" :radius="circle.radius"></el-amap-circle>
 </el-amap>
@@ -82,7 +82,7 @@ VueAMap.initAMapApiLoader({
 
 ### 图片覆盖物
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-ground-image v-for="groundimage in groundimages" :url="groundimage.url"></el-amap-ground-image>
 </el-amap>
@@ -90,7 +90,7 @@ VueAMap.initAMapApiLoader({
 
 ### 信息窗体
 
-```javascript
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
   <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :open="window.open"></el-amap-info-window>
 </el-amap>
@@ -98,7 +98,7 @@ VueAMap.initAMapApiLoader({
 
 ### Search-Box
 
-```javascript
+```vue
 <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
 <el-amap vid="amapDemo">
 </el-amap>

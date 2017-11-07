@@ -33,11 +33,18 @@ export default {
 
     convertProps() {
       let props = {};
+      let _key = '';
       if (this.$amap) props.map = this.$amap;
       for (let key in this.$options.propsData) {
+        _key = key;
         let propsValue = this.convertSignalProp(key, this.$options.propsData[key]);
         if (propsValue === undefined) continue;
-        props[key] = propsValue;
+
+        if (this.propsRedirect) {
+          _key = this.propsRedirect[key] || key;
+        }
+
+        props[_key] = propsValue;
       }
       return props;
     },
