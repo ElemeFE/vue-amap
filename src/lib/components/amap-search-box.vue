@@ -20,7 +20,7 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="less">
   .el-vue-search-box-container {
     position: relative;
     width: 360px;
