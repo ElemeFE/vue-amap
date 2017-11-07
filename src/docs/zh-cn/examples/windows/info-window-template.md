@@ -1,6 +1,6 @@
 # 信息窗体 - Vue 模板
 
-支持传入 `Vue` 模板，支持 `Vue` 机制的事件绑定和状态访问。**(推荐)**。当同时设置 `content` 和 `template` 时，优先 `content`。
+支持传入 `Vue` 模板，支持 `Vue` 机制的事件绑定和状态访问。**(推荐)**。当同时设置 `content` 和 `template` 时，优先 `content`。`v0.4.0` 开始支持。
 
 <vuep template="#example1"></vuep>
 
