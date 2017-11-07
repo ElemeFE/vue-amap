@@ -1,3 +1,5 @@
+import { patchIOS11Geo } from '../utils/polyfill';
+;
 const DEFAULT_AMP_CONFIG = {
   key: null,
   v: '1.3',
@@ -19,7 +21,7 @@ export default class AMapAPILoader {
     this._document = document;
     this._window = window;
     this._scriptLoaded = false;
-    this._queueEvents = [];
+    this._queueEvents = [ patchIOS11Geo];
   }
 
   load() {
@@ -57,7 +59,7 @@ export default class AMapAPILoader {
   }
 
   loadUIAMap() {
-    if (window.AMapUI) return Promise.resolve();
+    if (!this._config.uiVersion || window.AMapUI) return Promise.resolve();
     return new Promise((resolve, reject) => {
       const UIScript = document.createElement('script');
       UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;

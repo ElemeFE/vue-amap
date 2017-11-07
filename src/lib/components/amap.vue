@@ -228,7 +228,7 @@
    };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .el-vue-amap-container {
   height: 100%;
 .el-vue-amap {
