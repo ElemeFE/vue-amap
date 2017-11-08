@@ -13,7 +13,6 @@
     "start": "node build/dev-server.js",
     "lint": "eslint src",
     "test": "npm run lint && npm run test:unit",
-    "precommit": "npm run test",
     "prepublishOnly": "npm run lib",
     "test:unit": "karma  start test/unit/karma.conf.js --single-run",
     "test:dev": "karma  start test/unit/karma.conf.js --single-run=false"
