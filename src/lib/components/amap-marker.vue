@@ -2,7 +2,7 @@
 <script>
 import registerMixin from '../mixins/register-component';
 import { lngLatTo, pixelTo } from '../utils/convert-helper';
-import { compile } from '../utils/compile';
+import { compile, mountedVNode } from '../utils/compile';
 export default {
   name: 'el-amap-marker',
   mixins: [registerMixin],
@@ -30,13 +30,15 @@ export default {
     'label',
     'events',
     'onceEvents',
-    'template'
+    'template',
+    'vnode'
   ],
   data() {
     let self = this;
     return {
       propsRedirect: {
-        template: 'content'
+        template: 'content',
+        vnode: 'content'
       },
       converters: {
         shape(options) {
@@ -46,8 +48,12 @@ export default {
           return new AMap.Icon(options);
         },
         template(tpl) {
-          let node = compile(tpl, self);
-          return node;
+          return compile(tpl, self);
+        },
+        vnode(vnode) {
+          const _vNode = typeof vnode === 'function' ? vnode(self) : vnode;
+          const vNode = mountedVNode(_vNode);
+          return vNode;
         }
       },
       handlers: {
@@ -56,9 +62,6 @@ export default {
         },
         visible(flag) {
           flag === false ? this.hide() : this.show();
-        },
-        template(node) {
-          this.setContent(node);
         }
       }
     };

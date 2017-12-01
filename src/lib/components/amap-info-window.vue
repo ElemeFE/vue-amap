@@ -19,18 +19,24 @@ export default {
     'showShadow',
     'visible',
     'events',
-    'template'
+    'template',
+    'vnode'
   ],
   data() {
     let self = this;
     return {
       propsRedirect: {
-        template: 'content'
+        template: 'content',
+        vnode: 'content'
       },
       converters: {
         template(tpl) {
-          let node = compile(tpl, self);
-          return node;
+          return compile(tpl, self);
+        },
+        vnode(vnode) {
+          const _vNode = typeof vnode === 'function' ? vnode(self) : vnode;
+          const vNode = mountedVNode(_vNode);
+          return vNode;
         }
       },
       handlers: {
