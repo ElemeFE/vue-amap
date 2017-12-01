@@ -19,13 +19,15 @@ export default {
     'showShadow',
     'visible',
     'events',
-    'template'
+    'template',
+    'vnode'
   ],
   data() {
     let self = this;
     return {
       propsRedirect: {
-        template: 'content'
+        template: 'content',
+        vnode: 'content'
       },
       converters: {
         template(tpl) {
