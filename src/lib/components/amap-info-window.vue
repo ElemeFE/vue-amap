@@ -3,7 +3,7 @@
 <script>
 import { toLngLat } from '../utils/convert-helper';
 import registerMixin from '../mixins/register-component';
-import { compile } from '../utils/compile';
+import { compile, mountedVNode } from '../utils/compile';
 export default {
   name: 'el-amap-info-window',
   mixins: [registerMixin],
