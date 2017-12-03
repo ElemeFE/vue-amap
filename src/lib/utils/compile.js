@@ -13,11 +13,15 @@ export const compile = (tpl, vm) => {
     }
   });
 
-  let dom = document.createElement('fragment');
   let vNode = new Vue({
     ...props,
     ...node
   });
 
-  return vNode.$mount(dom).$el;
+  return vNode.$mount().$el;
+};
+
+export const mountedVNode = (vn) => {
+  const instance = new Vue({render: (h) => <div>{vn}</div>});
+  return instance.$mount().$el;
 };

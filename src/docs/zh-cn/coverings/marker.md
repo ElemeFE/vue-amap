@@ -106,6 +106,7 @@ offset | Array | 点标记显示位置偏移量，默认值为Pixel(-10,-34)。M
 icon | String | 需在点标记中显示的图标。可以是一个本地图标地址，或者Icon对象。有合法的content内容时，此属性无效。
 content | String | 点标记显示内容，可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。
 template | String | 支持传入 Vue 模板。`v0.4.0` 开始支持。
+vnode | VNode 或 Funtion: (Instance) => VNode | 支持 VNode 渲染。`v0.4.2` 开始支持
 draggable | Boolean | 设置点标记是否可拖拽移动，默认为false。
 raiseOnDrag | Boolean | 设置拖拽点标记时是否开启点标记离开地图的效果。
 cursor | String | 指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不。支持自定义cursor。
