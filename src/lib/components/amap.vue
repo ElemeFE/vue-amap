@@ -222,7 +222,8 @@
          });
        },
        $$getCenter() {
-         return lngLatTo(this.center);
+         if (!this.$amap) return lngLatTo(this.center);
+         return lngLatTo(this.$amap.getCenter());
        }
      }
    };
