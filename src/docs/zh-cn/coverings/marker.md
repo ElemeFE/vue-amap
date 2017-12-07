@@ -9,9 +9,10 @@
   <template>
     <div class="amap-page-container">
       <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable"></el-amap-marker>
+        <el-amap-marker vid="component-marker" :position="componentMarker.position" :content-render="componentMarker.contentRender" ></el-amap-marker>
+        <el-amap-marker v-for="(marker, index) in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable" :vid="index"></el-amap-marker>
+        <el-amap-marker vid="render-marker" :position="renderMarker.position" :content-render="renderMarker.contentRender" ></el-amap-marker>
       </el-amap>
-
       <div class="toolbar">
         <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
         <button type="button" name="button" v-on:click="changePosition">change position</button>
@@ -29,6 +30,10 @@
   </style>
 
   <script>
+    const exampleComponents = {
+      props: ['text'],
+      template: `<div>text from  parent: {{text}}</div>`
+    }
     module.exports = {
       name: 'amap-page',
       data() {
@@ -50,7 +55,31 @@
               draggable: false,
               template: '<span>1</span>'
             }
-          ]
+          ],
+          renderMarker: {
+            position: [121.5273285, 31.21715058],
+            contentRender: (h, instance) => {
+              // if use jsx you can write in this
+              // return <div style={{background: '#80cbc4', whiteSpace: 'nowrap', border: 'solid #ddd 1px', color: '#f00'}} onClick={() => ...}>marker inner text</div>
+              return h(
+                'div',
+                {
+                  style: {background: '#80cbc4', whiteSpace: 'nowrap', border: 'solid #ddd 1px', color: '#f00'},
+                  on: {
+                    click: () => {
+                      const position = this.renderMarker.position;
+                      this.renderMarker.position = [position[0] + 0.002, position[1] - 0.002];
+                    }
+                  }
+                },
+                ['marker inner text']
+              )
+            }
+          },
+          componentMarker: {
+            position: [121.5273285, 31.21315058],
+            contentRender: (h, instance) => h(exampleComponents,{style: {backgroundColor: '#fff'}, props: {text: 'father is here'}}, ['xxxxxxx'])
+          }
         };
       },
       methods: {
@@ -107,6 +136,7 @@ icon | String | 需在点标记中显示的图标。可以是一个本地图标�
 content | String | 点标记显示内容，可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。
 template | String | 支持传入 Vue 模板。`v0.4.0` 开始支持。
 vnode | VNode 或 Funtion: (Instance) => VNode | 支持 VNode 渲染。`v0.4.2` 开始支持
+contentRender | Function: (createElement: () => VNode, instance) => VNode | 支持 VNode render 渲染。`v0.4.3` 开始支持
 draggable | Boolean | 设置点标记是否可拖拽移动，默认为false。
 raiseOnDrag | Boolean | 设置拖拽点标记时是否开启点标记离开地图的效果。
 cursor | String | 指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不。支持自定义cursor。
