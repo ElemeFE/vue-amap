@@ -1,4 +1,4 @@
-import { RemoGeoLocation } from '../patch/remote';
+import RemoGeoLocation from '../patch/remote';
 
 /**
  * assign pollyfill
