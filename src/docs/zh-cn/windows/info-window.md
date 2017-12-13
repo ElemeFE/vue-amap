@@ -9,8 +9,20 @@
   <template>
     <div class="amap-page-container">
       <el-amap vid="amap" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-info-window v-for="window in windows" :position="window.position" :content="window.content" :visible="window.visible" :events="window.events"></el-amap-info-window>
+        <el-amap-info-window
+          :position="contentWindow.position"
+          :content="contentWindow.content"
+          :visible="current === 1" 
+          :events="contentWindow.events">
+        </el-amap-info-window>
+        <el-amap-info-window
+          :position="slotWindow.position"
+          :visible="current === 2">
+          <div>Amazing window</div>
+        </el-amap-info-window>
       </el-amap>
+      <button @click="current = 1">Show First Window</button>
+      <button @click="current = 2">Show Second Window</button>
     </div>
   </template>
 
@@ -26,18 +38,20 @@
         return {
           zoom: 14,
           center: [121.5273285, 31.21515044],
-          windows: [
-            {
-              position: [121.5273285, 31.21515044],
-              content: 'Hi! I am here!',
-              visible: true,
-              events: {
-                close() {
-                  console.log('close infowindow');
-                }
+          current: 2,
+          contentWindow: {
+            position: [121.5273285, 31.21515044],
+            content: 'Hi! I am here!',
+            visible: true,
+            events: {
+              close() {
+                console.log('close infowindow');
               }
             }
-          ]
+          },
+          slotWindow: {
+            position: [121.5163285, 31.21515044]
+          }
         }
       }
     };
