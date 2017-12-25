@@ -1,4 +1,3 @@
-<template></template>
 <script>
 import registerMixin from '../mixins/register-component';
 import { lngLatTo, pixelTo } from '../utils/convert-helper';
@@ -37,6 +36,7 @@ export default {
   data() {
     let self = this;
     return {
+      withSlots: false,
       propsRedirect: {
         template: 'content',
         vnode: 'content',
@@ -75,6 +75,9 @@ export default {
   },
   methods: {
     initComponent(options) {
+      if (this.withSlots) {
+        options.content = this.$el;
+      }
       this.$amapComponent = new AMap.Marker(options);
     },
     $$getExtData() {
@@ -86,6 +89,14 @@ export default {
     $$getOffset() {
       return pixelTo(this.$amapComponent.getOffset());
     }
+  },
+  render(h) {
+    const slots = this.$slots.default || [];
+    this.withSlots = !!slots.length;
+    if (this.withSlots) {
+      return h('div', slots);
+    }
+    return null;
   }
 };
 </script>

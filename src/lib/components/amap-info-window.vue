@@ -1,5 +1,3 @@
-<template>
-</template>
 <script>
 import { toLngLat } from '../utils/convert-helper';
 import registerMixin from '../mixins/register-component';
@@ -26,6 +24,7 @@ export default {
   data() {
     let self = this;
     return {
+      withSlots: false,
       propsRedirect: {
         template: 'content',
         vnode: 'content',
@@ -63,9 +62,20 @@ export default {
   },
   methods: {
     initComponent(options) {
+      if (this.withSlots) {
+        options.content = this.$el;
+      }
       this.$amapComponent = new AMap.InfoWindow(options);
       if (this.visible !== false) this.$amapComponent.open(this.$amap, toLngLat(this.position));
     }
+  },
+  render(h) {
+    const slots = this.$slots.default || [];
+    this.withSlots = !!slots.length;
+    if (this.withSlots) {
+      return h('div', slots);
+    }
+    return null;
   }
 };
 </script>

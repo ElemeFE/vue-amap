@@ -12,6 +12,12 @@
         <el-amap-marker vid="component-marker" :position="componentMarker.position" :content-render="componentMarker.contentRender" ></el-amap-marker>
         <el-amap-marker v-for="(marker, index) in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable" :vid="index"></el-amap-marker>
         <el-amap-marker vid="render-marker" :position="renderMarker.position" :content-render="renderMarker.contentRender" ></el-amap-marker>
+        <el-amap-marker vid="slot-marker" :position="slotMarker.position">
+          <div :style="slotStyle">
+            <b>Hello {{ count }} times</b>
+            <button @click="onClick">Add</button>
+          </div>
+        </el-amap-marker>
       </el-amap>
       <div class="toolbar">
         <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
@@ -38,6 +44,13 @@
       name: 'amap-page',
       data() {
         return {
+          count: 1,
+          slotStyle: {
+            padding: '2px 8px',
+            background: '#eee',
+            color: '#333',
+            border: '1px solid #aaa'
+          },
           zoom: 14,
           center: [121.5273285, 31.21515044],
           markers: [
@@ -79,10 +92,16 @@
           componentMarker: {
             position: [121.5273285, 31.21315058],
             contentRender: (h, instance) => h(exampleComponents,{style: {backgroundColor: '#fff'}, props: {text: 'father is here'}}, ['xxxxxxx'])
+          },
+          slotMarker: {
+            position: [121.5073285, 31.21715058]
           }
         };
       },
       methods: {
+        onClick() {
+          this.count += 1;
+        },
         changePosition() {
           let position = this.markers[0].position;
           this.markers[0].position = [position[0] + 0.002, position[1] - 0.002];
