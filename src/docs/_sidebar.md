@@ -33,8 +33,8 @@
    - [地图](zh-cn/examples/base/amap.md)
  - 覆盖物
    - [点坐标 - 聚合](zh-cn/examples/coverings/marker-cluster.md)
-   - [点坐标 - Vue 模板](zh-cn/examples/coverings/marker-template.md)
-   - [点坐标 - render 函数](zh-cn/examples/coverings/marker-render.md)
+   - [点坐标 - 自定义内容](zh-cn/examples/coverings/marker-custom-content.md)
+   
  - 窗体
    - [信息窗体 - 切换](zh-cn/examples/windows/info-window.md)
-   - [信息窗体 - Vue 模板](zh-cn/examples/windows/info-window-template.md)
+   - [信息窗体 - 自定义内容](zh-cn/examples/windows/info-window-custom-content.md)

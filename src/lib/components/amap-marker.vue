@@ -58,7 +58,6 @@ export default {
           return vNode;
         },
         contentRender(renderFn) {
-          console.log(self);
           const template = mountedRenderFn(renderFn, self);
           return template;
         }
