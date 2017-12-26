@@ -11,13 +11,6 @@
       <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
         <el-amap-marker vid="component-marker" :position="componentMarker.position" :content-render="componentMarker.contentRender" ></el-amap-marker>
         <el-amap-marker v-for="(marker, index) in markers" :position="marker.position" :events="marker.events" :visible="marker.visible" :draggable="marker.draggable" :vid="index"></el-amap-marker>
-        <el-amap-marker vid="render-marker" :position="renderMarker.position" :content-render="renderMarker.contentRender" ></el-amap-marker>
-        <el-amap-marker vid="slot-marker" :position="slotMarker.position">
-          <div :style="slotStyle">
-            <b>Hello {{ count }} times</b>
-            <button @click="onClick">Add</button>
-          </div>
-        </el-amap-marker>
       </el-amap>
       <div class="toolbar">
         <button type="button" name="button" v-on:click="toggleVisible">toggle first marker</button>
