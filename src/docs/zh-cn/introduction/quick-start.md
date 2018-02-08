@@ -171,7 +171,7 @@ export default {
 </script>
 
 <style>
-.amap-box {
+.amap-wrapper {
   width: 500px;
   height: 500px;
 }
