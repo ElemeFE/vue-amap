@@ -65,10 +65,9 @@ export default class AMapAPILoader {
       UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
       UIScript.type = 'text/javascript';
       UIScript.async = true;
-      UIScript.defer = true;
       this._document.head.appendChild(UIScript);
       UIScript.onload = () => {
-        setTimeout(resolve);
+        setTimeout(resolve, 0);
       };
       UIScript.onerror = () => reject();
     });

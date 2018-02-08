@@ -82,7 +82,7 @@
 | ----- | ---- | --- |
 | searchOption | 搜索条件 | Object |
 | onSearchResult) | 搜索回调函数 | function[ {lng, lat} ] |
-
+| default | 默认值 | String
 ## searchOption
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | ---- | --- | ----- |

@@ -27,7 +27,9 @@
   - [比例尺插件](zh-cn/plugins/scale.md)
   - [工具条插件](zh-cn/plugins/toolbar.md)
   - [定位插件](zh-cn/plugins/geolocation.md)
-
+- 自定义
+  - [使用](zh-cn/custom/custom.md)
+  - [列表](zh-cn/custom/list.md)
 - 示例中心
  - 基础
    - [地图](zh-cn/examples/base/amap.md)
@@ -38,3 +40,5 @@
  - 窗体
    - [信息窗体 - 切换](zh-cn/examples/windows/info-window.md)
    - [信息窗体 - 自定义内容](zh-cn/examples/windows/info-window-custom-content.md)
+
+- [FAQ](zh-cn/faq.md)

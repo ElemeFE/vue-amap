@@ -23,3 +23,9 @@ export function lngLatTo(lngLat) {
 export function toBounds(arrs) {
   return new AMap.Bounds(toLngLat(arrs[0]), toLngLat(arrs[1]));
 }
+
+export const commonConvertMap = {
+  position: toLngLat,
+  offset: toPixel,
+  bounds: toBounds
+};

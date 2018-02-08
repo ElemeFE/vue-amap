@@ -1,5 +1,8 @@
 {
-  "presets": ["es2015", "stage-0"],
-  "plugins": ["transform-vue-jsx"],
+  "presets": [["env", {
+    "modules": false,
+    "loose": true
+  }]],
+  "plugins": ["transform-object-rest-spread", "transform-vue-jsx"],
   "comments": false
 }

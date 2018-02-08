@@ -1,6 +1,6 @@
 import upperCamelCase from 'uppercamelcase';
 import CONST from '../utils/constant';
-import { toLngLat, toPixel, toBounds } from '../utils/convert-helper';
+import { commonConvertMap } from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
 export default {
   data() {
@@ -56,11 +56,7 @@ export default {
       if (this.converters && this.converters[key]) {
         return this.converters[key](sourceDate);
       } else {
-        const convertFn = {
-          position: toLngLat,
-          offset: toPixel,
-          bounds: toBounds
-        }[key];
+        const convertFn = commonConvertMap[key];
         if (convertFn) return convertFn(sourceDate);
         return sourceDate;
       }
@@ -99,7 +95,7 @@ export default {
             this.registerEvents();
             return;
           }
-          if (handleFun === this.$amapComponent.setOptions) {
+          if (handleFun && handleFun === this.$amapComponent.setOptions) {
             return handleFun.call(this.$amapComponent, {[handleProp]: this.convertSignalProp(prop, nv)});
           }
           handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
@@ -120,14 +116,19 @@ export default {
       const props = ['editable', 'visible'];
       props.forEach(propStr => {
         if (this[propStr] !== undefined) {
-          let handleFun = this.getHandlerFun(propStr);
-          handleFun.call(this.$amapComponent, this.convertSignalProp(propStr, this[propStr]));
+          const handleFun = this.getHandlerFun(propStr);
+          handleFun && handleFun.call(this.$amapComponent, this.convertSignalProp(propStr, this[propStr]));
         }
       });
     },
 
     register() {
-      this.initComponent && this.initComponent(this.convertProps());
+      const res = this.__initComponent && this.__initComponent(this.convertProps());
+      if (res && res.then) res.then(this.registerRest.bind(this));  // promise
+      else this.registerRest();
+    },
+
+    registerRest() {
       this.registerEvents();
       this.initProps();
       this.setPropWatchers();

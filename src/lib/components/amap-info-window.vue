@@ -61,7 +61,7 @@ export default {
     this.$amapComponent.close();
   },
   methods: {
-    initComponent(options) {
+    __initComponent(options) {
       if (this.withSlots) {
         options.content = this.$el;
       }

@@ -28,7 +28,7 @@ describe('AMap.Map', function() {
   });
 
   describe('#init-instance', function() {
-    it.only('should init amap instance', (done) => {
+    it('should init amap instance', (done) => {
       (new Vue({
         template: `
         <div :style="{height:'100px'}">
