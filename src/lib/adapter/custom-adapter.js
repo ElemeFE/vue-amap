@@ -1,22 +1,22 @@
 import registerComponent from '../mixins/register-component';
 
-export default ({
-  props = {},
-  init,
-  data = () => ({}),
-  converters = {},
-  handlers = {},
-  computed,
-  methods,
-  name,
-  render,
-  created,
-  mounted,
-  updated,
-  destroyed,
-  contextReady
-}) => {
+export default (options) => {
+  const {
+    init,
+    data = () => ({}),
+    converters = {},
+    handlers = {},
+    computed,
+    methods,
+    name,
+    render,
+    contextReady,
+    template,
+    mixins = [],
+    props = {}
+  } = options;
   const result = {
+    ...options,
     props,
     data() {
       return {
@@ -25,15 +25,7 @@ export default ({
         handlers
       };
     },
-    mixins: [registerComponent ],
-    name,
-    created,
-    mounted,
-    updated,
-    destroyed,
-    render() {
-      return render ? render.call(null, result) : null;
-    },
+    mixins: [registerComponent, ...mixins],
     computed,
     methods: {
       ...methods,
@@ -41,6 +33,9 @@ export default ({
       __contextReady: contextReady
     }
   };
+  if (!template && !render) {
+    result.render = () => null;
+  }
   result.install = Vue => Vue.use(name, result);
   return result;
 };

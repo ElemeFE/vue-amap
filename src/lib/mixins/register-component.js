@@ -13,7 +13,7 @@ export default {
   mounted() {
     if (lazyAMapApiLoaderInstance) {
       lazyAMapApiLoaderInstance.load().then(() => {
-        this.__contextReady && this.__contextReady.call(this);
+        this.__contextReady && this.__contextReady.call(this, this.convertProps());
       });
     }
     this.$amap = this.$amap || this.$parent.$amap;
@@ -48,7 +48,7 @@ export default {
     convertProps() {
       const props = {};
       if (this.$amap) props.map = this.$amap;
-      const { $options: { propsData }, propsRedirect } = this;
+      const { $options: { propsData = {} }, propsRedirect } = this;
       return Object.keys(propsData).reduce((res, _key) => {
         let key = _key;
         let propsValue = this.convertSignalProp(key, propsData[key]);
@@ -71,6 +71,7 @@ export default {
 
     registerEvents() {
       this.setEditorEvents && this.setEditorEvents();
+      if (!this.$options.propsData) return;
       if (this.$options.propsData.events) {
         for (let eventName in this.events) {
           eventHelper.addListener(this.$amapComponent, eventName, this.events[eventName]);
@@ -88,7 +89,7 @@ export default {
     },
 
     setPropWatchers() {
-      const { propsRedirect, $options: { propsData } } = this;
+      const { propsRedirect, $options: { propsData = {} } } = this;
       Object.keys(propsData).forEach(prop => {
         let handleProp = prop;
         if (propsRedirect && propsRedirect[prop]) handleProp = propsRedirect[prop];
@@ -131,11 +132,12 @@ export default {
 
     register() {
       const res = this.__initComponent && this.__initComponent(this.convertProps());
-      if (res && res.then) res.then(this.registerRest.bind(this));  // promise
-      else this.registerRest();
+      if (res && res.then) res.then((instance) => this.registerRest(instance));  // promise
+      else this.registerRest(res);
     },
 
-    registerRest() {
+    registerRest(instance) {
+      if (!this.$amapComponent && instance) this.$amapComponent = instance;
       this.registerEvents();
       this.initProps();
       this.setPropWatchers();
