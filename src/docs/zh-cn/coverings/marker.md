@@ -60,7 +60,7 @@
               },
               visible: true,
               draggable: false,
-              template: '<span>1</span>'
+              template: '<span>1</span>',
             }
           ],
           renderMarker: {

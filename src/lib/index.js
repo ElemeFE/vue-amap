@@ -15,6 +15,8 @@ import AMapGroupImage from './components/amap-ground-image.vue';
 import AMapInfoWindow from './components/amap-info-window.vue';
 import AMapPolyline from './components/amap-polyline.vue';
 import AMapPolygon from './components/amap-polygon.vue';
+import AMapText from './components/amap-text.vue';
+import AMapBezierCurve from './components/amap-bezier-curve.vue';
 
 // managers
 import AMapManager from './managers/amap-manager';
@@ -28,7 +30,9 @@ let components = [
   AMapGroupImage,
   AMapInfoWindow,
   AMapPolygon,
-  AMapPolyline
+  AMapPolyline,
+  AMapText,
+  AMapBezierCurve
 ];
 
 let VueAMap = {
@@ -40,7 +44,10 @@ VueAMap.install = (Vue) => {
   if (VueAMap.installed) return;
   Vue.config.optionMergeStrategies.deferredReady = Vue.config.optionMergeStrategies.created;
   components.map(_component => {
+    // register component
     Vue.component(_component.name, _component);
+
+    // component cache
     VueAMap[upperCamelCase(_component.name).replace(/^El/, '')] = _component;
   });
 };
@@ -54,7 +61,6 @@ const install = function(Vue, opts = {}) {
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
-  // window.VueAmap = VueAMap;
 };
 
 export default VueAMap;
