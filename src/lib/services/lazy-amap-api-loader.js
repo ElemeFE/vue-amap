@@ -2,7 +2,7 @@ import { patchIOS11Geo } from '../utils/polyfill';
 ;
 const DEFAULT_AMP_CONFIG = {
   key: null,
-  v: '1.3',
+  v: '1.4.0',
   protocol: 'https',
   hostAndPath: 'webapi.amap.com/maps',
   plugin: [],
@@ -65,10 +65,9 @@ export default class AMapAPILoader {
       UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
       UIScript.type = 'text/javascript';
       UIScript.async = true;
-      UIScript.defer = true;
       this._document.head.appendChild(UIScript);
       UIScript.onload = () => {
-        setTimeout(resolve);
+        setTimeout(resolve, 0);
       };
       UIScript.onerror = () => reject();
     });

@@ -22,7 +22,7 @@ export const compile = (tpl, vm) => {
 };
 
 export const mountedVNode = (vn) => {
-  const instance = new Vue({render: (h) => <div>{vn}</div>});
+  const instance = new Vue({render: (h) => h('div', vn)});
   return instance.$mount().$el;
 };
 

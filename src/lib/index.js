@@ -18,6 +18,7 @@ import AMapPolygon from './components/amap-polygon.vue';
 
 // managers
 import AMapManager from './managers/amap-manager';
+import createCustomComponent from './adapter/custom-adapter';
 
 let components = [
   AMap,
@@ -60,6 +61,7 @@ export default VueAMap;
 
 export {
   AMapManager,
-  initAMapApiLoader
+  initAMapApiLoader,
+  createCustomComponent
 };
 export { lazyAMapApiLoaderInstance } from './services/injected-amap-api-instance';
