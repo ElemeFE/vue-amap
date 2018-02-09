@@ -2,6 +2,10 @@ export function toPixel(arr) {
   return new AMap.Pixel(arr[0], arr[1]);
 }
 
+export function toSize(arr) {
+  return new AMap.Size(arr[0], arr[1]);
+}
+
 export function pixelTo(pixel) {
   if (Array.isArray(pixel)) return pixel;
   return [pixel.getX(), pixel.getY()];

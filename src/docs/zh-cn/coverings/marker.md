@@ -59,7 +59,7 @@
               },
               visible: true,
               draggable: false,
-              template: '<span>1</span>'
+              template: '<span>1</span>',
             }
           ],
           renderMarker: {
@@ -156,6 +156,7 @@ angle | Number | 点标记的旋转角度注：angle属性是使用CSS3来实现
 animation | String | 点标记的动画效果，默认值：“AMAP_ANIMATION_NONE”可选值：“AMAP_ANIMATION_NONE”，无动画效果“AMAP_ANIMATION_DROP”，点标掉落果“AMAP_ANIMATION_BOUNCE”，点标弹跳效果。
 title | String | 鼠标滑过点标记时的文字提示，不设置则鼠标滑过点标无文字提示。
 clickable | Boolean | 点标记是否可点击。
+label | {content:String,offset:Array}   |添加文本标注，content为文本标注的内容，offset为偏移量，左上角为偏移量为[0, 0]。 `v0.4.6` 开始支持
 
 ## ref 可用方法
 提供无副作用的同步帮助方法

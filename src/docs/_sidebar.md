@@ -13,7 +13,8 @@
  - [圆](zh-cn/coverings/circle)
  - [多边形](zh-cn/coverings/polygon)
  - [折线](zh-cn/coverings/polyline)
-
+ - [文本](zh-cn/coverings/text)
+ - [贝塞尔曲线](zh-cn/coverings/bezier-curve)
 - 窗体
   - [信息窗体](zh-cn/windows/info-window)
 

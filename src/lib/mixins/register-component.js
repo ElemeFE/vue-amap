@@ -1,19 +1,37 @@
 import upperCamelCase from 'uppercamelcase';
-import CONST from '../utils/constant';
-import { toLngLat, toPixel, toBounds } from '../utils/convert-helper';
+import CONSTANTS from '../utils/constant';
+import {
+  toLngLat,
+  toPixel,
+  toBounds,
+  toSize
+} from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
+import VueAMap from '../';
+
+const converterMap = {
+  position: toLngLat,
+  offset: toPixel,
+  bounds: toBounds,
+  LngLat: toLngLat,
+  Pixel: toPixel,
+  Size: toSize,
+  Bounds: toBounds
+};
+
 export default {
   data() {
     return {
       unwatchFns: []
     };
   },
+
   mounted() {
     this.$amap = this.$amap || this.$parent.$amap;
     if (this.$amap) {
       this.register();
     } else {
-      this.$on(CONST.AMAP_READY_EVENT, map => {
+      this.$on(CONSTANTS.AMAP_READY_EVENT, map => {
         this.$amap = map;
         this.register();
       });
@@ -23,6 +41,7 @@ export default {
   destroyed() {
     this.unregisterEvents();
     if (!this.$amapComponent) return;
+
     this.$amapComponent.setMap && this.$amapComponent.setMap(null);
     this.$amapComponent.close && this.$amapComponent.close();
     this.$amapComponent.editor && this.$amapComponent.editor.close();
@@ -35,6 +54,7 @@ export default {
       if (this.handlers && this.handlers[prop]) {
         return this.handlers[prop];
       }
+
       return this.$amapComponent[`set${upperCamelCase(prop)}`] || this.$amapComponent.setOptions;
     },
 
@@ -52,17 +72,29 @@ export default {
       }, props);
     },
 
-    convertSignalProp(key, sourceDate) {
-      if (this.converters && this.converters[key]) {
-        return this.converters[key](sourceDate);
+    convertSignalProp(key, sourceData) {
+      let converter = '';
+      let type = '';
+
+      if (this.$tagName) {
+        try {
+          const name = upperCamelCase(this.$tagName).replace(/^El/, '');
+          const componentConfig = VueAMap[name] || '';
+
+          converter = converterMap[type];
+          type = componentConfig.props[key].$type;
+        } catch (e) {}
+      }
+
+      if (type && converter) {
+        return converter(sourceData);
+      } else if (this.converters && this.converters[key]) {
+        return this.converters[key](sourceData);
       } else {
-        const convertFn = {
-          position: toLngLat,
-          offset: toPixel,
-          bounds: toBounds
-        }[key];
-        if (convertFn) return convertFn(sourceDate);
-        return sourceDate;
+        let convertFn = converterMap[key];
+        if (convertFn) return convertFn(sourceData);
+
+        return sourceData;
       }
     },
 
@@ -73,6 +105,7 @@ export default {
           eventHelper.addListener(this.$amapComponent, eventName, this.events[eventName]);
         }
       }
+
       if (this.$options.propsData.onceEvents) {
         for (let eventName in this.onceEvents) {
           eventHelper.addListenerOnce(this.$amapComponent, eventName, this.onceEvents[eventName]);
@@ -86,6 +119,8 @@ export default {
 
     setPropWatchers() {
       const { propsRedirect, $options: { propsData } } = this;
+      console.log(`${this.$tagName} ----------`);
+
       Object.keys(propsData).forEach(prop => {
         let handleProp = prop;
         if (propsRedirect && propsRedirect[prop]) handleProp = propsRedirect[prop];
@@ -99,12 +134,16 @@ export default {
             this.registerEvents();
             return;
           }
+
           if (handleFun === this.$amapComponent.setOptions) {
             return handleFun.call(this.$amapComponent, {[handleProp]: this.convertSignalProp(prop, nv)});
           }
+
           handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
         });
-        this.unwatchFns.push(unwatch); // collect watchers for destroyed
+
+        // collect watchers for destroyed
+        this.unwatchFns.push(unwatch);
       });
     },
 
@@ -118,10 +157,22 @@ export default {
     // some prop can not init by initial created methods
     initProps() {
       const props = ['editable', 'visible'];
+
       props.forEach(propStr => {
         if (this[propStr] !== undefined) {
           let handleFun = this.getHandlerFun(propStr);
           handleFun.call(this.$amapComponent, this.convertSignalProp(propStr, this[propStr]));
+        }
+      });
+
+      this.printReactiveProp();
+    },
+
+    printReactiveProp() {
+      Object.keys(this._props).forEach(k => {
+        let fn = this.$amapComponent[`set${upperCamelCase(k)}`];
+        if (fn) {
+          console.log(k);
         }
       });
     },
@@ -132,6 +183,7 @@ export default {
       this.initProps();
       this.setPropWatchers();
       this.registerToManager();
+
       if (this.events && this.events.init) this.events.init(this.$amapComponent, this.$amap, this.amapManager || this.$parent.amapManager);
     },
 
