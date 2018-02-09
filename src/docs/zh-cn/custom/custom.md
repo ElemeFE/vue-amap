@@ -153,6 +153,7 @@ const customComponent = extendCustomOptions({
       // callback
     }
   },
+  contextReady() {},
   created() {},
   mounted() {},
   destoryed() {},
@@ -167,7 +168,8 @@ Vue.use(customComponent) // registered as a component named [custom-component-na
 名称 | 类型 | 说明
 ---|---|---|
 name | String | component Name
-init  |  Function(options, AMapInstance)  |  该函数的作用是组件对应的高德实例进行初始化，关键步骤`this.$amapInstacne = ...`，在组件上挂载一个高德实例，异步初始化需要返回一个 `Promise`
+init  |  Function(options, AMapInstance)  |  该 hook 是父组件`vue-amap`中地图实例初始化后进行调用的, 所以依赖于父组件，该函数的作用是组件对应的高德实例进行初始化，关键步骤`this.$amapInstacne = ...`，在组件上挂载一个高德实例，异步初始化需要返回一个 `Promise`
+contextReady | Fucntion | 该 hook 在组件 `mounted` 中并且浏览器上下文完成高德脚本加载后执行，该 hook 内部可安全使用高德API，该 hook 依赖于内部的 `lazyAMapApiLoaderInstance`, 请保证在该组件 `mounted` 前完成初始化函数 `initAMapApiLoader` 调用。该 hook 并不依赖父组件，可独立存在，适用于一些简单无交互的工具组件
 converters  | Object: {[propKey]:Function} | 对于组件原始入参的转换函数，像一些坐标类型数据需要从原始数组转为 `AMap.LngLat`，本库内部内置了 `position: toLngLat, offset: toPixel, bounds: toBounds` 的转换
 handlers  | Object: {[propKey]: Function} | 自定义组件属性值变化后对应的回调，内置的回调指定规则是 `自定义 handler -> 高德实例 set[PropKey] 方法 -> setOptions 方法` 从左到右的依次判空，如果存在则指定调用该回调，注：回调函数的默认 `this` 是该 `高德实例`
 

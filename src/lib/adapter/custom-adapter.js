@@ -13,7 +13,8 @@ export default ({
   created,
   mounted,
   updated,
-  destroyed
+  destroyed,
+  contextReady
 }) => {
   const result = {
     props,
@@ -36,7 +37,8 @@ export default ({
     computed,
     methods: {
       ...methods,
-      __initComponent: init
+      __initComponent: init,
+      __contextReady: contextReady
     }
   };
   result.install = Vue => Vue.use(name, result);

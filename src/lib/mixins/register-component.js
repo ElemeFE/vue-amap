@@ -2,6 +2,8 @@ import upperCamelCase from 'uppercamelcase';
 import CONST from '../utils/constant';
 import { commonConvertMap } from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
+import { lazyAMapApiLoaderInstance } from '../services/injected-amap-api-instance';
+
 export default {
   data() {
     return {
@@ -9,6 +11,11 @@ export default {
     };
   },
   mounted() {
+    if (lazyAMapApiLoaderInstance) {
+      lazyAMapApiLoaderInstance.load().then(() => {
+        this.__contextReady && this.__contextReady.call(this);
+      });
+    }
     this.$amap = this.$amap || this.$parent.$amap;
     if (this.$amap) {
       this.register();
