@@ -1,7 +1,9 @@
 import upperCamelCase from 'uppercamelcase';
 import CONST from '../utils/constant';
-import { toLngLat, toPixel, toBounds } from '../utils/convert-helper';
+import { commonConvertMap } from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
+import { lazyAMapApiLoaderInstance } from '../services/injected-amap-api-instance';
+
 export default {
   data() {
     return {
@@ -9,6 +11,11 @@ export default {
     };
   },
   mounted() {
+    if (lazyAMapApiLoaderInstance) {
+      lazyAMapApiLoaderInstance.load().then(() => {
+        this.__contextReady && this.__contextReady.call(this, this.convertProps());
+      });
+    }
     this.$amap = this.$amap || this.$parent.$amap;
     if (this.$amap) {
       this.register();
@@ -41,7 +48,7 @@ export default {
     convertProps() {
       const props = {};
       if (this.$amap) props.map = this.$amap;
-      const { $options: { propsData }, propsRedirect } = this;
+      const { $options: { propsData = {} }, propsRedirect } = this;
       return Object.keys(propsData).reduce((res, _key) => {
         let key = _key;
         let propsValue = this.convertSignalProp(key, propsData[key]);
@@ -56,11 +63,7 @@ export default {
       if (this.converters && this.converters[key]) {
         return this.converters[key](sourceDate);
       } else {
-        const convertFn = {
-          position: toLngLat,
-          offset: toPixel,
-          bounds: toBounds
-        }[key];
+        const convertFn = commonConvertMap[key];
         if (convertFn) return convertFn(sourceDate);
         return sourceDate;
       }
@@ -68,6 +71,7 @@ export default {
 
     registerEvents() {
       this.setEditorEvents && this.setEditorEvents();
+      if (!this.$options.propsData) return;
       if (this.$options.propsData.events) {
         for (let eventName in this.events) {
           eventHelper.addListener(this.$amapComponent, eventName, this.events[eventName]);
@@ -85,7 +89,7 @@ export default {
     },
 
     setPropWatchers() {
-      const { propsRedirect, $options: { propsData } } = this;
+      const { propsRedirect, $options: { propsData = {} } } = this;
       Object.keys(propsData).forEach(prop => {
         let handleProp = prop;
         if (propsRedirect && propsRedirect[prop]) handleProp = propsRedirect[prop];
@@ -99,7 +103,7 @@ export default {
             this.registerEvents();
             return;
           }
-          if (handleFun === this.$amapComponent.setOptions) {
+          if (handleFun && handleFun === this.$amapComponent.setOptions) {
             return handleFun.call(this.$amapComponent, {[handleProp]: this.convertSignalProp(prop, nv)});
           }
           handleFun.call(this.$amapComponent, this.convertSignalProp(prop, nv));
@@ -120,14 +124,20 @@ export default {
       const props = ['editable', 'visible'];
       props.forEach(propStr => {
         if (this[propStr] !== undefined) {
-          let handleFun = this.getHandlerFun(propStr);
-          handleFun.call(this.$amapComponent, this.convertSignalProp(propStr, this[propStr]));
+          const handleFun = this.getHandlerFun(propStr);
+          handleFun && handleFun.call(this.$amapComponent, this.convertSignalProp(propStr, this[propStr]));
         }
       });
     },
 
     register() {
-      this.initComponent && this.initComponent(this.convertProps());
+      const res = this.__initComponent && this.__initComponent(this.convertProps());
+      if (res && res.then) res.then((instance) => this.registerRest(instance));  // promise
+      else this.registerRest(res);
+    },
+
+    registerRest(instance) {
+      if (!this.$amapComponent && instance) this.$amapComponent = instance;
       this.registerEvents();
       this.initProps();
       this.setPropWatchers();

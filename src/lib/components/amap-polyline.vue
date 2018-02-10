@@ -41,7 +41,7 @@ export default {
     };
   },
   methods: {
-    initComponent(options) {
+    __initComponent(options) {
       this.$amapComponent = new AMap.Polyline(options);
       this.$amapComponent.editor = new AMap.PolyEditor(this.$amap, this.$amapComponent);
     },

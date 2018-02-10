@@ -1,6 +1,6 @@
 <script>
 import registerMixin from '../mixins/register-component';
-import { lngLatTo, pixelTo } from '../utils/convert-helper';
+import { lngLatTo, pixelTo, toPixel } from '../utils/convert-helper';
 import { compile, mountedVNode, mountedRenderFn } from '../utils/compile';
 export default {
   name: 'el-amap-marker',
@@ -43,6 +43,13 @@ export default {
         contentRender: 'content'
       },
       converters: {
+        label(options) {
+          const _options = {
+            ...options
+          };
+          if (options.offset) _options.offset = toPixel(options.offset);
+          return _options;
+        },
         shape(options) {
           return new AMap.MarkerShape(options);
         },
@@ -73,7 +80,7 @@ export default {
     };
   },
   methods: {
-    initComponent(options) {
+    __initComponent(options) {
       if (this.withSlots) {
         options.content = this.$el;
       }
