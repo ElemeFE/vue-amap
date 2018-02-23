@@ -35,7 +35,9 @@ VueAMap.initAMapApiLoader({
   // 高德的key
   key: 'YOUR_KEY',
   // 插件集合
-  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  // 高德 sdk 版本，默认为 1.4.4
+  v: '1.4.4'
 });
 ```
 
@@ -88,6 +90,46 @@ VueAMap.initAMapApiLoader({
 </el-amap>
 ```
 
+### 文本
+
+```vue
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-text v-for="text in texts"></el-amap-text>
+</el-amap>
+```
+
+### 贝塞尔曲线
+
+```vue
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-bezier-curve v-for="line in lines"></el-amap-bezier-curve>
+</el-amap>
+```
+
+### 圆点标记
+
+```vue
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-circle-marker v-for="marker in markers"></el-amap-circle-marker>
+</el-amap>
+```
+
+### 椭圆
+
+```vue
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-ellipse v-for="ellipse in ellipses"></el-amap-ellipse>
+</el-amap>
+```
+
+### 矩形
+
+```vue
+<el-amap vid="amapDemo" :zoom="zoom" :center="center">
+  <el-amap-rectangle v-for="rectangle in rectangles"></el-amap-rectangle>
+</el-amap>
+```
+
 ### 信息窗体
 
 ```vue
@@ -103,6 +145,11 @@ VueAMap.initAMapApiLoader({
 <el-amap vid="amapDemo">
 </el-amap>
 ```
+
+### 其他特性
+
+* 支持自定义组件
+* 支持官方 UI 组件库
 
 ## 反馈
 
