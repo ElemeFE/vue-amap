@@ -76,13 +76,13 @@ export default {
       let converter = '';
       let type = '';
 
-      if (this.$tagName) {
+      if (this.amapTagName) {
         try {
-          const name = upperCamelCase(this.$tagName).replace(/^El/, '');
+          const name = upperCamelCase(this.amapTagName).replace(/^El/, '');
           const componentConfig = VueAMap[name] || '';
 
-          converter = converterMap[type];
           type = componentConfig.props[key].$type;
+          converter = converterMap[type];
         } catch (e) {}
       }
 
@@ -119,7 +119,7 @@ export default {
 
     setPropWatchers() {
       const { propsRedirect, $options: { propsData } } = this;
-      console.log(`${this.$tagName} ----------`);
+      // console.log(`${this.amapTagName} ----------`);
 
       Object.keys(propsData).forEach(prop => {
         let handleProp = prop;
@@ -165,9 +165,13 @@ export default {
         }
       });
 
-      this.printReactiveProp();
+      // this.printReactiveProp();
     },
 
+    /**
+     * methods for developing
+     * find reactive props
+     */
     printReactiveProp() {
       Object.keys(this._props).forEach(k => {
         let fn = this.$amapComponent[`set${upperCamelCase(k)}`];

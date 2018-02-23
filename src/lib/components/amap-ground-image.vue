@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     initComponent(options) {
-      this.$amapComponent = new AMap.GroundImage(options.url, options.bounds, options);
+      this.$amapComponent = new AMap.ImageLayer(options);
     }
   }
 };

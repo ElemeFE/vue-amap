@@ -15,6 +15,9 @@
  - [折线](zh-cn/coverings/polyline)
  - [文本](zh-cn/coverings/text)
  - [贝塞尔曲线](zh-cn/coverings/bezier-curve)
+ - [圆点标记](zh-cn/coverings/circle-marker)
+ - [椭圆](zh-cn/coverings/ellipse)
+ - [矩形](zh-cn/coverings/rectangle)
 - 窗体
   - [信息窗体](zh-cn/windows/info-window)
 

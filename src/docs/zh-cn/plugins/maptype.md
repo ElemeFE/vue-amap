@@ -45,7 +45,7 @@
 
 名称 | 类型 | 说明
 ---|---|---|
-defaultType | Number }初始化默认图层类型。 取值为0：默认底图 取值为1：卫星图 默认值：0
+defaultType | Number | 初始化默认图层类型。 取值为0：默认底图 取值为1：卫星图 默认值：0
 showTraffic | Boolean | 叠加实时交通图层 默认值：false
 showRoad | Boolean | 叠加路网图层 默认值：false
 

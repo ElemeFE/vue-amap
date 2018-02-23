@@ -1,4 +1,4 @@
-# 贝塞尔曲线
+# 椭圆
 
 ## 基础示例
 
@@ -6,12 +6,12 @@
 
 <script v-pre type="text/x-template" id="example">
 
-<template>
-  <div class="amap-page-container">
-      <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-bezier-curve v-for="line in lines" :events="line.events" :path="line.path" :strokeColor="line.strokeColor" :strokeStyle="line.strokeStyle" :events="line.events" :strokeOpacity="line.strokeOpacity"></el-amap-bezier-curve>
-      </el-amap>
-    </div>
+   <template>
+     <div class="amap-page-container">
+        <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
+          <el-amap-ellipse v-for="ellipse in ellipses" :events="ellipse.events" :center="ellipse.center" :radius="ellipse.radius"></el-amap-ellipse>
+        </el-amap>
+      </div>
   </template>
 
   <style>
@@ -25,19 +25,11 @@
       data () {
         return {
           zoom: 12,
-          center: [116.380298, 39.907771],
-          lines: [
+          center: [121.5273285, 31.21515044],
+          ellipses: [
             {
-              path: [
-                [116.39, 39.91, 116.37, 39.91],
-                [116.380298, 39.907771, 116.38, 39.90],
-                [116.385298, 39.907771, 116.40, 39.90]
-              ],
-              strokeDasharray: [10, 10],
-              strokeColor: "#FF33FF", //线颜色
-              strokeOpacity: 1, //线透明度
-              strokeWeight: 3, //线宽
-              strokeStyle: "solid", //线样式
+              center: [121.5273285, 31.21515044],
+              radius: [500, 1000],
               events: {
                 click: () => {
                   alert('click');
@@ -58,38 +50,33 @@
 
 名称 | 类型 | 说明
 ---|---|---|
-topWhenClick |  Boolean | 鼠标点击时是否置顶，默认false ，不置顶
-bubble |  Boolean | 是否将覆盖物的鼠标或touch等事件冒泡到地图上 默认值：false
-autoRotation |  Boolean | 是否自动旋转。点标记在使用moveAlong动画时，路径方向若有变化，点标记是否自动调整角度，默认为false。广泛用于自动调节车辆行驶方向。IE8以下不支持旋转，autoRotation属性无效
-extData | Any | 用户自定义属性，支持JavaScript API任意数据类型，如Marker的id等
-
-
+vid | String | 组件的ID。
+bubble | Boolean | 是否将覆盖物的鼠标或touch等事件冒泡到地图上（自v1.3 新增）默认值：false
 
 ## 动态属性
 支持响应式。
 
 名称 | 类型 | 说明
 ---|---|---|
-path | Array | 贝瑟尔曲线的路径。描述为一个二维数组规则如下：第一个元素是起点，之后的元素同时描述控制点和途经点，之后每个元素可以有0个到2个控制点控制点在前，途经点在最后 [[lng,lat],//起点0[lng,lat,lng,lat],//控制点、途经点1[lng,lat,lng,lat,lng,lat],//控制点、控制点、途经点2[lng,lat,lng,lat]//控制点、途经点3] [示例](https://lbs.amap.com/api/javascript-api/example/overlayers/bezier-curve)
-strokeColor | String | 线条颜色，如‘#000000’、‘red’
-strokeOpacity | Number | 透明度
-strokeWeight | Number | 线宽
-strokeStyle | String | 虚线或者视线，'dashed'、'solid'
-strokeDasharray | Array | 虚线的分段，如[10,10]
-zIndex | Number | 层级
-showDir | Boolean | 是否显示白色方向箭头
-bubble | Boolean | 事件是否穿透到地图
-cursor | String |指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor 
-isOutline | Boolean | 是否描边
-outlineColor | String | 描边颜色
-borderWeight | Number | 描边宽度 
+visible | Boolean | 是否可见
+editable | Boolean | 当前圆形是否可编辑
+center | LngLat | 圆心位置
+radius | Array | 椭圆的半径，用2个元素的数组表示，单位：米 如： radius: [1000, 2000]表示横向半径是1000，纵向的半径是2000  默认值：[1000, 1000]
+zIndex | Number | 层叠顺序默认zIndex:10
+strokeColor | String | 线条颜色，使用16进制颜色代码赋值。默认值为#006600
+strokeOpacity | Float | 轮廓线透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9
+strokeWeight | Number | 轮廓线宽度
+fillColor | String | 圆形填充颜色,使用16进制颜色代码赋值。默认值为#006600
+fillOpacity | Float | 圆形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9
+strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
+extData | Any | 用户自定义属性，支持JavaScript API任意数据类型，如Circle的id等
 
 ## ref 可用方法
 提供无副作用的同步帮助方法
 
 函数 | 返回 | 说明
 ---|---|---|
-$$getInstance() | [AMap.BezierCurve](http://lbs.amap.com/api/javascript-api/reference/overlay#BezierCurve) | 获取`BezierCurve`实例
+$$getInstance() | [AMap.CircleEllipse](http://lbs.amap.com/api/javascript-api/reference/overlay#CircleEllipse) | 获取`CircleMarker`实例
 
 
 ## 事件

@@ -60,6 +60,18 @@ export default {
 
     isOutline: {
       type: Boolean
+    },
+
+    visible: {
+      type: Boolean,
+      default: true
+    },
+
+    events: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
   data() {
@@ -77,12 +89,11 @@ export default {
         }
       },
 
-      $tagName: TAG
+      amapTagName: TAG
     };
   },
   methods: {
     initComponent(options) {
-      console.log(options);
       this.$amapComponent = new AMap.BezierCurve(options);
     }
   }

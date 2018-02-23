@@ -33,7 +33,7 @@
               fillOpacity: 0.5,
               events: {
                 click: () => {
-                  alert('click polygon');
+                  alert('click');
                 }
               }
             }
