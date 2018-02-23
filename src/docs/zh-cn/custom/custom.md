@@ -1,4 +1,4 @@
-# 自定义
+# 自定义组件
 
 实际开发中面对复杂业务，库中现有的几个基础组件很多时候无法满足我们的业务需求，另一个方面在于高德的sdk也在疯狂更新，一味的包装也不是长久之计，所以这里提供一个方法 -- `createCustomComponent`，让用户自己开发并维护自己特定业务组件，同时也希望通过社区成员一起建设公共组件。
 
@@ -21,11 +21,6 @@
       </el-amap>
       <div class="toolbar">
         <button type="button" name="button" @click="toggleVisible">toggle visible</button>
-        <!-- 
-        <button type="button" name="button" v-on:click="changePosition">change position</button>
-        <button type="button" name="button" v-on:click="chnageDraggle">change draggle</button>
-        <button type="button" name="button" v-on:click="addMarker">add marker</button>
-        <button type="button" name="button" v-on:click="removeMarker">remove marker</button> -->
       </div>
     </div>
   </template>

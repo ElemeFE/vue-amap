@@ -32,9 +32,9 @@
   - [工具条插件](zh-cn/plugins/toolbar.md)
   - [定位插件](zh-cn/plugins/geolocation.md)
 
-- 自定义
-  - [使用](zh-cn/custom/custom.md)
-  - [列表](zh-cn/custom/list.md)
+- 自定义组件
+  - [指南](zh-cn/custom/custom.md)
+  - [组件列表](zh-cn/custom/list.md)
   
 - 示例中心
  - 基础
