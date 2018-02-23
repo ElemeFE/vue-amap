@@ -1,27 +1,9 @@
 import upperCamelCase from 'uppercamelcase';
-import CONST from '../utils/constant';
 import { commonConvertMap } from '../utils/convert-helper';
 import eventHelper from '../utils/event-helper';
 import { lazyAMapApiLoaderInstance } from '../services/injected-amap-api-instance';
 import CONSTANTS from '../utils/constant';
-import {
-  toLngLat,
-  toPixel,
-  toBounds,
-  toSize
-} from '../utils/convert-helper';
-import eventHelper from '../utils/event-helper';
 import VueAMap from '../';
-
-const converterMap = {
-  position: toLngLat,
-  offset: toPixel,
-  bounds: toBounds,
-  LngLat: toLngLat,
-  Pixel: toPixel,
-  Size: toSize,
-  Bounds: toBounds
-};
 
 export default {
   data() {
@@ -91,7 +73,7 @@ export default {
           const componentConfig = VueAMap[name] || '';
 
           type = componentConfig.props[key].$type;
-          converter = converterMap[type];
+          converter = commonConvertMap[type];
         } catch (e) {}
       }
 
@@ -101,8 +83,8 @@ export default {
         return this.converters[key](sourceData);
       } else {
         const convertFn = commonConvertMap[key];
-        if (convertFn) return convertFn(sourceDate);
-        return sourceDate;
+        if (convertFn) return convertFn(sourceData);
+        return sourceData;
       }
     },
 

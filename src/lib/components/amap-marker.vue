@@ -43,8 +43,7 @@ export default {
     'onceEvents',
     'template',
     'vnode',
-    'contentRender',
-    'label'
+    'contentRender'
   ],
   data() {
     let self = this;
@@ -57,13 +56,6 @@ export default {
         contentRender: 'content'
       },
       converters: {
-        label(options) {
-          const _options = {
-            ...options
-          };
-          if (options.offset) _options.offset = toPixel(options.offset);
-          return _options;
-        },
         shape(options) {
           return new AMap.MarkerShape(options);
         },

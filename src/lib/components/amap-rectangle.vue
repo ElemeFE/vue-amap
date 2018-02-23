@@ -96,7 +96,7 @@ export default {
     };
   },
   methods: {
-    initComponent(options) {
+    __initComponent(options) {
       this.$amapComponent = new AMap.Rectangle(options);
     }
   }
