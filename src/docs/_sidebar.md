@@ -13,7 +13,11 @@
  - [圆](zh-cn/coverings/circle)
  - [多边形](zh-cn/coverings/polygon)
  - [折线](zh-cn/coverings/polyline)
-
+ - [文本](zh-cn/coverings/text)
+ - [贝塞尔曲线](zh-cn/coverings/bezier-curve)
+ - [圆点标记](zh-cn/coverings/circle-marker)
+ - [椭圆](zh-cn/coverings/ellipse)
+ - [矩形](zh-cn/coverings/rectangle)
 - 窗体
   - [信息窗体](zh-cn/windows/info-window)
 
@@ -28,9 +32,9 @@
   - [工具条插件](zh-cn/plugins/toolbar.md)
   - [定位插件](zh-cn/plugins/geolocation.md)
 
-- 自定义
-  - [使用](zh-cn/custom/custom.md)
-  - [列表](zh-cn/custom/list.md)
+- 自定义组件
+  - [指南](zh-cn/custom/custom.md)
+  - [组件列表](zh-cn/custom/list.md)
   
 - 示例中心
  - 基础

@@ -1,9 +1,21 @@
 <script>
 import registerMixin from '../mixins/register-component';
-import { lngLatTo, pixelTo, toPixel } from '../utils/convert-helper';
-import { compile, mountedVNode, mountedRenderFn } from '../utils/compile';
+import {
+  lngLatTo,
+  pixelTo,
+  toPixel
+} from '../utils/convert-helper';
+
+import {
+  compile,
+  mountedVNode,
+  mountedRenderFn
+} from '../utils/compile';
+
+const TAG = 'el-amap-marker';
+
 export default {
-  name: 'el-amap-marker',
+  name: TAG,
   mixins: [registerMixin],
   props: [
     'vid',
@@ -36,6 +48,7 @@ export default {
   data() {
     let self = this;
     return {
+      $tagName: TAG,
       withSlots: false,
       propsRedirect: {
         template: 'content',
@@ -43,13 +56,6 @@ export default {
         contentRender: 'content'
       },
       converters: {
-        label(options) {
-          const _options = {
-            ...options
-          };
-          if (options.offset) _options.offset = toPixel(options.offset);
-          return _options;
-        },
         shape(options) {
           return new AMap.MarkerShape(options);
         },
@@ -67,6 +73,13 @@ export default {
         contentRender(renderFn) {
           const template = mountedRenderFn(renderFn, self);
           return template;
+        },
+        label(options) {
+          const { content = '', offset = [0, 0] } = options;
+          return {
+            content: content,
+            offset: toPixel(offset)
+          };
         }
       },
       handlers: {
@@ -84,14 +97,18 @@ export default {
       if (this.withSlots) {
         options.content = this.$el;
       }
+
       this.$amapComponent = new AMap.Marker(options);
     },
+
     $$getExtData() {
       return this.$amapComponent.getExtData();
     },
+
     $$getPosition() {
       return lngLatTo(this.$amapComponent.getPosition());
     },
+
     $$getOffset() {
       return pixelTo(this.$amapComponent.getOffset());
     }
