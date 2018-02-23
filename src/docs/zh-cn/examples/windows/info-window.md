@@ -12,7 +12,7 @@
         :zoom="zoom"  
         class="amap-demo">
         <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events"></el-amap-marker>
-        <el-amap-info-window v-for="window in windows" :position="window.position" :visible="window.visible" :content="window.content"></el-amap-info-window>
+        <el-amap-info-window v-if="window" :position="window.position" :visible="window.visible" :content="window.content"></el-amap-info-window>
       </el-amap>
     </div>
   </template>
@@ -37,7 +37,8 @@
           zoom: 16,
           center: [121.59996, 31.197646],
           markers: [],
-          windows: []
+          windows: [],
+          window: ''
         };
       },
 
@@ -57,8 +58,9 @@
                   window.visible = false;
                 });
 
+                self.window = self.windows[i];
                 self.$nextTick(() => {
-                  self.windows[i].visible = true;
+                  self.window.visible = true;
                 });
               }
             }
