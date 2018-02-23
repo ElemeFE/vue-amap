@@ -6,8 +6,8 @@
 
 <script v-pre type="text/x-template" id="example">
 
- |  <template>
- |    <div class="amap-page-container">
+  <template>
+    <div class="amap-page-container">
       <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
         <el-amap-text v-for="text in texts" :text="text.text" :offset="text.offset" :position="text.position" :events="text.events"></el-amap-text>
       </el-amap>

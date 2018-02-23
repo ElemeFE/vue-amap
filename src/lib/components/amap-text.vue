@@ -131,6 +131,13 @@ export default {
     clickable: {
       type: Boolean,
       default: true
+    },
+
+    events: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
   data() {
@@ -148,7 +155,7 @@ export default {
         }
       },
 
-      $tagName: TAG
+      amapTagName: TAG
     };
   },
   methods: {
