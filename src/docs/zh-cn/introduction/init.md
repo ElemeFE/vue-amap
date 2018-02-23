@@ -14,7 +14,8 @@ import VueAMap from 'vue-amap';
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
-  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...]
+  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...],
+  v: '1.4.4'
 });
 ```
 
@@ -23,7 +24,8 @@ CDN 引入：
 ```javascript
 window.VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
-  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...]
+  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...],
+  v: '1.4.4'
 });
 ```
 
@@ -41,8 +43,8 @@ Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...],
-  v: '1.4.0',  // 版本号默认 1.4.0
-  uiVersion: '1.0' // ui库版本，不配置不加载
+  uiVersion: '1.0' // ui库版本，不配置不加载,
+  v: '1.4.4'
 });
 
 lazyAMapApiLoaderInstance.load().then(() => {
@@ -58,7 +60,8 @@ CDN 引入：
 ```javascript
 window.VueAMap.initAMapApiLoader({
   key: 'YOUR_KEY',
-  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...]
+  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType',...],
+  v: '1.4.4'
 });
 
 window.VueAMap.lazyAMapApiLoaderInstance.load().then(() => {
