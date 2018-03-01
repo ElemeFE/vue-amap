@@ -12,6 +12,7 @@
         <el-amap-info-window
           :position="currentWindow.position"
           :content="currentWindow.content"
+          :visible="currentWindow.visible"
           :events="currentWindow.events">
         </el-amap-info-window>
       </el-amap>
