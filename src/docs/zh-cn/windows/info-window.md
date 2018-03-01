@@ -10,19 +10,13 @@
     <div class="amap-page-container">
       <el-amap vid="amap" :zoom="zoom" :center="center" class="amap-demo">
         <el-amap-info-window
-          :position="contentWindow.position"
-          :content="contentWindow.content"
-          :visible="current === 1" 
-          :events="contentWindow.events">
-        </el-amap-info-window>
-        <el-amap-info-window
-          :position="slotWindow.position"
-          :visible="current === 2">
-          <div>Amazing window</div>
+          :position="currentWindow.position"
+          :content="currentWindow.content"
+          :events="currentWindow.events">
         </el-amap-info-window>
       </el-amap>
-      <button @click="current = 1">Show First Window</button>
-      <button @click="current = 2">Show Second Window</button>
+      <button @click="switchWindow(0)">Show First Window</button>
+      <button @click="switchWindow(1)">Show Second Window</button>
     </div>
   </template>
 
@@ -38,20 +32,50 @@
         return {
           zoom: 14,
           center: [121.5273285, 31.21515044],
-          current: 2,
-          contentWindow: {
-            position: [121.5273285, 31.21515044],
-            content: 'Hi! I am here!',
-            visible: true,
-            events: {
-              close() {
-                console.log('close infowindow');
+          windows: [
+            {
+              position: [121.5273285, 31.21515044],
+              content: 'Hi! I am here!',
+              visible: true,
+              events: {
+                close() {
+                  console.log('close infowindow1');
+                }
+              }
+            }, {
+              position: [121.5375285, 31.21515044],
+              content: 'Hi! I am here too!',
+              visible: true,
+              events: {
+                close() {
+                  console.log('close infowindow2');
+                }
               }
             }
-          },
+          ],
           slotWindow: {
             position: [121.5163285, 31.21515044]
+          },
+          currentWindow: {
+            position: [0, 0],
+            content: '',
+            events: {},
+            visible: false
           }
+        }
+      },
+
+      mounted() {
+        this.currentWindow = this.windows[0];
+      },
+
+      methods: {
+        switchWindow(tab) {
+          this.currentWindow.visible = false;
+          this.$nextTick(() => {
+            this.currentWindow = this.windows[tab];
+            this.currentWindow.visible = true;
+          });
         }
       }
     };
