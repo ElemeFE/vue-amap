@@ -39,6 +39,7 @@ RemoGeoLocation.prototype = {
     ifrm.height = '0px';
     ifrm.style.position = 'absolute';
     ifrm.style.display = 'none';
+    ifrm.allow = 'geolocation';
 
     var self = this;
 
