@@ -10,7 +10,7 @@ export default {
 
   props: {
     vid: {
-      type: 'String'
+      type: String
     },
 
     zIndex: {
