@@ -8,7 +8,7 @@ export default {
   mixins: [registerMixin],
   props: {
     vid: {
-      type: 'String'
+      type: String
     },
 
     path: {
