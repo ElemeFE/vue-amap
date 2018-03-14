@@ -65,6 +65,10 @@ export default {
       if (this.withSlots) {
         options.content = this.$el;
       }
+
+      // control open / close by visible prop
+      delete options.map;
+
       this.$amapComponent = new AMap.InfoWindow(options);
       if (this.visible !== false) this.$amapComponent.open(this.$amap, toLngLat(this.position));
     }
