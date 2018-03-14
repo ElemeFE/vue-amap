@@ -9,7 +9,7 @@
    <template>
      <div class="amap-page-container">
         <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
-          <el-amap-circle-marker v-for="marker in markers" :center="marker.center" :radius="marker.radius" :fillColor="marker.fillColor" :fillOpacity="marker.fillOpacity" :events="marker.events"></el-amap-circle-marker>
+          <el-amap-circle-marker v-for="marker in markers" :center="marker.center" :radius="marker.radius" :fill-color="marker.fillColor" :fill-opacity="marker.fillOpacity" :events="marker.events"></el-amap-circle-marker>
         </el-amap>
       </div>
   </template>
