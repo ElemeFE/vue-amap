@@ -45,7 +45,7 @@ VueAMap.initAMapApiLoader({
 
 ### 地图
 
-```
+```vue
 <el-amap vid="amapDemo" :zoom="zoom" :center="center">
 </el-amap>
 ```
