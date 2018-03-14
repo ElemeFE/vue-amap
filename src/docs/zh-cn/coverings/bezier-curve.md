@@ -9,7 +9,7 @@
 <template>
   <div class="amap-page-container">
       <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
-        <el-amap-bezier-curve v-for="line in lines" :events="line.events" :path="line.path" :strokeColor="line.strokeColor" :strokeStyle="line.strokeStyle" :events="line.events" :strokeOpacity="line.strokeOpacity"></el-amap-bezier-curve>
+        <el-amap-bezier-curve v-for="line in lines" :events="line.events" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>
       </el-amap>
     </div>
   </template>

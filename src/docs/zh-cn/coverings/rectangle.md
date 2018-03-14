@@ -9,7 +9,7 @@
    <template>
      <div class="amap-page-container">
         <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo">
-          <el-amap-rectangle v-for="retangle in retangles" :events="retangle.events" :center="retangle.center" :bounds="retangle.bounds" :fillColor="retangle.fillColor" :fillOpacity="retangle.fillOpacity"></el-amap-rectangle>
+          <el-amap-rectangle v-for="retangle in retangles" :events="retangle.events" :center="retangle.center" :bounds="retangle.bounds" :fill-color="retangle.fillColor" :fill-opacity="retangle.fillOpacity"></el-amap-rectangle>
         </el-amap>
       </div>
   </template>
@@ -30,8 +30,8 @@
             {
               center: [121.5273285, 31.21515044],
               bounds: [[121.5273285, 31.21515044], [121.7276285, 31.24545044]],
-              fillOpacity: 1,
-              fillColor: 'rgba(0,0,255,1)',
+              fillOpacity: 0.7,
+              fillColor: '#ffffff',
               events: {
                 click: () => {
                   alert('click');
