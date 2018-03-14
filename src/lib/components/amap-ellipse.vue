@@ -40,7 +40,7 @@ export default {
     },
 
     strokeOpacity: {
-      type: String
+      type: Number
     },
 
     strokeWeight: {
@@ -48,7 +48,7 @@ export default {
     },
 
     fillColor: {
-      type: Number
+      type: String
     },
 
     fillOpacity: {
@@ -56,7 +56,7 @@ export default {
     },
 
     strokeStyle: {
-      type: Number
+      type: String
     },
 
     extData: {
