@@ -62,7 +62,14 @@ export default class AMapAPILoader {
     if (!this._config.uiVersion || window.AMapUI) return Promise.resolve();
     return new Promise((resolve, reject) => {
       const UIScript = document.createElement('script');
-      UIScript.src = `${this._config.protocol}://webapi.amap.com/ui/${this._config.uiVersion}/main-async.js`;
+      const [versionMain, versionSub, versionDetail] = this._config.uiVersion.split('.');
+      if (versionMain === undefined || versionSub === undefined) {
+        console.error('amap ui version is not correct, please check! version: ', this._config.uiVersion);
+        return;
+      }
+      let src = `${this._config.protocol}://webapi.amap.com/ui/${versionMain}.${versionSub}/main-async.js`;
+      if (versionDetail) src += `?v=${versionMain}.${versionSub}.${versionDetail}`;
+      UIScript.src = src;
       UIScript.type = 'text/javascript';
       UIScript.async = true;
       this._document.head.appendChild(UIScript);
