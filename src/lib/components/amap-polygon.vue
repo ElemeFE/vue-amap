@@ -23,7 +23,8 @@ export default {
     'visible',
     'strokeDasharray',
     'events',
-    'onceEvents'
+    'onceEvents',
+    'draggable'
   ],
   data() {
     return {

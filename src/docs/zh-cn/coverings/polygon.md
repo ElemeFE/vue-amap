@@ -8,10 +8,10 @@
 
   <template>
     <div class="amap-page-container">
-      <el-amap vid="amap" :zoom="zoom" :amap-manager="amapManager" :center="center" 
+      <el-amap vid="amap" :zoom="zoom" :amap-manager="amapManager" :center="center"
       ref="map"
       class="amap-demo">
-        <el-amap-polygon v-for="(polygon, index) in polygons" :vid="index" :ref="`polygon_${index}`" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+        <el-amap-polygon v-for="(polygon, index) in polygons" :vid="index" :ref="`polygon_${index}`" :path="polygon.path" :draggable="polygon.draggable" :events="polygon.events"></el-amap-polygon>
       </el-amap>
     </div>
   </template>
@@ -32,6 +32,7 @@
           amapManager: amapManager,
           polygons: [
             {
+              draggable: true,
               path: [[121.5273285, 31.21515044], [121.5293285, 31.21515044], [121.5293285, 31.21915044], [121.5273285, 31.21515044]],
               events: {
                 click: () => {
@@ -74,6 +75,7 @@ fillColor | String | 多边形填充颜色，使用16进制颜色代码赋值，
 fillOpacity | Float | 多边形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.9
 extData | Any | 用户自定义属性，支持JavaScript API任意数据类型，如Polygon的id等
 strokeStyle | String | 轮廓线样式，实线:solid，虚线:dashed
+draggable | Boolean | 设置多边形是否可拖拽移动，默认为false
 
 ## ref 可用方法
 提供无副作用的同步帮助方法
