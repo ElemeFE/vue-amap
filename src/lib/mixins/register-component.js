@@ -80,7 +80,7 @@ export default {
       if (type && converter) {
         return converter(sourceData);
       } else if (this.converters && this.converters[key]) {
-        return this.converters[key](sourceData);
+        return this.converters[key].call(this, sourceData);
       } else {
         const convertFn = commonConvertMap[key];
         if (convertFn) return convertFn(sourceData);
