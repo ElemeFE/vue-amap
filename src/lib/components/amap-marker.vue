@@ -63,16 +63,20 @@ export default {
           return new AMap.Icon(options);
         },
         template(tpl) {
-          return compile(tpl, self);
+          const template = compile(tpl, self);
+          this.$customContent = template;
+          return template.$el;
         },
         vnode(vnode) {
           const _vNode = typeof vnode === 'function' ? vnode(self) : vnode;
           const vNode = mountedVNode(_vNode);
-          return vNode;
+          this.$customContent = vNode;
+          return vNode.$el;
         },
         contentRender(renderFn) {
           const template = mountedRenderFn(renderFn, self);
-          return template;
+          this.$customContent = template;
+          return template.$el;
         },
         label(options) {
           const { content = '', offset = [0, 0] } = options;
@@ -120,6 +124,11 @@ export default {
       return h('div', slots);
     }
     return null;
+  },
+  destroyed() {
+    if (this.$customContent && this.$customContent.$destroy) {
+      this.$customContent.$destroy();
+    }
   }
 };
 </script>
