@@ -32,15 +32,20 @@ export default {
       },
       converters: {
         template(tpl) {
-          return compile(tpl, self);
+          const template = compile(tpl, self);
+          this.$customContent = template;
+          return template.$el;
         },
         vnode(vnode) {
           const _vNode = typeof vnode === 'function' ? vnode(self) : vnode;
           const vNode = mountedVNode(_vNode);
-          return vNode;
+          this.$customContent = vNode;
+          return vNode.$el;
         },
         contentRender(renderFn) {
-          return mountedRenderFn(renderFn, self);
+          const template = mountedRenderFn(renderFn, self);
+          this.$customContent = template;
+          return template.$el;
         }
       },
       handlers: {
@@ -59,6 +64,10 @@ export default {
   },
   destroyed() {
     this.$amapComponent.close();
+
+    if (this.$customContent && this.$customContent.$destroy) {
+      this.$customContent.$destroy();
+    }
   },
   methods: {
     __initComponent(options) {
