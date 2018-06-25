@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     __initComponent(options) {
-      if (this.withSlots) {
+      if (this.$slots.default && this.$slots.default.length) {
         options.content = this.tmpVM.$refs.node;
       }
 
