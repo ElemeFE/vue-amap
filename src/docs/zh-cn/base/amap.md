@@ -84,7 +84,7 @@
 ---|---|---|
 vid | String | 地图容器节点的ID。
 amapManager| AMapManager | 地图管理对象。
-defaultCursor | String | 地图默认鼠标样式。参数cursor应符合CSS的cursor属性规范。
+defaultCursor | String | 地图默认鼠标样式。参数defaultCursor应符合CSS的cursor属性规范。
 animateEnable | Boolean | 地图平移过程中是否使用动画，默认为true，即使用动画。
 isHotspot | Boolean | 是否开启地图热点，默认false 不打开。
 rotateEnable | Boolean  | 地图是否可旋转，默认false。
