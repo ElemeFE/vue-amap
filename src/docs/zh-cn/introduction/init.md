@@ -80,5 +80,5 @@ key | `String` | `` | 高德 Key |
 plugin | `Array` | `['Autocomplete', 'PlaceSearch', 'PolyEditor', 'CircleEditor']` | 插件 |
 uiVersion | `String` | `` | UI库 版本 |
 v | `String` | `1.4.4` | SDK 版本 |
-protocol | `String` | `https` | SDK 引用协议 |
+protocol | `String` | `https` | 引用协议 |
 
