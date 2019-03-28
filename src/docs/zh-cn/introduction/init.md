@@ -71,3 +71,14 @@ window.VueAMap.lazyAMapApiLoaderInstance.load().then(() => {
   });
 });
 ```
+
+## 参数
+
+参数名  | 类型  |  默认值 | 描述 |
+--- | --- | --- | --- |
+key | `String` | `` | 高德 Key |
+plugin | `Array` | `['Autocomplete', 'PlaceSearch', 'PolyEditor', 'CircleEditor']` | 插件 |
+uiVersion | `String` | `` | UI库 版本 |
+v | `String` | `1.4.4` | SDK 版本 |
+protocol | `String` | `https` | SDK 引用协议 |
+
