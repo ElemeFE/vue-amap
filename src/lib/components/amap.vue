@@ -30,7 +30,7 @@ export default {
     'level',
     'zooms',
     'lang',
-    'cursor',
+    'defaultCursor',
     'crs',
     'animateEnable',
     'isHotspot',

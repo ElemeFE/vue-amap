@@ -53,7 +53,7 @@ direction | Boolean | 方向键盘是否可见，默认为true
 autoPosition | Boolean | 是否自动定位，即地图初始化加载完成后，是否自动定位的用户所在地，仅在支持HTML5的浏览器中有效，默认为false
 useNative | Boolean | 是否使用高德定位sdk用来辅助优化定位效果，默认：false.
 
-**仅供在使用了高德定位sdk的APP中，嵌入webview页面时使用注：如果要使用辅助定位的功能，除了需要将useNative属性设置为true以外，还需要调用高德定位idk中，AMapLocationClient类的startAssistantLocation()方法开启辅助H5定位功能；不用时，可以调用stopAssistantLocation()方法停止辅助H5定位功能。具体用法可参考定位SDK的参考手册**
+**仅供在使用了高德定位sdk的APP中，嵌入webview页面时使用注：如果要使用辅助定位的功能，除了需要将useNative属性设置为true以外，还需要调用高德定位sdk中，AMapLocationClient类的startAssistantLocation()方法开启辅助H5定位功能；不用时，可以调用stopAssistantLocation()方法停止辅助H5定位功能。具体用法可参考定位SDK的参考手册**
 
 
 ## 事件
