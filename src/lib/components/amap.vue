@@ -30,7 +30,7 @@ export default {
     'level',
     'zooms',
     'lang',
-    'cursor',
+    'defaultCursor',
     'crs',
     'animateEnable',
     'isHotspot',
@@ -130,6 +130,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.$options);
     this.createMap();
   },
 

@@ -11,6 +11,7 @@ import {
   mountedVNode,
   mountedRenderFn
 } from '../utils/compile';
+import Vue from 'vue';
 
 const TAG = 'el-amap-marker';
 
@@ -50,6 +51,7 @@ export default {
     return {
       $tagName: TAG,
       withSlots: false,
+      tmpVM: null,
       propsRedirect: {
         template: 'content',
         vnode: 'content',
@@ -63,16 +65,20 @@ export default {
           return new AMap.Icon(options);
         },
         template(tpl) {
-          return compile(tpl, self);
+          const template = compile(tpl, self);
+          this.$customContent = template;
+          return template.$el;
         },
         vnode(vnode) {
           const _vNode = typeof vnode === 'function' ? vnode(self) : vnode;
           const vNode = mountedVNode(_vNode);
-          return vNode;
+          this.$customContent = vNode;
+          return vNode.$el;
         },
         contentRender(renderFn) {
           const template = mountedRenderFn(renderFn, self);
-          return template;
+          this.$customContent = template;
+          return template.$el;
         },
         label(options) {
           const { content = '', offset = [0, 0] } = options;
@@ -92,10 +98,21 @@ export default {
       }
     };
   },
+  created() {
+    this.tmpVM = new Vue({
+      data() {
+        return {node: ''};
+      },
+      render(h) {
+        const {node} = this;
+        return h('div', {ref: 'node'}, Array.isArray(node) ? node : [node]);
+      }
+    }).$mount();
+  },
   methods: {
     __initComponent(options) {
-      if (this.withSlots) {
-        options.content = this.$el;
+      if (this.$slots.default && this.$slots.default.length) {
+        options.content = this.tmpVM.$refs.node;
       }
 
       this.$amapComponent = new AMap.Marker(options);
@@ -115,11 +132,16 @@ export default {
   },
   render(h) {
     const slots = this.$slots.default || [];
-    this.withSlots = !!slots.length;
-    if (this.withSlots) {
-      return h('div', slots);
+    if (slots.length) {
+      this.tmpVM.node = slots;
     }
     return null;
+  },
+  destroyed() {
+    this.tmpVM.$destroy();
+    if (this.$customContent && this.$customContent.$destroy) {
+      this.$customContent.$destroy();
+    }
   }
 };
 </script>
