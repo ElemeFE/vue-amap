@@ -92,9 +92,17 @@ export default class AMapAPILoader {
       // push default types
       config.plugin.push('Autocomplete', 'PlaceSearch', 'PolyEditor', 'CircleEditor');
 
-      config.plugin = config.plugin.map(item => {
-        return (amap_prefix_reg.test(item)) ? item : 'AMap.' + item;
+      const plugins = [];
+
+      // fixed plugin name compatibility.
+      config.plugin.forEach(item => {
+        const prefixName = (amap_prefix_reg.test(item)) ? item : 'AMap.' + item;
+        const pureName = prefixName.replace(amap_prefix_reg, '');
+
+        plugins.push(prefixName, pureName);
       });
+
+      config.plugin = plugins;
     }
 
     const params = Object.keys(config)
