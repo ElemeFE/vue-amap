@@ -100,7 +100,8 @@ export default {
       keyword: this.default || '',
       tips: [],
       selectedTip: -1,
-      loaded: false
+      loaded: false,
+      adcode: null
     };
   },
   mounted() {
@@ -137,7 +138,15 @@ export default {
     search() {
       this.tips = [];
       if (!this._placeSearch) return;
+      let city = null;
+      if (this.searchOption.citylimit && this.searchOption.city) {
+        city = this.searchOption.city;
+      } else {
+        city = this.adcode;
+      }
+      this._placeSearch.setCity(city || this.searchOption.city);
       this._placeSearch.search(this.keyword, (status, result) => {
+        console.log('result', result);
         if (result && result.poiList && result.poiList.count) {
           let {poiList: {pois}} = result;
           let LngLats = pois.map(poi => {
@@ -152,6 +161,7 @@ export default {
       });
     },
     changeTip(tip) {
+      this.adcode = tip.adcode;
       this.keyword = tip.name;
       this.search();
     },
@@ -159,9 +169,11 @@ export default {
       if (type === 'up' && this.selectedTip > 0) {
         this.selectedTip -= 1;
         this.keyword = this.tips[this.selectedTip].name;
+        this.adcode = this.tips[this.selectedTip].adcode;
       } else if (type === 'down' && this.selectedTip + 1 < this.tips.length) {
         this.selectedTip += 1;
         this.keyword = this.tips[this.selectedTip].name;
+        this.adcode = this.tips[this.selectedTip].adcode;
       }
     }
   }
