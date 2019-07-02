@@ -146,7 +146,6 @@ export default {
       }
       this._placeSearch.setCity(city || this.searchOption.city);
       this._placeSearch.search(this.keyword, (status, result) => {
-        console.log('result', result);
         if (result && result.poiList && result.poiList.count) {
           let {poiList: {pois}} = result;
           let LngLats = pois.map(poi => {
