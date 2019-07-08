@@ -15,7 +15,10 @@
           :key="index"
           @click="changeTip(tip)"
           @mouseover="selectedTip=index"
-          :class="{'autocomplete-selected': index === selectedTip}">{{tip.name}}</li>
+          :class="{'autocomplete-selected': index === selectedTip}">
+            {{tip.name}}
+            <span>{{tip.district}}</span>
+          </li>
       </ul>
     </div>
   </div>
@@ -79,9 +82,15 @@
           box-shadow: 0 1px 1px rgba(0,0,0,.1);
           padding: 0 10px;
           cursor: pointer;
+          white-space: nowrap;
 
           &.autocomplete-selected {
             background: #eee;
+          }
+
+          span{
+            font-size:.8em;
+            color:#c1c1c1;
           }
         }
       }
