@@ -145,7 +145,7 @@ export default {
       let _notInjectPlugins = this.plugins.filter(_plugin => !AMap[_plugin.sName]);
 
       if (!_notInjectPlugins || !_notInjectPlugins.length) return this.addMapControls();
-      return this.$amapComponent.plugin(_notInjectPlugins, this.addMapControls);
+      return this.$amapComponent.plugin(_notInjectPlugins.map(_plugin => _plugin.pName), this.addMapControls);
     },
 
     addMapControls() {
