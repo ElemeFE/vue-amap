@@ -47,6 +47,7 @@ export default {
     'jogEnable',
     'scrollWheel',
     'touchZoom',
+    'touchZoomCenter',
     'mapStyle',
     'plugin',
     'features',
