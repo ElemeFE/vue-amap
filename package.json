@@ -107,7 +107,7 @@
     "uppercamelcase": "^1.1.0"
   },
   "engines": {
-    "core-js": "^2.5.0",
+    "core-js": "^3.4.4",
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   }
