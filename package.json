@@ -3,6 +3,7 @@
   "version": "0.5.10",
   "description": "vue amap",
   "main": "./dist/index.js",
+  "module": "lib/index.js",
   "sideEffects": false,
   "directories": {
     "doc": "docs"
