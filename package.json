@@ -87,7 +87,7 @@
     "script-loader": "^0.7.2",
     "selenium-server": "2.53.1",
     "semver": "^5.3.0",
-    "shelljs": "^0.7.4",
+    "shelljs": "^0.8.5",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.14.0",
     "url-loader": "^0.5.8",
