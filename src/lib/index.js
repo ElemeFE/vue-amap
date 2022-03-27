@@ -6,7 +6,7 @@ import upperCamelCase from 'uppercamelcase';
 // 初始化接口
 import {initAMapApiLoader} from './services/injected-amap-api-instance';
 
-// 组建导入
+// 组件导入
 import AMap from './components/amap.vue';
 import AMapMarker from './components/amap-marker.vue';
 import AMapSearchBox from './components/amap-search-box.vue';
